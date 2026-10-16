@@ -1,0 +1,5 @@
+__pycache__/
+engine/save/*
+!engine/save/config.ini
+engine/debug/
+*.core

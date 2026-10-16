@@ -1,0 +1,9 @@
+[Desktop Entry]
+Name=Ikemen GO
+Comment=An open-source fighting game engine
+TryExec=Ikemen_GO_Linux
+Exec=./Ikemen_GO_Linux
+Icon=ikemen-go.png
+Terminal=false
+Type=Application
+Categories=Game;ArcadeGame;
