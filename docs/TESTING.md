@@ -129,6 +129,85 @@ PosFreeze foi tratado anteriormente somente nas cópias adaptadas.
    teclas simultâneas e conforto. Se travar, registrar tempo de parede, round,
    foco/pausa, comando completo, stdout/stderr e uma repetição com `-nosound`.
 
-Não há mecânicas Dragon Ball novas nesta sprint. Power e especiais continuam
-sendo KFM. Arte final, balanceamento e remoção de comandos estão fora do aceite
-atual; decisões propostas estão em COMMANDS.md.
+O trecho acima registra a Sprint 1. A Sprint 2 abaixo acrescenta Ki e especiais
+DBZ; arte final e balanceamento humano continuam pendentes.
+
+## Sprint 2 — 16/10/2026
+
+A validação manual final permanece **pendente**. Testes automatizados não
+substituem uma pessoa executar os comandos e disputar uma partida completa.
+
+Implementação: Ki inicial padrão 0, máximo 3.000, carga 25/tick (40 ticks por
+especial), custo 1.000. Reset em todos os rounds, sem persistência. Parâmetros
+em `assets-source/combat.json`; reconstruir antes de validar alterações.
+
+Reprodução adicional:
+
+```bash
+python3 tests/sprint2_smoke.py
+```
+
+Esse teste precisa X11 desbloqueado, libX11/libXtst, xwininfo e ffmpeg; foca o
+Ikemen e injeta teclas. Copia config.ini para um diretório temporário e ativa
+telemetria somente nessa cópia. Não altera controles ou regras persistidas.
+Executar isoladamente, depois dos builds, e sequencialmente aos outros testes
+gráficos. Exige evidência nova além do código de saída:
+
+- ambos os jogadores tentam QCF+y sem Ki: nem 7100 nem Palm 1010 são executados;
+- carga real por teclas e limite 3.000, sem exceder ou ficar negativo;
+- entrada de cada especial desconta exatamente 1.000 uma única vez;
+- projéteis reais aparecem, colidem e causam o dano nominal configurado;
+- guardar para trás registra ProjGuardedTime e mantém vida (chip zero);
+- um projétil interrompe Vegeta enquanto carrega: sai de 7000 para gethit;
+- ambos os medidores existem durante o combate;
+- round real termina por tempo com vidas diferentes; no seguinte ambos têm Ki 0.
+
+`tests/sprint2-trace.csv` é a evidência aprovada por frame; colunas:
+tick, player, round, roundstate, stateno, life, Ki, numproj, projHitTime(7100),
+projGuardedTime(7100), numexplod(7200). `tests/sprint2-effects.png` captura a
+carga dos dois personagens. Em falha a coleta vai para `sprint2-failed.csv`
+(ignorada pelo Git), não substituindo a evidência aprovada.
+
+Os testes unitários também rejeitam coleta vazia, jogador ausente, custo
+incorreto, ausência de hit/guarda/medidor e reset ausente. Não simulam a física
+do motor: fixtures unitárias testam o verificador; somente o smoke X11 comprova
+as mecânicas de combate. Os testes de geometria continuam exigindo todos os
+604 frames herdados por personagem, sem relaxar sua cobertura/timing.
+
+Na preparação, as validações estáticas da Sprint 1 passaram. O cenário antigo
+com tempo de 10 s terminou com um empate intermediário e foi corretamente
+reprovado, tanto sem som quanto com áudio. O timeout do cenário foi ampliado
+para 30 s por round (limite de parede permanece 90 s), mantendo todas as
+exigências de dois KOs, placar e transições. Essa falha não foi contada como PASS.
+
+### Aceite humano pendente
+
+1. Executar com dois jogadores: carregar, soltar um chute, sofrer golpe na
+   carga/preparo, confirmar aura, barra e custo, incluindo facing invertido.
+2. Acertar e defender cada especial em pé/agachado/no ar; conferir os projéteis
+   e impactos azul/roxo e colisão entre dois disparos simultâneos.
+3. Confirmar combo normal→especial, erro de comando, tentativa com 999 Ki,
+   limite de um projétil, alcance, prioridade e recovery punível.
+4. Conferir que supers/EX KFM só consomem power; testar agarrões/parry e todos
+   os normais, especialmente sweep e ataques aéreos sem cancelamento DBZ.
+5. Disputar melhor de três completa, 2–0 e 2–1, com áudio; avaliar ritmo arcade,
+   responsividade, ghosting e reset de Ki. Registrar versão, resultado e evidência.
+
+Nenhuma dessas etapas humanas foi declarada concluída.
+
+### Resultados automatizados da Sprint 2
+
+| Verificação | Resultado |
+| --- | --- |
+| `validate.py`, normal e `-O` | PASS: 861 sprites, 670 frames AIR, 604 frames herdados alinhados por personagem; hash do motor preservado. |
+| Unittest | PASS: 10 testes, incluindo as seis regressões anteriores e quatro verificações DBZ. |
+| Reconstrução | PASS: mesmos hashes dos 16 arquivos gerados em uma reconstrução sem mudanças de fonte. |
+| `sprint2_smoke.py` | PASS: comandos reais, Ki/custo/limite, dano/guarda, interrupção e reset no motor, dois jogadores. |
+| `match_smoke.py` | PASS: 30,05 s, dois KOs, dois rounds, placar 0–2, código 0, cenário com 30 s por round. |
+| `match_smoke.py --audio` | PASS: 39,59 s, dois KOs, dois rounds, placar 0–2, código 0. |
+| `keyboard_smoke.py` | PASS: AILevel 0 nos dois lados; vidas finais 774/874, ambos causaram dano; código 0. |
+
+Execuções gráficas fora do sandbox, OpenGL 4.6/Mesa 23.2.1/Intel UHD 620.
+A comparação com áudio verifica conclusão e resultados; qualidade audível,
+latência e conforto continuam pendentes de avaliação humana. A captura da
+carga confirma aura e medidores azul/roxo; não valida todos os frames/impactos.

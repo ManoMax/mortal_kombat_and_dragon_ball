@@ -14,5 +14,8 @@ O menu oferece Versus e configuração de controles. O launcher fixa P1 e P2
 nas entradas 1 e 2, com IA desligada. No menu escolha Versus para dois humanos.
 
 Os golpes adicionais e combos herdados de KFM estão descritos em
-`engine/chars/goku/readme.txt`. Eles ainda não representam Kamehameha/Galick Gun.
+`engine/chars/goku/readme.txt`. O comando QCF+y foi substituído pelos especiais DBZ; veja COMMANDS.md.
 Teclados podem limitar combinações simultâneas (ghosting); avaliar no hardware alvo.
+
+Carregar Ki: segurar Z+X / F+G. Especial: baixo, diagonal para frente,
+frente+soco forte (S / T). Inverta as direções conforme o lado. Custa 1.000 Ki.

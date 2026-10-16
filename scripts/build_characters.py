@@ -3,6 +3,7 @@
 from pathlib import Path
 import re, struct, shutil
 from air_geometry import frames
+import dbz_combat as dbz
 ROOT = Path(__file__).resolve().parents[1]
 BASE = ROOT / 'engine/chars/kfm'
 W,H=160,120
@@ -59,7 +60,7 @@ def sprite(group, frame, vegeta, geometry=None):
         limb(53,y+24,96 if punch else 60,y+26 if punch else y+12 if guard else y+38,7,1)
         rect(25,y+39,10,8,3)
         rect(95 if punch else 59,y+24 if punch else y+10 if guard else y+36,10,9,1)
-    palette=((0,0,0),(245,183,125),(43,76,172) if vegeta else (239,112,26),(231,231,220) if vegeta else (27,52,122),(21,22,31),(220,199,133))
+    palette=dbz.palette(vegeta)
     if geometry:
         # Fit each frame independently: sprite IDs alone do not identify a pose.
         boxes, dx, dy, flip, _, _ = geometry
@@ -94,9 +95,9 @@ def sff(path, entries, vegeta, poses):
     chunks=[]; offset=512
     for n,(g,i) in enumerate(entries):
         pose=poses.get((g,i))
-        data=sprite(pose[4] if pose else g,pose[5] if pose else i,vegeta,pose)
+        data=dbz.effect(g,i,vegeta,pcx) if (g,i) in dbz.ENTRIES else sprite(pose[4] if pose else g,pose[5] if pose else i,vegeta,pose)
         next_offset=offset+32+len(data) if n<len(entries)-1 else 0
-        chunks.append(struct.pack('<IIhhHHHB',next_offset,len(data),160 if pose else 44,240 if pose else 110,g,i,0,0)+bytes(13)+data)
+        chunks.append(struct.pack('<IIhhHHHB',next_offset,len(data),160 if pose else 80 if (g,i) in dbz.ENTRIES else 44,240 if pose else 110,g,i,0,0)+bytes(13)+data)
         offset+=32+len(data)
     header=b'ElecbyteSpr\0'+bytes((0,1,0,1))+struct.pack('<IIII',len(set(g for g,i in entries)),len(entries),512,32)+bytes(480)
     path.write_bytes(header+b''.join(chunks))
@@ -112,15 +113,17 @@ def main():
         poses[key]=(boxes,dx,dy,flags,g,i)
         lines[line]=f'{key[0]},{key[1]}, {dx},{dy}, {duration}{flags}'
     adapted='\n'.join(lines)+'\n'
-    entries=sorted(set(entries)|set(poses))
+    entries=sorted(set(entries)|set(poses)|set(dbz.ENTRIES))
     for name in ('goku','vegeta'):
         dest=ROOT/'engine/chars'/name; dest.mkdir(exist_ok=True)
         for f in ('kfm.cmd','kfm.cns','kfm.air','kfm.snd','readme.txt','movelist.dat'):
             shutil.copy2(BASE/f,dest/f)
-        (dest/'kfm.air').write_text(adapted)
+        (dest/'kfm.air').write_text(adapted+dbz.animations(name=='vegeta'))
+        (dest/'kfm.cmd').write_text(dbz.command_layer((dest/'kfm.cmd').read_text(encoding='utf-8-sig')))
         cns=(dest/'kfm.cns').read_text(encoding='utf-8-sig')
         cns=cns.replace('type = PosFreeze\ntrigger1 = 1\nx = 1\ny = 1','type = PosFreeze\ntrigger1 = 1')
-        (dest/'kfm.cns').write_text(cns)
+        cns=cns.replace('walk.fwd  = 2.4','walk.fwd  = 2.8').replace('walk.back = -2.2','walk.back = -2.5')
+        (dest/'kfm.cns').write_text(cns+dbz.states(name))
         definition=(BASE/'kfm.def').read_text()
         definition=definition.replace('"Kung Fu Man"',f'"{name.title()} (Prototype)"').replace('sprite  = kfm.sff','sprite  = fighter.sff')
         definition=definition.split('; Arcade mode')[0]

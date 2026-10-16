@@ -1,4 +1,4 @@
-﻿; The CMD file.
+; The CMD file.
 ;
 ; Two parts: 1. Command definition and  2. State entry
 ; (state entry is after the commands def section)
@@ -370,7 +370,39 @@ time = 1
 
 
 ; Don't remove the following line. It's required by the CMD standard.
+[Command]
+name = "ki_charge_a"
+command = /a
+time = 1
+
+[Command]
+name = "ki_charge_b"
+command = /b
+time = 1
+
 [Statedef -1]
+
+[State -1, DBZ beam]
+type = ChangeState
+triggerall = roundstate = 2
+triggerall = command = "QCF_y"
+triggerall = var(20) >= 1000
+triggerall = statetype != A
+triggerall = numprojID(7100) = 0
+trigger1 = ctrl
+trigger2 = stateno = [200, 429]
+trigger2 = movecontact
+value = 7100
+
+[State -1, Ki charge]
+type = ChangeState
+triggerall = roundstate = 2
+triggerall = command = "ki_charge_a"
+triggerall = command = "ki_charge_b"
+triggerall = statetype != A
+trigger1 = ctrl
+value = 7000
+
 
 ;===========================================================================
 ;---------------------------------------------------------------------------
@@ -467,14 +499,6 @@ trigger1 = var(1) ;Use combo condition (above)
 
 ;---------------------------------------------------------------------------
 ;Strong Kung Fu Palm
-[State -1, Strong Kung Fu Palm]
-type = ChangeState
-value = 1010
-triggerall = command = "QCF_y"
-trigger1 = var(1) ;Use combo condition (above)
-
-;---------------------------------------------------------------------------
-;Fast Kung Fu Upper (1/3 super bar)
 [State -1, Fast Kung Fu Upper]
 type = ChangeState
 value = 1120

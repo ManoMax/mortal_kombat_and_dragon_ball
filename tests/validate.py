@@ -49,9 +49,10 @@ def validate(folder):
     require(end==len(data) and groups==len({g for g,n in entries}), 'SFF count/trailing bytes')
     actual=list(frames((folder/'kfm.air').read_text(encoding='utf-8-sig')))
     inherited=list(frames((root/'engine/chars/kfm/kfm.air').read_text(encoding='utf-8-sig')))
-    require(len(actual)==len(inherited), 'Animation frame count changed')
+    original=[frame for frame in actual if frame[1] < 7000]
+    require(len(original)==len(inherited), 'Inherited animation frame count changed')
     aligned=0
-    for current,base in zip(actual,inherited):
+    for current,base in zip(original,inherited):
         _,action,(g,n,dx,dy,duration),flags,boxes=current
         require(current[1]==base[1] and current[2][2:]==base[2][2:] and flags==base[3] and boxes==base[4], 'Combat timing/geometry changed')
         if g<0: continue
@@ -72,7 +73,10 @@ def validate(folder):
         union={(x,y) for l,t,r,b in boxes[1]+boxes[2] for y in range(t,b+1) for x in range(l,r+1)}
         require(sum(value!=0 for value in pixels)==len(union), 'Artwork outside collision silhouette')
         aligned+=1
-    print(f'PASS {folder.name}: {count} sprites, {len(actual)} AIR frames, {aligned} body frames aligned')
+    for _,action,(g,n,*_),flags,boxes in actual:
+        if action >= 7000:
+            require((g,n) in entries, f'Missing DBZ sprite {g},{n}')
+    print(f'PASS {folder.name}: {count} sprites, {len(actual)} AIR frames, {aligned} inherited body frames aligned')
 
 if __name__=='__main__':
     for name in ('goku','vegeta'): validate(root/'engine/chars'/name)

@@ -1,0 +1,6 @@
+{
+  "initial_ki": 0,
+  "charge_per_tick": 25,
+  "goku": {"damage": 150, "speed": 7, "startup": 20, "recovery": 24},
+  "vegeta": {"damage": 160, "speed": 6, "startup": 22, "recovery": 26}
+}

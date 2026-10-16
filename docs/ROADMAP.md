@@ -16,8 +16,13 @@
    - Pendente: inspeção visual no motor em todas as posturas, defesa, agarrões,
      partida 2–1, empates, menus e sessão humana com áudio.
    - Limite: silhuetas de colisão são arte de protótipo, não animação final.
-4. Fase 3 pendente, fora da Sprint 1: Ki, Kamehameha, Galick Gun, charge,
-   transformações e balanceamento. Power continua sendo o recurso KFM.
+4. **Sprint 2 — implementada, testes automatizados aprovados e aceite manual pendente:**
+   - Ki independente com carga, máximo 3.000, custo 1.000 e reset por round.
+   - Kamehameha/Galick Gun com estados, sprites, projéteis e impacto próprios.
+   - Caminhada mais rápida, cancelamento terrestre em contato e recovery punível.
+   - Pipeline determinístico; testes de comandos, telemetria e regressões.
+   - Pendente: sessão humana, ajuste fino do ritmo MK, arte final e transformações.
+   - A Sprint 1 mantém seu aceite manual pendente; não houve merge automático.
 5. Fase 4 parcial: interface/seleção do motor. Identidade MK, palco original,
    câmera fixa e apresentação próprias pendentes.
 6. Fase 5 pendente: pipeline Blender e arte original/licenciada de maior qualidade.

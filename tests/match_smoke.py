@@ -51,7 +51,7 @@ def main():
     args=parser.parse_args()
     with tempfile.TemporaryDirectory(prefix='dbz-match-') as directory:
         log=Path(directory)/'match.log'
-        command=[str(ROOT/'scripts/play.sh'), '-p1.life','1','-p1.lifeMax','1','-p2.life','1000','-p2.ai','8', '-time','10','-rounds','2','-log',str(log)]
+        command=[str(ROOT/'scripts/play.sh'), '-p1.life','1','-p1.lifeMax','1','-p2.life','1000','-p2.ai','8', '-time','30','-rounds','2','-log',str(log)]
         if not args.audio: command.append('-nosound')
         started=time.monotonic()
         try:

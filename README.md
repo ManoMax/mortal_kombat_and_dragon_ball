@@ -2,8 +2,8 @@
 
 Jogo de luta local executável no Ubuntu, usando **IKEMEN GO v1.0.0**.
 Goku e Vegeta possuem sprites geométricos originais provisórios e combate derivado
-do Kung Fu Man (Elecbyte). Este incremento entrega o núcleo da luta, ainda sem
-as técnicas de Dragon Ball ou o ajuste de jogabilidade Mortal Kombat.
+do Kung Fu Man (Elecbyte). A Sprint 2 acrescenta Ki independente, Kamehameha e Galick Gun, com arte
+original provisória e um primeiro ajuste arcade. Aceite humano pendente.
 
 ## Executar
 
@@ -25,10 +25,15 @@ Se áudio impedir inicialização, teste `./scripts/play.sh -nosound`.
 | Soco fraco / forte | A / S | R / T |
 | Chute fraco / forte | Z / X | F / G |
 | Defesa | Segurar direção contrária ao adversário | Igual |
+| Carregar Ki (segurar os dois chutes) | Z + X | F + G |
+| Kamehameha / Galick Gun (virado para a direita) | ↓, ↘, → + S | K, K+L, L+T |
 | Start | Enter | Shift direito |
 
 Há hitboxes, dano, hitstun, ataques em pé/agachado/no ar, defesa,
 barras de vida, cronômetro, rounds e vitória/derrota fornecidos pelo motor e KFM.
+Ki começa em 0, vai até 3.000 e reseta a cada round; cada projétil custa 1.000.
+A barra fina azul/roxa abaixo da vida indica Ki; a barra power herdada continua
+sendo exclusiva do KFM. Inverta as direções quando estiver virado à esquerda.
 Sprites são deliberadamente simples. Defesa ainda usa direção para trás.
 
 ## Desenvolvimento
@@ -36,6 +41,9 @@ Sprites são deliberadamente simples. Defesa ainda usa direção para trás.
 ```bash
 python3 scripts/build_characters.py
 python3 tests/validate.py
+python3 -m unittest discover -s tests -p 'test_*.py' -v
+# Teste dos especiais, requer X11 e injeta teclas:
+python3 tests/sprint2_smoke.py
 # Requer desktop X11 desbloqueado; envia teclas à janela Ikemen:
 python3 tests/keyboard_smoke.py
 ```

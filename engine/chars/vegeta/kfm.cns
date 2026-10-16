@@ -50,8 +50,8 @@ shadowoffset = 0     ;Number of pixels to vertically offset the shadow
 draw.offset = 0,0    ;Player drawing offset in pixels (x, y). Recommended 0,0
 
 [Velocity]
-walk.fwd  = 2.4      ;Walk forward
-walk.back = -2.2     ;Walk backward
+walk.fwd  = 2.8      ;Walk forward
+walk.back = -2.5     ;Walk backward
 run.fwd  = 4.6, 0    ;Run forward (x, y)
 run.back = -4.5,-3.8 ;Hop backward (x, y)
 jump.neu = 0,-8.4    ;Neutral jumping velocity (x, y)
@@ -3466,3 +3466,139 @@ triggerall = Time = 1
 trigger1 = stateno = 52 ;Jump land
 trigger2 = stateno = 106 ;Run-back land
 value = 40, 0
+
+; DBZ: var(20) is Ki, independent of KFM power and vars 1/2.
+[Statedef -2]
+[State -2, Reset Ki each round]
+type = VarSet
+trigger1 = roundstate < 2
+var(20) = 0
+ignorehitpause = 1
+
+[State -2, Ki background]
+type = Explod
+trigger1 = numexplod(7201) = 0
+anim = 7201
+ID = 7201
+postype = left
+pos = ifelse(teamside = 1, 12, 208), 40
+bindtime = -1
+removetime = -1
+sprpriority = 10
+ownpal = 1
+ignorehitpause = 1
+
+[State -2, Stop aura on interruption]
+type = RemoveExplod
+trigger1 = stateno != 7000
+ID = 7020
+ignorehitpause = 1
+
+[State -2, Ki meter]
+type = Explod
+trigger1 = numexplod(7200) = 0
+anim = 7200
+ID = 7200
+postype = left
+pos = ifelse(teamside = 1, 12, 208), 40
+bindtime = -1
+removetime = -1
+sprpriority = 11
+ownpal = 1
+ignorehitpause = 1
+
+[State -2, Ki meter fill]
+type = ModifyExplod
+trigger1 = 1
+ID = 7200
+scale = var(20) / 3000.0, 1
+ignorehitpause = 1
+
+[Statedef 7000]
+type = S
+movetype = I
+physics = S
+anim = 7000
+ctrl = 0
+velset = 0, 0
+
+[State 7000, Charge]
+type = VarSet
+trigger1 = roundstate = 2
+var(20) = min(3000, var(20) + 25)
+
+[State 7000, Aura]
+type = Explod
+trigger1 = time % 12 = 0
+anim = 7020
+ID = 7020
+pos = 0, 0
+postype = p1
+bindtime = -1
+removetime = 12
+sprpriority = -1
+ownpal = 1
+
+[State 7000, Release]
+type = ChangeState
+trigger1 = command != "ki_charge_a"
+trigger2 = command != "ki_charge_b"
+trigger3 = roundstate != 2
+value = 0
+ctrl = 1
+
+[Statedef 7100]
+type = S
+movetype = A
+physics = S
+anim = 7100
+ctrl = 0
+velset = 0, 0
+
+[State 7100, Pay once on entry]
+type = VarAdd
+trigger1 = time = 0
+v = 20
+value = -1000
+
+[State 7100, Original beam]
+type = Projectile
+trigger1 = time = 22
+ProjID = 7100
+projanim = 7110
+projhitanim = 7120
+projremanim = 7120
+projcancelanim = 7120
+projremove = 1
+projremovetime = 90
+projhits = 1
+projpriority = 1
+offset = 35, -55
+velocity = 6, 0
+attr = S, SP
+hitflag = MAF
+guardflag = MA
+animtype = Heavy
+priority = 4, Hit
+damage = 160, 0
+pausetime = 0, 10
+guard.pausetime = 0, 8
+sparkno = -1
+guard.sparkno = -1
+getpower = 0, 0
+givepower = 0, 0
+ground.type = High
+ground.slidetime = 18
+ground.hittime = 24
+guard.hittime = 14
+ground.velocity = -6, 0
+guard.velocity = -3
+air.velocity = -4, -3
+air.hittime = 24
+fall = 0
+
+[State 7100, Recovery]
+type = ChangeState
+trigger1 = time >= 48
+value = 0
+ctrl = 1

@@ -3,3 +3,5 @@ engine/save/*
 !engine/save/config.ini
 engine/debug/
 *.core
+
+tests/sprint2-failed.csv

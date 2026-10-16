@@ -26,3 +26,10 @@ block/hit/fall/win. Renderizar PNG transparente com origem nos pés e escala
 compatível com hurtboxes. Converter para SFF, atualizar AIR e ajustar hitboxes
 por frame. Validar ambos os lados e golpes no chão/no ar. Blender e pipeline
 PNG→SFF não foram instalados/implementados neste incremento.
+
+## Sprint 2
+
+Os efeitos azul/roxo, aura, impacto, medidor e poses de carga/disparo são
+originais procedurais em `scripts/dbz_combat.py`. Nenhuma imagem comercial de
+Dragon Ball/Mortal Kombat foi importada. O gerador integra tudo ao SFF v1 de
+forma reproduzível, preservando os avisos KFM e sua licença não comercial.
