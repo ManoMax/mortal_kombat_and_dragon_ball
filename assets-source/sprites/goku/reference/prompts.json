@@ -1,0 +1,44 @@
+[
+  {
+    "file": "idle-generated.png",
+    "tool": "image_gen",
+    "transparent_background": true,
+    "prompt": "Create an arcade 2D fighting game sprite sheet: four frames of Goku idle breathing animation, original newly drawn artwork, black spiky hair, orange martial arts gi, blue undershirt belt wristbands boots, recognizable adult athletic anime fighter. Transparent background. Exactly 4 equal cells in a single horizontal row, full body side view facing right in each cell, identical camera, scale, proportions, lighting upper left, feet at identical baseline and identical placement, no shadows outside character, no text or logos. Organic detailed hand drawn cel shaded arcade animation, no geometric shapes. Frames: neutral guard, chest rises slightly, relaxed exhale, return neutral with subtle hair/clothes secondary movement. Keep all limbs and hair inside cells with generous transparent margins. This is production concept candidate, not a screenshot."
+  },
+  {
+    "file": "walk-generated.png",
+    "tool": "image_gen",
+    "transparent_background": true,
+    "reference": "idle-generated.png",
+    "prompt": "Create a transparent single horizontal row sprite sheet with EXACTLY FOUR full body Goku poses. Match character details cel shading anatomy illumination and costume of reference. Motion: four different walk cycle poses: left foot contact, left foot passing, right foot contact, right foot passing. Two legs visible each pose. All face right. CRITICAL: four evenly spaced sprites, each full character strictly inside its own cell, 10% transparent padding above hair below feet and left and right of hands. Nothing touches any cell edge. Common character scale and camera, same foot ground baseline across all four cells. No extra rows. No text, no graphics, no shadows, no logos. Organic anatomy, newly drawn animation candidate, transparent alpha."
+  },
+  {
+    "file": "punch-generated.png",
+    "tool": "image_gen",
+    "transparent_background": true,
+    "reference": "idle-generated.png",
+    "prompt": "Create a transparent single horizontal row sprite sheet with EXACTLY FOUR full body Goku poses. Match character details cel shading anatomy illumination and costume of reference. Motion: four straight punch poses: guard, anticipation fist close to shoulder, fully extended straight punch right at shoulder height, retracting fist. All face right. CRITICAL: four evenly spaced sprites, each full character strictly inside its own cell, 10% transparent padding above hair below feet and left and right of hands. Nothing touches any cell edge. Common character scale and camera, same foot ground baseline across all four cells. No extra rows. No text, no graphics, no shadows, no logos. Organic anatomy, newly drawn animation candidate, transparent alpha."
+  },
+  {
+    "file": "kamehameha-generated.png",
+    "tool": "image_gen",
+    "transparent_background": true,
+    "reference": "idle-generated.png",
+    "prompt": "Create a transparent single horizontal row sprite sheet with EXACTLY FOUR full body Goku poses. Match character details cel shading anatomy illumination and costume of reference. Motion: four Kamehameha poses: hands cupped together at left waist, crouched deeper preparing hands cupped, both arms extended horizontally right palms forward, release follow through arms extended. NO beam or energy engine adds it. All face right. CRITICAL: four evenly spaced sprites, each full character strictly inside its own cell, 10% transparent padding above hair below feet and left and right of hands. Nothing touches any cell edge. Common character scale and camera, same foot ground baseline across all four cells. No extra rows. No text, no graphics, no shadows, no logos. Organic anatomy, newly drawn animation candidate, transparent alpha."
+  },
+  {
+    "file": "damage-generated.png",
+    "tool": "image_gen",
+    "transparent_background": true,
+    "reference": "idle-generated.png",
+    "prompt": "Create a transparent single horizontal row sprite sheet with EXACTLY FOUR full body Goku poses. Match character details cel shading anatomy illumination and costume of reference. Motion: four hit reaction poses: head recoils left, torso recoils left bent back, knees braced leaning back, returning guard. All face right. CRITICAL: four evenly spaced sprites, each full character strictly inside its own cell, 10% transparent padding above hair below feet and left and right of hands. Nothing touches any cell edge. Common character scale and camera, same foot ground baseline across all four cells. No extra rows. No text, no graphics, no shadows, no logos. Organic anatomy, newly drawn animation candidate, transparent alpha."
+  },
+  {
+    "file": "motions-generated.png",
+    "tool": "image_gen",
+    "transparent_background": true,
+    "reference": "idle-generated.png",
+    "status": "rejected",
+    "prompt": "Use supplied Goku sprite artwork as strict character, proportion, lighting and cel shading reference. Generate one transparent arcade sprite sheet exactly 4 columns x 4 rows, 16 full body poses, each inside equal cell, generous margins, same body scale, side view facing right, feet baseline same in each cell. No text labels, no logos. Row 1: four distinct walk cycle keyframes, passing contact passing opposite contact, organic leg and arm motion. Row 2: four basic straight punch keyframes, guarded anticipation, arm extends, full straight punch right at shoulder height, retraction. Row 3: Kamehameha preparation and release, hands cupped near left waist, deeper crouch cupping hands, both arms extend palms forward right, extended followthrough. Do NOT draw energy beam or glow (engine supplies). Row 4: four damage reaction keyframes, torso knocked back left, head recoils, bent knees bracing, recovery guard. Preserve hair orange gi blue accessories and organic anatomy from reference. Do not repeat a single pose as fake animation. Entire character and limbs inside cells, transparent actual alpha."
+  }
+]

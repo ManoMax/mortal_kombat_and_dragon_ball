@@ -7,12 +7,1100 @@
         30000,
         0
       ],
-      "file": "idle-000.png",
+      "file": "idle/000.png",
       "origin": [
         160,
         240
       ],
-      "scale": 1
+      "scale": 1,
+      "organic": true,
+      "normalized_bounds": [
+        -33,
+        -97,
+        34,
+        0
+      ],
+      "sha256": "6d57f1a1032efb04db6aea96a66b0642e4622b4f5cf54ec0ea3ed5fe6a2a08f8"
+    },
+    {
+      "sprite": [
+        30000,
+        10
+      ],
+      "file": "idle/000.png",
+      "origin": [
+        160,
+        240
+      ],
+      "scale": 1,
+      "organic": true,
+      "normalized_bounds": [
+        -33,
+        -97,
+        34,
+        0
+      ],
+      "sha256": "6d57f1a1032efb04db6aea96a66b0642e4622b4f5cf54ec0ea3ed5fe6a2a08f8"
+    },
+    {
+      "sprite": [
+        30000,
+        1
+      ],
+      "file": "idle/001.png",
+      "origin": [
+        160,
+        240
+      ],
+      "scale": 1,
+      "organic": true,
+      "normalized_bounds": [
+        -33,
+        -98,
+        34,
+        0
+      ],
+      "sha256": "8b77dcb544410ec745603576a34799c00e3970a61fdc3229261a40b103660d01"
+    },
+    {
+      "sprite": [
+        30000,
+        5
+      ],
+      "file": "idle/001.png",
+      "origin": [
+        160,
+        240
+      ],
+      "scale": 1,
+      "organic": true,
+      "normalized_bounds": [
+        -33,
+        -98,
+        34,
+        0
+      ],
+      "sha256": "8b77dcb544410ec745603576a34799c00e3970a61fdc3229261a40b103660d01"
+    },
+    {
+      "sprite": [
+        30000,
+        9
+      ],
+      "file": "idle/001.png",
+      "origin": [
+        160,
+        240
+      ],
+      "scale": 1,
+      "organic": true,
+      "normalized_bounds": [
+        -33,
+        -98,
+        34,
+        0
+      ],
+      "sha256": "8b77dcb544410ec745603576a34799c00e3970a61fdc3229261a40b103660d01"
+    },
+    {
+      "sprite": [
+        30000,
+        2
+      ],
+      "file": "idle/002.png",
+      "origin": [
+        160,
+        240
+      ],
+      "scale": 1,
+      "organic": true,
+      "normalized_bounds": [
+        -33,
+        -97,
+        33,
+        0
+      ],
+      "sha256": "9daa8958e94772cc0ad0f565b1f7be7c74f1f084bc1dad12b8bf1046460d8a24"
+    },
+    {
+      "sprite": [
+        30000,
+        4
+      ],
+      "file": "idle/002.png",
+      "origin": [
+        160,
+        240
+      ],
+      "scale": 1,
+      "organic": true,
+      "normalized_bounds": [
+        -33,
+        -97,
+        33,
+        0
+      ],
+      "sha256": "9daa8958e94772cc0ad0f565b1f7be7c74f1f084bc1dad12b8bf1046460d8a24"
+    },
+    {
+      "sprite": [
+        30000,
+        6
+      ],
+      "file": "idle/002.png",
+      "origin": [
+        160,
+        240
+      ],
+      "scale": 1,
+      "organic": true,
+      "normalized_bounds": [
+        -33,
+        -97,
+        33,
+        0
+      ],
+      "sha256": "9daa8958e94772cc0ad0f565b1f7be7c74f1f084bc1dad12b8bf1046460d8a24"
+    },
+    {
+      "sprite": [
+        30000,
+        8
+      ],
+      "file": "idle/002.png",
+      "origin": [
+        160,
+        240
+      ],
+      "scale": 1,
+      "organic": true,
+      "normalized_bounds": [
+        -33,
+        -97,
+        33,
+        0
+      ],
+      "sha256": "9daa8958e94772cc0ad0f565b1f7be7c74f1f084bc1dad12b8bf1046460d8a24"
+    },
+    {
+      "sprite": [
+        30000,
+        3
+      ],
+      "file": "idle/003.png",
+      "origin": [
+        160,
+        240
+      ],
+      "scale": 1,
+      "organic": true,
+      "normalized_bounds": [
+        -33,
+        -97,
+        33,
+        0
+      ],
+      "sha256": "785d2a711676b6383ab60a44d4ff11fb267529774dc89bc16c93f7f596d0adea"
+    },
+    {
+      "sprite": [
+        30000,
+        7
+      ],
+      "file": "idle/003.png",
+      "origin": [
+        160,
+        240
+      ],
+      "scale": 1,
+      "organic": true,
+      "normalized_bounds": [
+        -33,
+        -97,
+        33,
+        0
+      ],
+      "sha256": "785d2a711676b6383ab60a44d4ff11fb267529774dc89bc16c93f7f596d0adea"
+    },
+    {
+      "sprite": [
+        30000,
+        20
+      ],
+      "file": "walk/000.png",
+      "origin": [
+        160,
+        240
+      ],
+      "scale": 1,
+      "organic": true,
+      "normalized_bounds": [
+        -34,
+        -96,
+        35,
+        0
+      ],
+      "sha256": "25e8d3f1ce80b5d1f77eac196117ba6968163ee264800479d94dbc7843929ed3"
+    },
+    {
+      "sprite": [
+        30000,
+        21
+      ],
+      "file": "walk/000.png",
+      "origin": [
+        160,
+        240
+      ],
+      "scale": 1,
+      "organic": true,
+      "normalized_bounds": [
+        -34,
+        -96,
+        35,
+        0
+      ],
+      "sha256": "25e8d3f1ce80b5d1f77eac196117ba6968163ee264800479d94dbc7843929ed3"
+    },
+    {
+      "sprite": [
+        30000,
+        22
+      ],
+      "file": "walk/000.png",
+      "origin": [
+        160,
+        240
+      ],
+      "scale": 1,
+      "organic": true,
+      "normalized_bounds": [
+        -34,
+        -96,
+        35,
+        0
+      ],
+      "sha256": "25e8d3f1ce80b5d1f77eac196117ba6968163ee264800479d94dbc7843929ed3"
+    },
+    {
+      "sprite": [
+        30000,
+        23
+      ],
+      "file": "walk/000.png",
+      "origin": [
+        160,
+        240
+      ],
+      "scale": 1,
+      "organic": true,
+      "normalized_bounds": [
+        -34,
+        -96,
+        35,
+        0
+      ],
+      "sha256": "25e8d3f1ce80b5d1f77eac196117ba6968163ee264800479d94dbc7843929ed3"
+    },
+    {
+      "sprite": [
+        30000,
+        48
+      ],
+      "file": "walk/000.png",
+      "origin": [
+        160,
+        240
+      ],
+      "scale": 1,
+      "organic": true,
+      "normalized_bounds": [
+        -34,
+        -96,
+        35,
+        0
+      ],
+      "sha256": "25e8d3f1ce80b5d1f77eac196117ba6968163ee264800479d94dbc7843929ed3"
+    },
+    {
+      "sprite": [
+        30000,
+        49
+      ],
+      "file": "walk/000.png",
+      "origin": [
+        160,
+        240
+      ],
+      "scale": 1,
+      "organic": true,
+      "normalized_bounds": [
+        -34,
+        -96,
+        35,
+        0
+      ],
+      "sha256": "25e8d3f1ce80b5d1f77eac196117ba6968163ee264800479d94dbc7843929ed3"
+    },
+    {
+      "sprite": [
+        30000,
+        50
+      ],
+      "file": "walk/000.png",
+      "origin": [
+        160,
+        240
+      ],
+      "scale": 1,
+      "organic": true,
+      "normalized_bounds": [
+        -34,
+        -96,
+        35,
+        0
+      ],
+      "sha256": "25e8d3f1ce80b5d1f77eac196117ba6968163ee264800479d94dbc7843929ed3"
+    },
+    {
+      "sprite": [
+        30000,
+        51
+      ],
+      "file": "walk/000.png",
+      "origin": [
+        160,
+        240
+      ],
+      "scale": 1,
+      "organic": true,
+      "normalized_bounds": [
+        -34,
+        -96,
+        35,
+        0
+      ],
+      "sha256": "25e8d3f1ce80b5d1f77eac196117ba6968163ee264800479d94dbc7843929ed3"
+    },
+    {
+      "sprite": [
+        30000,
+        24
+      ],
+      "file": "walk/001.png",
+      "origin": [
+        160,
+        240
+      ],
+      "scale": 1,
+      "organic": true,
+      "normalized_bounds": [
+        -32,
+        -96,
+        31,
+        0
+      ],
+      "sha256": "546786f5c85bdb247bf96fe6eca73c7558ad3a42cf9fa8d4db6cd1b5d9fa8a66"
+    },
+    {
+      "sprite": [
+        30000,
+        25
+      ],
+      "file": "walk/001.png",
+      "origin": [
+        160,
+        240
+      ],
+      "scale": 1,
+      "organic": true,
+      "normalized_bounds": [
+        -32,
+        -96,
+        31,
+        0
+      ],
+      "sha256": "546786f5c85bdb247bf96fe6eca73c7558ad3a42cf9fa8d4db6cd1b5d9fa8a66"
+    },
+    {
+      "sprite": [
+        30000,
+        26
+      ],
+      "file": "walk/001.png",
+      "origin": [
+        160,
+        240
+      ],
+      "scale": 1,
+      "organic": true,
+      "normalized_bounds": [
+        -32,
+        -96,
+        31,
+        0
+      ],
+      "sha256": "546786f5c85bdb247bf96fe6eca73c7558ad3a42cf9fa8d4db6cd1b5d9fa8a66"
+    },
+    {
+      "sprite": [
+        30000,
+        27
+      ],
+      "file": "walk/001.png",
+      "origin": [
+        160,
+        240
+      ],
+      "scale": 1,
+      "organic": true,
+      "normalized_bounds": [
+        -32,
+        -96,
+        31,
+        0
+      ],
+      "sha256": "546786f5c85bdb247bf96fe6eca73c7558ad3a42cf9fa8d4db6cd1b5d9fa8a66"
+    },
+    {
+      "sprite": [
+        30000,
+        44
+      ],
+      "file": "walk/001.png",
+      "origin": [
+        160,
+        240
+      ],
+      "scale": 1,
+      "organic": true,
+      "normalized_bounds": [
+        -32,
+        -96,
+        31,
+        0
+      ],
+      "sha256": "546786f5c85bdb247bf96fe6eca73c7558ad3a42cf9fa8d4db6cd1b5d9fa8a66"
+    },
+    {
+      "sprite": [
+        30000,
+        45
+      ],
+      "file": "walk/001.png",
+      "origin": [
+        160,
+        240
+      ],
+      "scale": 1,
+      "organic": true,
+      "normalized_bounds": [
+        -32,
+        -96,
+        31,
+        0
+      ],
+      "sha256": "546786f5c85bdb247bf96fe6eca73c7558ad3a42cf9fa8d4db6cd1b5d9fa8a66"
+    },
+    {
+      "sprite": [
+        30000,
+        46
+      ],
+      "file": "walk/001.png",
+      "origin": [
+        160,
+        240
+      ],
+      "scale": 1,
+      "organic": true,
+      "normalized_bounds": [
+        -32,
+        -96,
+        31,
+        0
+      ],
+      "sha256": "546786f5c85bdb247bf96fe6eca73c7558ad3a42cf9fa8d4db6cd1b5d9fa8a66"
+    },
+    {
+      "sprite": [
+        30000,
+        47
+      ],
+      "file": "walk/001.png",
+      "origin": [
+        160,
+        240
+      ],
+      "scale": 1,
+      "organic": true,
+      "normalized_bounds": [
+        -32,
+        -96,
+        31,
+        0
+      ],
+      "sha256": "546786f5c85bdb247bf96fe6eca73c7558ad3a42cf9fa8d4db6cd1b5d9fa8a66"
+    },
+    {
+      "sprite": [
+        30000,
+        28
+      ],
+      "file": "walk/002.png",
+      "origin": [
+        160,
+        240
+      ],
+      "scale": 1,
+      "organic": true,
+      "normalized_bounds": [
+        -34,
+        -96,
+        34,
+        0
+      ],
+      "sha256": "c31798be856bda3805943f6d296d0b896c4143ed7cff1b6ca99e4eac553da966"
+    },
+    {
+      "sprite": [
+        30000,
+        29
+      ],
+      "file": "walk/002.png",
+      "origin": [
+        160,
+        240
+      ],
+      "scale": 1,
+      "organic": true,
+      "normalized_bounds": [
+        -34,
+        -96,
+        34,
+        0
+      ],
+      "sha256": "c31798be856bda3805943f6d296d0b896c4143ed7cff1b6ca99e4eac553da966"
+    },
+    {
+      "sprite": [
+        30000,
+        30
+      ],
+      "file": "walk/002.png",
+      "origin": [
+        160,
+        240
+      ],
+      "scale": 1,
+      "organic": true,
+      "normalized_bounds": [
+        -34,
+        -96,
+        34,
+        0
+      ],
+      "sha256": "c31798be856bda3805943f6d296d0b896c4143ed7cff1b6ca99e4eac553da966"
+    },
+    {
+      "sprite": [
+        30000,
+        31
+      ],
+      "file": "walk/002.png",
+      "origin": [
+        160,
+        240
+      ],
+      "scale": 1,
+      "organic": true,
+      "normalized_bounds": [
+        -34,
+        -96,
+        34,
+        0
+      ],
+      "sha256": "c31798be856bda3805943f6d296d0b896c4143ed7cff1b6ca99e4eac553da966"
+    },
+    {
+      "sprite": [
+        30000,
+        40
+      ],
+      "file": "walk/002.png",
+      "origin": [
+        160,
+        240
+      ],
+      "scale": 1,
+      "organic": true,
+      "normalized_bounds": [
+        -34,
+        -96,
+        34,
+        0
+      ],
+      "sha256": "c31798be856bda3805943f6d296d0b896c4143ed7cff1b6ca99e4eac553da966"
+    },
+    {
+      "sprite": [
+        30000,
+        41
+      ],
+      "file": "walk/002.png",
+      "origin": [
+        160,
+        240
+      ],
+      "scale": 1,
+      "organic": true,
+      "normalized_bounds": [
+        -34,
+        -96,
+        34,
+        0
+      ],
+      "sha256": "c31798be856bda3805943f6d296d0b896c4143ed7cff1b6ca99e4eac553da966"
+    },
+    {
+      "sprite": [
+        30000,
+        42
+      ],
+      "file": "walk/002.png",
+      "origin": [
+        160,
+        240
+      ],
+      "scale": 1,
+      "organic": true,
+      "normalized_bounds": [
+        -34,
+        -96,
+        34,
+        0
+      ],
+      "sha256": "c31798be856bda3805943f6d296d0b896c4143ed7cff1b6ca99e4eac553da966"
+    },
+    {
+      "sprite": [
+        30000,
+        43
+      ],
+      "file": "walk/002.png",
+      "origin": [
+        160,
+        240
+      ],
+      "scale": 1,
+      "organic": true,
+      "normalized_bounds": [
+        -34,
+        -96,
+        34,
+        0
+      ],
+      "sha256": "c31798be856bda3805943f6d296d0b896c4143ed7cff1b6ca99e4eac553da966"
+    },
+    {
+      "sprite": [
+        30000,
+        32
+      ],
+      "file": "walk/003.png",
+      "origin": [
+        160,
+        240
+      ],
+      "scale": 1,
+      "organic": true,
+      "normalized_bounds": [
+        -33,
+        -96,
+        33,
+        0
+      ],
+      "sha256": "3d7b1026507b1d0e75c39482ce3cbe013a4b9739ef04006771a531836160b494"
+    },
+    {
+      "sprite": [
+        30000,
+        33
+      ],
+      "file": "walk/003.png",
+      "origin": [
+        160,
+        240
+      ],
+      "scale": 1,
+      "organic": true,
+      "normalized_bounds": [
+        -33,
+        -96,
+        33,
+        0
+      ],
+      "sha256": "3d7b1026507b1d0e75c39482ce3cbe013a4b9739ef04006771a531836160b494"
+    },
+    {
+      "sprite": [
+        30000,
+        34
+      ],
+      "file": "walk/003.png",
+      "origin": [
+        160,
+        240
+      ],
+      "scale": 1,
+      "organic": true,
+      "normalized_bounds": [
+        -33,
+        -96,
+        33,
+        0
+      ],
+      "sha256": "3d7b1026507b1d0e75c39482ce3cbe013a4b9739ef04006771a531836160b494"
+    },
+    {
+      "sprite": [
+        30000,
+        35
+      ],
+      "file": "walk/003.png",
+      "origin": [
+        160,
+        240
+      ],
+      "scale": 1,
+      "organic": true,
+      "normalized_bounds": [
+        -33,
+        -96,
+        33,
+        0
+      ],
+      "sha256": "3d7b1026507b1d0e75c39482ce3cbe013a4b9739ef04006771a531836160b494"
+    },
+    {
+      "sprite": [
+        30000,
+        36
+      ],
+      "file": "walk/003.png",
+      "origin": [
+        160,
+        240
+      ],
+      "scale": 1,
+      "organic": true,
+      "normalized_bounds": [
+        -33,
+        -96,
+        33,
+        0
+      ],
+      "sha256": "3d7b1026507b1d0e75c39482ce3cbe013a4b9739ef04006771a531836160b494"
+    },
+    {
+      "sprite": [
+        30000,
+        37
+      ],
+      "file": "walk/003.png",
+      "origin": [
+        160,
+        240
+      ],
+      "scale": 1,
+      "organic": true,
+      "normalized_bounds": [
+        -33,
+        -96,
+        33,
+        0
+      ],
+      "sha256": "3d7b1026507b1d0e75c39482ce3cbe013a4b9739ef04006771a531836160b494"
+    },
+    {
+      "sprite": [
+        30000,
+        38
+      ],
+      "file": "walk/003.png",
+      "origin": [
+        160,
+        240
+      ],
+      "scale": 1,
+      "organic": true,
+      "normalized_bounds": [
+        -33,
+        -96,
+        33,
+        0
+      ],
+      "sha256": "3d7b1026507b1d0e75c39482ce3cbe013a4b9739ef04006771a531836160b494"
+    },
+    {
+      "sprite": [
+        30000,
+        39
+      ],
+      "file": "walk/003.png",
+      "origin": [
+        160,
+        240
+      ],
+      "scale": 1,
+      "organic": true,
+      "normalized_bounds": [
+        -33,
+        -96,
+        33,
+        0
+      ],
+      "sha256": "3d7b1026507b1d0e75c39482ce3cbe013a4b9739ef04006771a531836160b494"
+    },
+    {
+      "sprite": [
+        30000,
+        153
+      ],
+      "file": "punch/000.png",
+      "origin": [
+        160,
+        240
+      ],
+      "scale": 1,
+      "organic": true,
+      "normalized_bounds": [
+        -34,
+        -96,
+        34,
+        0
+      ],
+      "sha256": "8268d7bf521773a84dbb8d486dab7b1c1a799bfbd004308f36a912abbf4dd759"
+    },
+    {
+      "sprite": [
+        30000,
+        157
+      ],
+      "file": "punch/000.png",
+      "origin": [
+        160,
+        240
+      ],
+      "scale": 1,
+      "organic": true,
+      "normalized_bounds": [
+        -34,
+        -96,
+        34,
+        0
+      ],
+      "sha256": "8268d7bf521773a84dbb8d486dab7b1c1a799bfbd004308f36a912abbf4dd759"
+    },
+    {
+      "sprite": [
+        30000,
+        154
+      ],
+      "file": "punch/001.png",
+      "origin": [
+        160,
+        240
+      ],
+      "scale": 1,
+      "organic": true,
+      "normalized_bounds": [
+        -36,
+        -97,
+        36,
+        0
+      ],
+      "sha256": "9a866bd667c4cc2c64326e5ebcaad3574489d0a9d60a5419cd1f39e26ab8e7dd"
+    },
+    {
+      "sprite": [
+        30000,
+        155
+      ],
+      "file": "punch/002.png",
+      "origin": [
+        160,
+        240
+      ],
+      "scale": 1,
+      "organic": true,
+      "normalized_bounds": [
+        -35,
+        -97,
+        46,
+        0
+      ],
+      "sha256": "530fc0bd59ccde9f6bf24b324df533362eda7cb2088229eeda2a2dfeee64ac5f"
+    },
+    {
+      "sprite": [
+        30000,
+        156
+      ],
+      "file": "punch/003.png",
+      "origin": [
+        160,
+        240
+      ],
+      "scale": 1,
+      "organic": true,
+      "normalized_bounds": [
+        -33,
+        -96,
+        35,
+        0
+      ],
+      "sha256": "fca09e0b62d3180bdc886690ddd42a75d4f9310750cca01e499a2ca86fab9201"
+    },
+    {
+      "sprite": [
+        7100,
+        0
+      ],
+      "file": "kamehameha/000.png",
+      "origin": [
+        160,
+        240
+      ],
+      "scale": 1,
+      "organic": true,
+      "normalized_bounds": [
+        -32,
+        -86,
+        33,
+        0
+      ],
+      "sha256": "8f4d899adae14519439f99c2d64935f363c7651fcf16e85c7f7c7a3f146c8e23"
+    },
+    {
+      "sprite": [
+        7100,
+        1
+      ],
+      "file": "kamehameha/001.png",
+      "origin": [
+        160,
+        240
+      ],
+      "scale": 1,
+      "organic": true,
+      "normalized_bounds": [
+        -35,
+        -78,
+        35,
+        0
+      ],
+      "sha256": "69b211457b018b8b557aeeb3a0494799eba6a0bb97db9d32889ff8528b4f5767"
+    },
+    {
+      "sprite": [
+        7100,
+        2
+      ],
+      "file": "kamehameha/002.png",
+      "origin": [
+        160,
+        240
+      ],
+      "scale": 1,
+      "organic": true,
+      "normalized_bounds": [
+        -35,
+        -85,
+        35,
+        0
+      ],
+      "sha256": "fe3b823ccc42fefbe64d75d96afaabcfcf5af004f84c82b7d7c4a76130b111a0"
+    },
+    {
+      "sprite": [
+        30000,
+        551
+      ],
+      "file": "damage/000.png",
+      "origin": [
+        160,
+        240
+      ],
+      "scale": 1,
+      "organic": true,
+      "normalized_bounds": [
+        -35,
+        -95,
+        35,
+        0
+      ],
+      "sha256": "0fd18ea300ec89f36b8b7be5d690a2ab43b04bc50b9726ceb1cea9111443fb48"
+    },
+    {
+      "sprite": [
+        30000,
+        552
+      ],
+      "file": "damage/001.png",
+      "origin": [
+        160,
+        240
+      ],
+      "scale": 1,
+      "organic": true,
+      "normalized_bounds": [
+        -39,
+        -95,
+        34,
+        0
+      ],
+      "sha256": "be26aa75285e7de43b44a5d220575f4c20c94f772180d3382648a0e348ba31f7"
+    },
+    {
+      "sprite": [
+        30000,
+        568
+      ],
+      "file": "damage/002.png",
+      "origin": [
+        160,
+        240
+      ],
+      "scale": 1,
+      "organic": true,
+      "normalized_bounds": [
+        -34,
+        -89,
+        35,
+        0
+      ],
+      "sha256": "38d2cd95e945aa2402a719e68f9aced3d498f638bc3771458b71e705654266a8"
+    },
+    {
+      "sprite": [
+        30000,
+        569
+      ],
+      "file": "damage/003.png",
+      "origin": [
+        160,
+        240
+      ],
+      "scale": 1,
+      "organic": true,
+      "normalized_bounds": [
+        -36,
+        -97,
+        36,
+        0
+      ],
+      "sha256": "06aee5d5b8839686098b270876baaa61219b59c91c89f7cbfea9c6a5af9f1333"
     }
   ]
 }

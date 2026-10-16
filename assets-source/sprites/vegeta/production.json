@@ -1,0 +1,40 @@
+{
+  "version": 1,
+  "status": "awaiting organic artwork",
+  "required": [
+    "idle",
+    "walk",
+    "punch",
+    "kamehameha",
+    "damage"
+  ],
+  "sheets": [],
+  "pending": {
+    "idle": {
+      "directory": "idle",
+      "frames": 4,
+      "status": "awaiting original or licensed RGBA artwork"
+    },
+    "walk": {
+      "directory": "walk",
+      "frames": 4,
+      "status": "awaiting original or licensed RGBA artwork"
+    },
+    "punch": {
+      "directory": "punch",
+      "frames": 4,
+      "status": "awaiting original or licensed RGBA artwork"
+    },
+    "kamehameha": {
+      "directory": "kamehameha",
+      "frames": 4,
+      "status": "awaiting original or licensed RGBA artwork",
+      "character_move": "Galick Gun"
+    },
+    "damage": {
+      "directory": "damage",
+      "frames": 4,
+      "status": "awaiting original or licensed RGBA artwork"
+    }
+  }
+}

@@ -36,3 +36,13 @@
      Ki mantido. Fontes, rounds e início da luta ainda usam recursos distribuídos.
    - Falta produzir animações orgânicas e revisar visualmente todos os frames,
      ambos os facings, agarrões e limites. Sem transformações nesta sprint.
+
+8. **Sprint 4 — arte orgânica inicial integrada; aceite humano pendente:**
+   - SFF 2.0.1 PNG32, RGBA completo, extração e build determinísticos.
+   - Goku: idle de quatro desenhos, caminhada, soco, Kamehameha e dano candidatos.
+   - Arte separada das caixas; validações específicas para orgânicos preservam
+     testes estritos dos placeholders e tempos/hitboxes herdados.
+   - Vegeta preparado com o mesmo plano/manifesto/extrator, sem arte final.
+   - Pendente: revisão humana das proporções, iluminação, contornos, contatos,
+     facings, todas as ações restantes e licença oficial dos personagens.
+   - Não declarar Sprint integralmente concluída; sem merge automático.

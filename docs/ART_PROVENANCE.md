@@ -1,0 +1,72 @@
+# Arte da Sprint 4 — proveniência e limites
+
+Data: 16/10/2026. Ferramenta: `image_gen` integrada nesta sessão, skill imagegen.
+Não foi usado Blender, download de sprites comerciais, extração de jogos ou
+modelo 3D de terceiros. As imagens foram geradas nesta sessão e depois
+fatiadas/normalizadas pelo extrator Pillow do projeto. A geração não é
+reproduzível bit a bit; os PNGs de referência abaixo são a fonte permanente.
+
+## Inventário e licenças
+
+- `assets-source/sprites/goku/reference/{idle,walk,punch,kamehameha,damage}-generated.png`:
+  cinco folhas candidatas, quatro desenhos cada; geração AI de fan art de Goku.
+  Nenhuma licença oficial de Dragon Ball ou autorização de seus titulares foi
+  fornecida/registrada. Não atribuir licença oficial, CC0 ou procedência manual
+  a esses arquivos. Os direitos sobre personagens/marcas não são concedidos
+  pelo código MIT do projeto. Distribuição comercial não foi autorizada aqui.
+- `reference/motions-generated.png`: tentativa de grade 4×4 rejeitada por
+  isolamento/recorte dos frames. Arquivo de auditoria; não utilizado pelo build.
+- `idle/`, `walk/`, `punch/`, `kamehameha/`, `damage/`: 20 PNGs normalizados,
+  derivados das cinco folhas. O manifesto aponta os utilizados pelo AIR.
+- Placeholders/efeitos: código procedural original do projeto, MIT sobre o
+  código/desenho; nenhuma concessão de direitos dos personagens.
+- Combate/AIR base/áudio KFM: Elecbyte, licença Creative Commons Noncommercial
+  incluída em `engine/chars/goku/readme.txt`; avisos preservados.
+- Motor IKEMEN GO v1.0.0: MIT, avisos em `engine/LICENSES.txt`.
+- Pillow 9.0.1: licença distribuída pelo Pillow; dependência fixada em
+  `requirements-assets.txt`. Ver [licença do Pillow](https://github.com/python-pillow/Pillow/blob/9.0.1/LICENSE).
+
+A implementação de PNG32 segue a leitura de cabeçalhos e payloads do
+[IKEMEN GO image.go](https://github.com/ikemen-engine/Ikemen-GO/blob/v1.0.0/src/image.go),
+formato 12, profundidade 32, payload precedido de tamanho decodificado.
+Não foi copiado código Go. O comportamento foi conferido no motor fixado.
+
+## Prompts e processamento
+
+Os prompts completos estão em `assets-source/sprites/goku/reference/prompts.json`.
+A primeira folha foi gerada sem referência. As demais usaram o idle original
+como referência de identidade/iluminação. Não se utilizou imagem oficial como
+referência. O pedido de grade 4×4 falhou e foi substituído por folhas individuais.
+
+`production.json` registra células, escala comum por sequência, âncoras de pés,
+normalização do chão e bindings explícitos de PNG → contexto AIR. A escala não
+segue as caixas de colisão. A iluminação é parte dos desenhos; não há filtro
+procedural simulando acabamento artístico. Para reconstruir:
+
+```sh
+python3 scripts/prepare_character_art.py goku
+python3 scripts/build_characters.py
+```
+
+## Estado artístico
+
+A animação idle usa quatro desenhos orgânicos reconhecíveis em combate real.
+Caminhada, soco, Kamehameha e dano foram integrados como candidatos. Não houve
+aprovação humana final: há variação de anatomia/cabelo entre folhas, contornos
+que precisam de limpeza e contatos/hurtboxes que precisam de inspeção por
+frame. Os tempos, hitboxes e hurtboxes permanecem os herdados. A carga de Ki,
+demais ataques, saltos, defesa, quedas e vitória ainda usam placeholders.
+
+Vegeta: contrato/manifesto/plano preparado, arte orgânica pendente. Não há
+transformações. A Sprint não está integralmente concluída.
+
+## Hashes das referências
+
+| Arquivo | SHA256 |
+| --- | --- |
+| `damage-generated.png` | `a187eea86c5da210d89be6759a19e824cba022b09a18caca33c612cb9492735c` |
+| `idle-generated.png` | `6f81b5b7032c5a765f3323b28f1365021534ee9e2a82ae4cdf65720d1eb252a3` |
+| `kamehameha-generated.png` | `4d759817b99c12c084b5666fce3163a6dd0fdfa7ebd7230b4dd5572dcdda6618` |
+| `motions-generated.png` | `c82a26e3c49cca03eaf079ddef8ba327554a7d77a3be356dbadde1539fe4e53c` |
+| `punch-generated.png` | `994a2fe3be5c980d42ae09a157a0dc9ecb28755dd41abb30f7c7c5c520f95fbf` |
+| `walk-generated.png` | `0c8a5be1004bff487ef165ed7ee9e0810f62f19ddddcf64390bac48bf10811ce` |

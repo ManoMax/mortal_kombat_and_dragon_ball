@@ -34,3 +34,15 @@ def frames(text):
             yield index, action, tuple(map(int, match.groups()[:5])), match[6], {k: list(pending.get(k, defaults[k])) for k in (1,2)}
             pending = {}; target = None
     check_count()
+
+
+def apply_hurtboxes(text, overrides):
+    """Replace Clsn2 for explicit sprite contexts without changing AIR timing/hits."""
+    lines = text.splitlines()
+    for line, action, values, flags, boxes in frames(text):
+        key = values[:2]
+        if key in overrides:
+            body = overrides[key]
+            declaration = [f'Clsn2: {len(body)}'] + [f'Clsn2[{i}] = '+', '.join(map(str, box)) for i, box in enumerate(body)]
+            lines[line] = '\n'.join(declaration + [lines[line]])
+    return '\n'.join(lines)+'\n'

@@ -12,10 +12,12 @@ jobs:
         run: python3 -m pip install -r requirements-assets.txt
       - name: Rebuild original sprites reproducibly
         run: |
+          python3 scripts/prepare_character_art.py goku
+          python3 scripts/prepare_character_art.py vegeta
           python3 scripts/build_characters.py
           python3 scripts/build_arena.py
           python3 scripts/build_interface.py
-          git diff --exit-code -- engine/chars/goku engine/chars/vegeta engine/stages/obsidian.def engine/stages/obsidian.sff engine/data/fight.def
+          git diff --exit-code -- assets-source/sprites engine/chars/goku engine/chars/vegeta engine/stages/obsidian.def engine/stages/obsidian.sff engine/data/fight.def
       - name: Validate sprite geometry and pinned engine
         run: |
           python3 tests/validate.py

@@ -64,15 +64,15 @@ Clsn2: 0
             destination=Path(directory)
             (destination/'kfm.air').write_bytes((folder/'kfm.air').read_bytes())
             broken=bytearray(original)
-            struct.pack_into('<I',broken,512,513)
+            struct.pack_into('<I',broken,52,513)
             (destination/'fighter.sff').write_bytes(broken)
-            with self.assertRaises(ValueError): validate(destination)
+            with self.assertRaisesRegex(ValueError, 'Invalid SFF sections'): validate(destination, 'goku')
             broken=bytearray(original); offset=512
-            while struct.unpack_from('<H',broken,offset+12)[0]!=30000:
-                offset=struct.unpack_from('<I',broken,offset)[0]
+            while struct.unpack_from('<H',broken,offset)[0]!=30000:
+                offset+=28
             struct.pack_into('<h',broken,offset+8,0)
             (destination/'fighter.sff').write_bytes(broken)
-            with self.assertRaises(ValueError): validate(destination)
+            with self.assertRaisesRegex(ValueError, 'origin'): validate(destination, 'goku')
 
     def test_pcx_rejects_truncation(self):
         from build_characters import sprite

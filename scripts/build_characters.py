@@ -1,8 +1,11 @@
 #!/usr/bin/env python3
-"""Build original indexed sprites and noncommercial KFM-derived fighters."""
+"""Build original RGBA sprites and noncommercial KFM-derived fighters."""
 from pathlib import Path
-import re, struct, shutil
-from air_geometry import frames
+import re, struct, shutil, json
+from io import BytesIO
+from PIL import Image
+from sff_rgba import write_sff
+from air_geometry import frames, apply_hurtboxes
 import dbz_combat as dbz
 from png_pipeline import load_overrides
 ROOT = Path(__file__).resolve().parents[1]
@@ -94,16 +97,19 @@ def sprite(group, frame, vegeta, geometry=None):
 
 def sff(path, entries, vegeta, poses, overrides=None):
     overrides = overrides or {}
-    chunks=[]; offset=512
-    for n,(g,i) in enumerate(entries):
-        pose=poses.get((g,i))
-        data=dbz.effect(g,i,vegeta,pcx) if (g,i) in dbz.ENTRIES else sprite(pose[4] if pose else g,pose[5] if pose else i,vegeta,pose)
-        data = overrides.get((g,i), data)
-        next_offset=offset+32+len(data) if n<len(entries)-1 else 0
-        chunks.append(struct.pack('<IIhhHHHB',next_offset,len(data),160 if pose else 80 if (g,i) in dbz.ENTRIES else 44,240 if pose else 110,g,i,0,0)+bytes(13)+data)
-        offset+=32+len(data)
-    header=b'ElecbyteSpr\0'+bytes((0,1,0,1))+struct.pack('<IIII',len(set(g for g,i in entries)),len(entries),512,32)+bytes(480)
-    path.write_bytes(header+b''.join(chunks))
+    sprites = []
+    for g, i in entries:
+        pose = poses.get((g, i))
+        if (g, i) in overrides:
+            image = overrides[g, i]
+        else:
+            data = dbz.effect(g, i, vegeta, pcx) if (g, i) in dbz.ENTRIES else sprite(pose[4] if pose else g, pose[5] if pose else i, vegeta, pose)
+            with Image.open(BytesIO(data)) as indexed:
+                image = indexed.convert('RGBA')
+                image.putalpha(Image.frombytes('L', indexed.size, bytes(255 if v else 0 for v in indexed.getdata())))
+        origin = (160, 240) if pose or (g, i) in overrides else (80, 110) if (g, i) in dbz.ENTRIES else (44, 110)
+        sprites.append(((g, i), origin, image))
+    write_sff(path, sprites)
 
 def main():
     air=(BASE/'kfm.air').read_text(encoding='utf-8-sig')
@@ -121,7 +127,11 @@ def main():
         dest=ROOT/'engine/chars'/name; dest.mkdir(exist_ok=True)
         for f in ('kfm.cmd','kfm.cns','kfm.air','kfm.snd','readme.txt','movelist.dat'):
             shutil.copy2(BASE/f,dest/f)
-        (dest/'kfm.air').write_text(adapted+dbz.animations(name=='vegeta'))
+        overrides = load_overrides(ROOT, name)
+        manifest = ROOT/'assets-source/sprites'/name/'manifest.json'
+        spec = json.loads(manifest.read_text()) if manifest.exists() else {'frames': []}
+        hurtboxes = {tuple(f['sprite']): f['hurtboxes'] for f in spec['frames'] if 'hurtboxes' in f}
+        (dest/'kfm.air').write_text(apply_hurtboxes(adapted+dbz.animations(name=='vegeta'), hurtboxes))
         (dest/'kfm.cmd').write_text(dbz.command_layer((dest/'kfm.cmd').read_text(encoding='utf-8-sig')))
         cns=(dest/'kfm.cns').read_text(encoding='utf-8-sig')
         cns=cns.replace('type = PosFreeze\ntrigger1 = 1\nx = 1\ny = 1','type = PosFreeze\ntrigger1 = 1')
@@ -132,9 +142,8 @@ def main():
         definition=definition.split('; Arcade mode')[0]
         definition=definition.replace('author = "Elecbyte"','author = "DBZ-MK; combat derived from Elecbyte KFM"')
         (dest/f'{name}.def').write_text(definition)
-        overrides = load_overrides(ROOT, name, pcx)
-        if set(overrides) - set(poses):
-            raise ValueError('PNG overrides must target inherited context IDs in group 30000')
+        if set(overrides) - (set(poses) | set(dbz.ENTRIES)):
+            raise ValueError('PNG overrides must target known AIR context/effect IDs')
         sff(dest/'fighter.sff',entries,name=='vegeta',poses,overrides)
     print(f'Built 2 fighters, {len(entries)} original sprite entries each.')
 if __name__=='__main__': main()

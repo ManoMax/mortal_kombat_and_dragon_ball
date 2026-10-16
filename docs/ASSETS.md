@@ -54,3 +54,12 @@ normais, defesa, dano, queda, carga, disparos e vitória de ambos. A cobertura
 funcional AIR existente não equivale a animações finais desenhadas. Produzir
 primeiro idle/walk/ataques, revisar colisões e facing no motor e só então
 expandir a sequência. Não há transformações Super Saiyajin nesta entrega.
+
+## Sprint 4
+
+Goku recebeu cinco folhas AI de fan art candidatas, geradas nesta sessão,
+sem importação de sprites comerciais. O SFF dos dois personagens agora é
+2.0.1 PNG32 e preserva alpha parcial. As referências, prompts, hashes e limites
+de licença estão em [ART_PROVENANCE.md](ART_PROVENANCE.md). Não existe licença
+oficial de Dragon Ball registrada; não declarar autorização comercial. Avisos
+KFM/motor permanecem aplicáveis. Arte restante e Vegeta aguardam produção.

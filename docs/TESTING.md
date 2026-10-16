@@ -253,3 +253,99 @@ continuam pendentes, acrescidos da inspeção do cenário, HUD e facing dos PNGs
 Reconstrução completa da Sprint 3: PASS, SHA256 idêntico nos 19 arquivos
 (dos dois personagens, SFF/DEF da arena e fight.def). O CI inclui esses alvos;
 execução remota do workflow ainda não verificada nesta sessão.
+
+
+## Sprint 4 — 16/10/2026
+
+Esta seção substitui as limitações de alpha/cobertura descritas historicamente
+nas Sprints 1–3. **Nenhum teste manual foi declarado concluído.** O critério de
+Goku orgânico foi demonstrado em uma partida automatizada real; o aceite
+artístico/humano da Sprint permanece pendente.
+
+O SFF dos dois personagens é 2.0.1 PNG32, sem quantização RGBA. São 861 entradas
+por personagem; imagens idênticas compartilham payload/textura por links para
+índices anteriores. Goku: 233 imagens únicas e 628 links; Vegeta: 225 imagens
+únicas e 636 links. O parser rejeita seções inválidas, links cíclicos/futuros,
+geometria divergente e PNGs corrompidos. Não há alterações de motor, estados de
+combate, entradas, áudio KFM, controles personalizados ou parâmetros de Ki.
+
+A validação compara os 604 contextos herdados, mantendo tempos, offsets,
+flips e hitboxes. Somente frames explicitamente orgânicos substituem a
+ocupação exata da união por bounds previstos, origem/canvas, SHA256 da fonte,
+alpha reconstruído exato e interseção por caixa. Os demais placeholders ainda
+precisam cobrir exatamente a união. Ajustes de hurtbox opcionais no manifesto
+são comparados às caixas aplicadas e testados sem alterar tempos/hitboxes.
+Interseção não certifica alcance natural ou balanceamento; revisar no motor.
+Metadados de facing são validados; a orientação semântica do desenho requer
+inspeção. A captura de Goku × Goku mostra os dois sentidos no motor real.
+
+Goku possui 55 bindings orgânicos (52 herdados e 3 DBZ) usando 19 PNGs distintos.
+Há 20 desenhos normalizados disponíveis: o quarto follow-through do Kamehameha
+fica como candidato, pois o AIR original tem três elementos. Caminhada frente
+usa quatro desenhos mantidos por quatro elementos herdados cada, ciclo de
+48 ticks; para trás inverte a ordem. Os pés ficam em y=240 após reamostragem.
+Não se alonga a imagem para preencher caixas. Extração por retângulos explícitos
+rejeita recorte visível antes da redução; o alpha parcial é preservado.
+
+### Regressões desta execução
+
+- `validate.py`, normal e `-O`: PASS, 861 sprites/670 elementos AIR/604 contextos
+  por personagem; SHA256 do motor preservado.
+- Unittest: PASS, 21 testes. Incluem as regressões anteriores, alpha parcial
+  real, determinismo, links inválidos, hash/crop/origem/escala/facing, caixas
+  independentes e evidência de sprites incompleta.
+- `sprint4_smoke.py`: PASS, Goku nos dois jogadores, quatro primeiros elementos
+  de idle, caminhada frente/trás e soco; telemetria fresca e captura real.
+- `keyboard_smoke.py`: PASS, dois humanos simulados por teclado (AILevel 0),
+  ambos causaram dano; vidas finais 711/811; saída 0.
+- `match_smoke.py`: PASS, 32,51 s, dois rounds/dois KOs, placar 0–2; saída 0.
+- `match_smoke.py --audio`: PASS, 39,03 s, dois rounds/dois KOs, placar 0–2;
+  saída 0. Qualidade audível não foi avaliada por pessoa.
+- `sprint2_smoke.py`, executado por `performance_smoke.py`: PASS, carga, teto,
+  custo, hit/guard, projéteis, interrupção, medidores e reset para ambos.
+- Recursos após deduplicação: PASS, 482.984 KiB RSS máximo, 39,90 s, zero swaps;
+  limite 1 GiB/90 s. Isso não mede FPS, latência ou percentis de frame.
+
+Evidências atuais: `tests/sprint4-facings.png`, `tests/sprint4-sprites.csv`,
+`tests/gameplay.png`, `tests/sprint2-effects.png`, `tests/sprint2-trace.csv`,
+logs de rounds/teclado e `tests/sprint4-performance.txt`. O relatório Sprint 3
+foi preservado como histórico. A primeira medição sem links chegou a
+1.004.512 KiB; `sprint4-performance-before-dedup.txt` registra o custo que motivou
+a deduplicação. Tentativa no sandbox sem X11 e uma execução interrompida com
+código 143 não foram contadas como PASS. As execuções gráficas aprovadas foram
+sequenciais, fora do sandbox, OpenGL 4.6/Mesa 23.2.1/Intel UHD 620.
+
+Reconstrução completa: PASS, duas execuções idênticas de 19 artefatos do motor
+e 24 fontes/manifestos. Hashes finais: `docs/sprint4-build-sha256.json`.
+CI inclui extração dos PNGs e reconstrução; execução remota precisa ser
+confirmada após publicação do PR. Não reutilizar evidência histórica como se
+fosse uma execução nova. Testes gráficos focam Ikemen/injetam teclas e exigem
+desktop X11 desbloqueado; não executar enquanto se usa outra aplicação.
+
+### Reprodução adicional
+
+```sh
+python3 scripts/prepare_character_art.py goku
+python3 scripts/prepare_character_art.py vegeta
+python3 scripts/build_characters.py
+python3 scripts/build_arena.py
+python3 scripts/build_interface.py
+python3 tests/validate.py
+python3 -O tests/validate.py
+python3 -m unittest discover -s tests -p 'test_*.py' -v
+python3 tests/sprint4_smoke.py
+python3 tests/keyboard_smoke.py
+python3 tests/match_smoke.py
+python3 tests/match_smoke.py --audio
+/usr/bin/time -v -o tests/sprint4-performance.txt python3 tests/sprint2_smoke.py
+python3 tests/performance_smoke.py --report tests/sprint4-performance.txt
+```
+
+### Aceite artístico/humano pendente
+
+Inspecionar Goku nos dois sentidos, todos os desenhos e as transições para
+placeholders; conferir estabilidade de proporções/iluminação/pés, contornos,
+contato do soco e posição das mãos no spawn do Kamehameha. Revisar caixas com
+debug do motor e testar agarrões, todas as posturas, partida 2–1, áudio e dois
+jogadores reais. Produzir arte restante/carga de Ki/Vegeta. Proveniência e
+limites de licença em `ART_PROVENANCE.md`; não há licença oficial registrada.

@@ -25,6 +25,8 @@ class PNGPipeline(unittest.TestCase):
             self.assertEqual(sum(bool(p) for p in pixels),1)
             image.putpixel((1,2),(255,60,10,128)); image.save(folder/'000.png')
             with self.assertRaises(ValueError): load_overrides(root,'goku',pcx)
+            rgba=load_overrides(root,'goku')[30000,0]
+            self.assertEqual(rgba.getpixel((160,240)),(255,60,10,128))
             spec['frames'][0]['file']='../escape.png'
             (folder/'manifest.json').write_text(json.dumps(spec))
             with self.assertRaises(ValueError): load_overrides(root,'goku',pcx)
