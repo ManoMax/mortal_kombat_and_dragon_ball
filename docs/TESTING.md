@@ -44,7 +44,11 @@ outra aplicação. Vida inicial assimétrica evita empate e round extra.
 Defesa alta/baixa, hitstun, combos, todos os ataques em todas as posturas,
 seleção no menu e melhor de três configurada pelo motor.
 Entradas automatizadas não substituem uma partida com duas pessoas.
-Áudio disponível no pacote, mas testes de combate usaram -nosound.
+Áudio disponível no pacote. Os testes bem-sucedidos usaram -nosound.
+Uma execução adicional com áudio habilitado e dois rounds inicializou GFX,
+mas excedeu 55 segundos sem log final (timeout 124); áudio e sequência completa
+de melhor de três não estão validados. Não foi isolado se houve perda de foco,
+pausa do desktop ou comportamento de áudio.
 
 ## Roteiro manual pendente
 
