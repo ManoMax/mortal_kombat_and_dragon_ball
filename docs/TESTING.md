@@ -441,3 +441,9 @@ da arena agora compara a margem ao extremo negativo real dos PNGs de idle, walk
 e guard (nos dois facings), em vez de apenas fixar um número. Todas as regressões
 gráficas foram repetidas após esse ajuste; a tabela acima registra essa execução
 final. Os hashes da arena foram atualizados após duas reconstruções idênticas.
+
+Publicação/CI remoto: bloqueados por autenticação/escrita. Push HTTPS fora do
+sandbox não tem credencial; o conector GitHub retornou 403 ao criar blob.
+Implementação local commitada; nenhum PR Sprint 5 foi criado. Detalhes e descrição
+preparada em `PR_SPRINT_5.md`. Isso não invalida os resultados locais, mas impede
+confirmar o workflow remoto até que a branch possa ser publicada.

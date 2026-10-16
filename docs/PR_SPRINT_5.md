@@ -29,3 +29,29 @@ As poses KFM adicionais reutilizam famílias de movimentos e precisam de revisã
 de coreografia/contatos; há variação anatômica, passos limitados e contornos para
 refinar. Não chamar de arte final. Ver SPRINT_5_VISUAL_REVIEW.md, auditoria JSON
 e ART_PROVENANCE.md. Sem novos personagens ou transformações.
+
+## Publicação bloqueada por acesso externo
+
+Implementação local em `5978cd9`, correção de bordas/evidências finais em
+`8237f51`. Branch `feat/sprint-5-complete-fighters`; worktree limpo após commits.
+
+Push no sandbox falhou por DNS. A repetição fora dele alcançou o GitHub, mas
+falhou por ausência de credencial HTTPS (`could not read Username`). A alternativa
+pelo conector GitHub também foi tentada e recusou criação de blob com HTTP 403
+`Resource not accessible by integration`. O plugin está instalado/ativado e
+consegue ler o repositório, mas essa operação de escrita foi negada. O agente SSH
+não tem identidades carregadas e não há GH_TOKEN/GITHUB_TOKEN configurado.
+Nenhuma chave ou token foi exibido ou persistido pelo agente.
+
+**Branch remota Sprint 5 e PR não foram criados.** O acesso de escrita precisa
+ser corrigido externamente; não confundir a descrição preparada com um PR real.
+Após disponibilizar credencial adequada, executar:
+
+```sh
+git push -u origin feat/sprint-5-complete-fighters
+```
+
+Criar PR draft com base `feat/sprint-4-character-art` e head
+`feat/sprint-5-complete-fighters`, usando a descrição acima. Confirmar CI remoto
+após a publicação; nenhum workflow remoto foi declarado aprovado nesta sessão.
+Sem merge automático; aceite artístico/humano continua pendente.
