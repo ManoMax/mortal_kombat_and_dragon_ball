@@ -24,3 +24,19 @@ reprovado; com 30 s mantém as exigências de dois KOs e passou.
 Pendente: sessão humana completa (2–0/2–1), facing invertido, colisão entre
 especiais simultâneos, avaliação de combos/ritmo, áudio e arte final. Nenhum
 teste humano foi declarado aprovado. Não fazer merge automático.
+
+## Publicação bloqueada nesta execução
+
+O commit de implementação está local. `git push` fora do sandbox acessou a
+rede, mas falhou por ausência de credencial HTTPS (`could not read Username`).
+A alternativa pela integração GitHub retornou HTTP 403 `Resource not accessible
+by integration` em `create_blob`. Nenhum PR ou branch remoto foi criado.
+
+Após autenticar o Git, publicar:
+
+```bash
+git push -u origin feat/sprint-2-dbz-combat
+```
+
+Abrir um draft PR usando a descrição acima e base `feat/sprint-1-stabilization`:
+https://github.com/ManoMax/mortal_kombat_and_dragon_ball/compare/feat/sprint-1-stabilization...feat/sprint-2-dbz-combat

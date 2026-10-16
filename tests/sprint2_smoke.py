@@ -104,10 +104,10 @@ def main():
             deadline=time.monotonic()+25
             while time.monotonic()<deadline and not (snap(1)[2]>=2 and snap(1)[3]==2): time.sleep(.2)
             verify(rows())
-            print('PASS real motor: charge/cap/cost/projectiles/hit/guard/meters/round reset, both fighters')
             hold(['Escape'],.1); proc.wait(timeout=10)
             require(proc.returncode==0, 'Engine exited with error')
             (ROOT/'tests/sprint2-trace.csv').write_text(trace.read_text())
+            print('PASS real motor: charge/cap/cost/projectiles/hit/guard/meters/round reset, both fighters')
         except Exception:
             if trace.exists(): (ROOT/'tests/sprint2-failed.csv').write_text(trace.read_text())
             output.flush(); output.seek(0)
