@@ -1,0 +1,16 @@
+MIT License
+
+Copyright (c) 2026 DBZ-MK contributors
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of the original project scripts and documentation, to deal in them without
+restriction, including the rights to use, copy, modify, merge, publish,
+distribute, sublicense, and/or sell copies, subject to including this notice.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS BE LIABLE FOR ANY CLAIM,
+DAMAGES OR OTHER LIABILITY ARISING FROM THE SOFTWARE OR ITS USE.
+
+Third-party engine and assets retain their own licenses. KFM-derived character
+files are noncommercial; see docs/ASSETS.md and engine/LICENSES.txt.
