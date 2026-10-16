@@ -1,27 +1,83 @@
 #!/usr/bin/env python3
-"""Validate generated SFF chain and all animation sprite references."""
+"""Validate SFF/PCX, AIR semantics, and visible collision alignment without X11."""
 from pathlib import Path
-import re, struct
+import re
+import struct
+import sys
+import hashlib
+import json
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]/'scripts'))
+from air_geometry import frames
 root=Path(__file__).resolve().parents[1]
-for name in ('goku','vegeta'):
-    folder=root/'engine/chars'/name
+
+def require(condition, message):
+    if not condition: raise ValueError(message)
+
+def decode(data):
+    require(data[:4]==bytes((10,5,1,8)), 'Unsupported PCX')
+    x,y,r,b=struct.unpack_from('<HHHH',data,4)
+    width,height=r-x+1,b-y+1
+    stride=struct.unpack_from('<H',data,66)[0]
+    require(data[65]==1 and stride>=width, 'Invalid PCX layout')
+    require(data[-769]==12, 'Missing PCX palette')
+    pixels=bytearray(); pos=128
+    while pos<len(data)-769:
+        value=data[pos]; pos+=1
+        if value>=192:
+            count=value&63
+            require(count>0 and pos<len(data)-769, 'Invalid PCX RLE')
+            pixels.extend([data[pos]]*count); pos+=1
+        else: pixels.append(value)
+    require(len(pixels)==stride*height, 'Incorrect decoded PCX length')
+    return width,height,stride,pixels
+
+def validate(folder):
     data=(folder/'fighter.sff').read_bytes()
-    assert data[:12]==b'ElecbyteSpr\0'
+    require(data[:12]==b'ElecbyteSpr\0', 'SFF signature')
     groups,count,offset,size=struct.unpack_from('<IIII',data,16)
-    assert size==32
-    entries=set()
+    require(size==32 and offset==512 and count>0, 'SFF header')
+    entries={}; end=512
     for i in range(count):
+        require(offset==end and offset+32<=len(data), 'SFF chain outside file')
         nxt,length,x,y,g,n,linked,pal=struct.unpack_from('<IIhhHHHB',data,offset)
-        assert offset+32+length<=len(data) and length>128
-        assert data[offset+32]==10
-        assert (g,n) not in entries
-        entries.add((g,n))
-        if i<count-1: assert nxt==offset+32+length
-        else: assert nxt==0
+        end=offset+32+length
+        require(end<=len(data) and length>897 and linked==0, 'SFF payload')
+        require((g,n) not in entries, 'Duplicate sprite')
+        entries[g,n]=(x,y,decode(data[offset+32:end]))
+        require(nxt==(end if i<count-1 else 0), 'SFF next offset')
         offset=nxt
-    air=(folder/'kfm.air').read_text(encoding='utf-8-sig')
-    required={tuple(map(int,m)) for m in re.findall(r'^\s*(\d+)\s*,\s*(\d+)\s*,',air,re.M)}
-    assert required<=entries
-    print(f'PASS {name}: {count} sprites, all animation references resolved')
-assert (root/'engine/Ikemen_GO_Linux').is_file()
-print('PASS engine present')
+    require(end==len(data) and groups==len({g for g,n in entries}), 'SFF count/trailing bytes')
+    actual=list(frames((folder/'kfm.air').read_text(encoding='utf-8-sig')))
+    inherited=list(frames((root/'engine/chars/kfm/kfm.air').read_text(encoding='utf-8-sig')))
+    require(len(actual)==len(inherited), 'Animation frame count changed')
+    aligned=0
+    for current,base in zip(actual,inherited):
+        _,action,(g,n,dx,dy,duration),flags,boxes=current
+        require(current[1]==base[1] and current[2][2:]==base[2][2:] and flags==base[3] and boxes==base[4], 'Combat timing/geometry changed')
+        if g<0: continue
+        require((g,n) in entries, f'Missing sprite {g},{n}')
+        if not boxes[2]: continue
+        require(g==30000, f'Unadapted body frame {action}')
+        ox,oy,(width,height,stride,pixels)=entries[g,n]
+        def visible(x,y):
+            x=x-dx; y=y-dy
+            if 'H' in flags.upper(): x=-x
+            if 'V' in flags.upper(): y=-y
+            x+=ox; y+=oy
+            return 0<=x<width and 0<=y<height and pixels[y*stride+x]!=0
+        for kind in (1,2):
+            for l,t,r,b in boxes[kind]:
+                hits=sum(visible(x,y) for y in range(t,b+1) for x in range(l,r+1))
+                require(hits==(r-l+1)*(b-t+1), f'Collision coverage: action {action}, sprite {g},{n}, kind {kind}')
+        union={(x,y) for l,t,r,b in boxes[1]+boxes[2] for y in range(t,b+1) for x in range(l,r+1)}
+        require(sum(value!=0 for value in pixels)==len(union), 'Artwork outside collision silhouette')
+        aligned+=1
+    print(f'PASS {folder.name}: {count} sprites, {len(actual)} AIR frames, {aligned} body frames aligned')
+
+if __name__=='__main__':
+    for name in ('goku','vegeta'): validate(root/'engine/chars'/name)
+    require((root/'engine/Ikemen_GO_Linux').is_file(), 'Engine missing')
+    lock=json.loads((root/'docs/engine-lock.json').read_text())
+    require(lock['version']=='v1.0.0', 'Engine version lock changed')
+    require(hashlib.sha256((root/'engine/Ikemen_GO_Linux').read_bytes()).hexdigest()==lock['executable_sha256'], 'Engine binary hash mismatch')
+    print('PASS engine v1.0.0 binary matches pinned SHA256')

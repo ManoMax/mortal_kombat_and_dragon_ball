@@ -1,74 +1,134 @@
 # Testes — 16/10/2026
 
-## Ambiente confirmado
+## Evidências da Sprint 1
 
-Ubuntu 22.04.5 LTS x86_64, kernel 6.8.0-138, glibc 2.35.
-Renderer reportado pelo motor: OpenGL 4.6 Core, Mesa 23.2.1,
-Intel UHD Graphics 620 (WHL GT2). /dev/dri não estava visível no sandbox;
-a inicialização gráfica fora dele identificou a GPU.
-Git, curl, unzip, Python 3, FFmpeg e libXtst já existiam. Nenhum pacote global instalado.
+Nenhum teste manual foi concluído nesta sprint. As execuções abaixo são
+estáticas ou automatizadas em X11. O critério de combate estável em uma sessão
+humana permanece pendente.
 
-## Implementado e testado
+| Verificação | Resultado verificável |
+| --- | --- |
+| `python3 tests/validate.py` | PASS: 846 sprites, 655 frames AIR, 604 frames com hurtboxes alinhados, por personagem. |
+| `python3 -O tests/validate.py` | PASS; validações permanecem ativas com otimização Python. |
+| `python3 -m unittest discover -s tests -p 'test_*.py' -v` | 6 testes: defaults/overrides AIR, declaração incompleta, flips/offsets com coordenadas conhecidas, resultados incompletos/inconsistentes, PCX truncado, cadeia SFF corrompida e origem deslocada. |
+| `python3 tests/match_smoke.py` | PASS em 30,65 s: dois rounds, placar 0–2, dois KOs, código 0. `tests/rounds-nosound.log`. |
+| `python3 tests/match_smoke.py --audio` | PASS em 32,17 s: mesmo cenário, dois KOs, placar 0–2, código 0. `tests/rounds-audio.log`. |
+| `python3 tests/keyboard_smoke.py` | PASS: AILevel 0 nos dois lados, vida inicial 900/1000 e final 711/811; código 0. `tests/keyboard-match.log` e `tests/gameplay.png`. |
 
-- Download v1.0.0 com SHA256 idêntico ao manifesto oficial.
-- Binário executa e inicializa GFX/fontes. Distribuição contém suas bibliotecas.
-- `python3 tests/validate.py`: PASS para ambos os personagens, 242 sprites cada,
-  cadeia SFF válida e todas as referências AIR resolvidas.
-- IA vs IA, 10 segundos, um round: processo saiu com código 0. Log
-  `tests/ai-match.log`: Goku 875/1000, Vegeta 1000/1000, vitória por tempo.
-- IA vs IA, vida inicial 80, 30 segundos: código 0; `tests/ko-match.log`
-  registra Goku 0, Vegeta 80, WinKO true. Confirma dano e nocaute.
-- Captura `tests/gameplay.png` inspecionada: ambos os sprites, cenário,
-  barras de vida reduzidas, nomes e cronômetro renderizados corretamente.
+Motor preservado: IKEMEN GO v1.0.0; SHA256 do executável é
+`4a7dbe22218ca2c6785a745c756cdf391edd6f3a3b956f66e101030957c8df29`,
+idêntico ao executável em `main` no início da sprint. `docs/engine-lock.json`
+fixa esse hash, além do hash histórico do ZIP oficial. Nenhum recurso KFM de
+origem, áudio, controle personalizado ou estado de combate foi modificado.
 
-- `python3 tests/keyboard_smoke.py`: PASS. Dois jogadores com AILevel 0;
-  vida final Goku 711/1000 (início 900), Vegeta 811/1000. Ambos causaram dano;
-  processo encerrou com código 0 e resultado em `tests/keyboard-match.log`.
+## O que os testes de geometria garantem
 
-## Procedimentos reproduzíveis
+O gerador mantém os 242 sprites originais de referência e acrescenta 604
+variantes do grupo 30000, uma por contexto de frame com hurtbox. O mesmo sprite
+KFM era reutilizado com caixas distintas: escolher pose apenas pelo grupo
+produzia desalinhamento em agachamentos, saltos, golpes e quedas.
+
+A arte provisória agora usa uma silhueta preenchida da união das hurtboxes,
+com cores da arte original gerada e extensão visível nas hitboxes ativas.
+Isso deixa a arte mais geométrica; não representa acabamento artístico.
+Offsets e flips AIR são compensados na imagem; o canvas maior evita recortes
+nas recuperações e nos frames invertidos. Retratos e frames sem hurtboxes
+continuam com a geração anterior. Não há frames com hitboxes e sem hurtboxes
+no AIR herdado atual.
+
+A validação decodifica PCX/RLE, confere cadeia/tamanhos/contagens do SFF e compara
+ações, duração, offsets, flips e caixas com o AIR KFM de origem. Exige cobertura
+de **todos** os pixels das caixas e nenhuma área opaca fora da união. Isso
+verifica correspondência geométrica em coordenadas locais; não prova o
+comportamento visual de todos os estados no motor, suas escalas, o facing dos
+dois jogadores nem os estados de agarrão. Essas verificações são manuais.
+As fixtures de offsets/flips têm limites esperados explícitos; testes negativos
+rejeitam evidências inválidas. O parser compartilhado gerador/validador continua
+sendo uma limitação, mitigada pelas fixtures e pela comparação com a origem.
+
+## Timeout e sequência de rounds
+
+O script `engine/external/script/main.lua`, em `main.f_commandLine`, aplica
+`-rounds` a `setMatchWins`: **`-rounds 2` exige duas vitórias**, podendo haver
+três rounds decisivos e rounds adicionais por empate. O timeout histórico de
+55 segundos com áudio não isolava áudio, foco ou duração total da partida.
+Ele continua sem causa conclusiva; esta sprint não altera o backend de áudio.
+No Lua distribuído, `-nosound` define `Sound.MasterVolume = 0`; não demonstra
+que o dispositivo/backend deixou de ser inicializado. A comparação isola o
+volume habilitado versus silenciado, não todo o subsistema. O volume configurado
+na execução com áudio era 100 (WAV 80, BGM 75).
+
+O cenário controlado usa P1 sem IA com vida/vida máxima 1, P2 IA 8 com vida
+1000, tempo 10 e duas vitórias. A vida máxima baixa permite KO após restauração
+entre rounds. Uma tentativa apenas com vida inicial assimétrica e tempo 1
+terminou com empate no round seguinte; o validador rejeitou o resultado.
+Portanto, saída 0 e número de rounds isoladamente não significam aprovação.
+
+Os testes com/sem áudio concluíram em aproximadamente 31/32 segundos. Os logs
+registram índices 1 e 2, P1 com vida 0 e P2 `WinKO true` em ambos; as vitórias
+acumuladas coincidem com `Wins`, e a partida encerra na segunda vitória.
+`WinSide` no log é baseado em zero (1 representa P2). Isso comprova transição
+e encerramento no cenário 2–0, sem comprovar restauração de todos os recursos,
+uma partida equilibrada 2–1 ou a qualidade audível do som.
+
+## Reprodução
 
 ```bash
+python3 scripts/build_characters.py
 python3 tests/validate.py
-./scripts/play.sh -nosound -p1.ai 8 -p2.ai 8 -time 10 -rounds 1 -log ../tests/ai-match.log
-./scripts/play.sh -nosound -p1.ai 8 -p2.ai 8 -p1.life 80 -p2.life 80 -time 30 -rounds 1 -log ../tests/ko-match.log
+python3 -O tests/validate.py
+python3 -m unittest discover -s tests -p 'test_*.py' -v
+python3 tests/match_smoke.py
+python3 tests/match_smoke.py --audio
 python3 tests/keyboard_smoke.py
 ```
 
-O teste de teclado requer X11 desbloqueado, libX11, libXtst, xwininfo e ffmpeg.
-Foca exclusivamente a janela Ikemen GO, simula movimento, socos, pulos,
-agachamentos e chutes nos dois jogadores. Não executar enquanto alguém usa
-outra aplicação. Vida inicial assimétrica evita empate e round extra.
+Reconstrução verificada: os 16 arquivos gerados dos dois personagens mantiveram
+os mesmos hashes SHA256. O workflow `.github/workflows/validate.yml` repete
+reconstrução/diff, validação normal/com `-O` e regressões em push/PR; sua execução
+remota ainda depende do GitHub Actions. Os testes
+estáticos não requerem desktop. Os testes de jogo requerem X11 desbloqueado e
+OpenGL; o de teclado também requer libX11, libXtst, xwininfo e ffmpeg. Executar
+os testes gráficos **sequencialmente**. O teste de teclado foca a janela Ikemen
+e injeta teclas; não executar durante uso de outra aplicação.
 
-## Implementado, ainda sem validação manual completa
+Cada teste de jogo usa um log temporário novo, exige código 0 e só aceita
+resultados da execução atual. O smoke de rounds tem limite de 90 s; timeout é
+falha, não aprovação, e não substitui os logs anteriores. Em falha de validação
+o log final é preservado para diagnóstico, portanto um arquivo presente não
+significa PASS. Logs de execuções aprovadas são copiados para `tests/`.
+O teste de teclado usa o DISPLAY atual na captura e não modifica controles.
 
-Defesa alta/baixa, hitstun, combos, todos os ataques em todas as posturas,
-seleção no menu e melhor de três configurada pelo motor.
-Entradas automatizadas não substituem uma partida com duas pessoas.
-Áudio disponível no pacote. Os testes bem-sucedidos usaram -nosound.
-Uma execução adicional com áudio habilitado e dois rounds inicializou GFX,
-mas excedeu 55 segundos sem log final (timeout 124); áudio e sequência completa
-de melhor de três não estão validados. Não foi isolado se houve perda de foco,
-pausa do desktop ou comportamento de áudio.
+## Ambiente e histórico
 
-## Roteiro manual pendente
+Ubuntu 22.04.5 LTS x86_64, Intel UHD 620; nesta execução o motor reportou
+OpenGL 4.6 Core, Mesa 23.2.1. O sandbox não acessou X11: a primeira tentativa
+falhou em inicialização GTK/GFX, código 2. As execuções aprovadas ocorreram
+fora do sandbox, sem instalar pacotes ou modificar o motor.
 
-1. Executar play.sh; mover ambos, pular e agachar.
-2. Conferir alcance e recuperação de cada soco/chute no chão e no ar.
-3. Defender alto/baixo e conferir redução de dano/hitstun.
-4. Ganhar dois rounds por KO; verificar transição e encerramento.
-5. Deixar tempo terminar com vida diferente e igual; verificar vitória/empate.
-6. Abrir --menu, escolher Versus e ambos os personagens.
-7. Conferir som, latência, teclas simultâneas e conforto em partida real.
+Os testes históricos `tests/ai-match.log` e `tests/ko-match.log` foram produzidos
+antes da sprint. Eles não validam os sprites novos. O launcher continua limpando
+variáveis GTK/GIO que causavam conflitos no ambiente VS Code Snap. O aviso de
+PosFreeze foi tratado anteriormente somente nas cópias adaptadas.
 
-## Problemas e limites
+## Roteiro manual pendente (registrar resultado, versão e evidência)
 
-O ambiente VS Code Snap induzia conflitos GLIBCXX/pthread por módulos GTK/GIO.
-O launcher limpa essas variáveis por processo e usa lib/ mais libs do Ubuntu.
-KFM original emite aviso sobre parâmetros x/y de PosFreeze; a adaptação remove
-esses parâmetros ignorados e os personagens iniciam sem esse aviso.
-Um primeiro teste de teclado expirou após entradas simétricas; a captura mostrou
-dano dos dois lados, mas não houve log final. Repetição usa vida assimétrica.
-Sprites genéricos não acompanham com precisão todas as caixas AIR herdadas;
-arte por frame e ajuste de hitboxes são o próximo incremento.
-Sem bloqueio de inicialização no hardware testado. Mecânicas DBZ e estética MK
-continuam pendentes e não fazem parte deste resultado.
+1. Executar `./scripts/play.sh`; movimentar, virar, pular, agachar, aterrissar,
+   defender alto/baixo, receber golpes e cair com ambos os personagens.
+   Com as caixas de debug do motor habilitadas, conferir sprites/caixas por
+   frame e nos dois sentidos, incluindo recuperação e agarrões.
+2. Conferir alcance, recuperação e hitstun de x/y/a/b em pé, agachado e no ar;
+   verificar guarda direcional, parry e cancelamentos KFM listados em COMMANDS.md.
+3. Jogar melhor de três com `./scripts/play.sh -rounds 2`: concluir 2–0 e 2–1
+   por KO; conferir reset de vida, posição, cronômetro e comportamento do power
+   entre rounds, placar e encerramento após a segunda vitória.
+4. Deixar o tempo terminar com vida diferente e igual. Registrar resultado de
+   vitória/empate e a política de rounds adicionais antes de afirmar aprovação.
+5. Executar `./scripts/play.sh --menu`; selecionar Versus e os personagens.
+6. Repetir uma partida completa com áudio e duas pessoas; avaliar som, latência,
+   teclas simultâneas e conforto. Se travar, registrar tempo de parede, round,
+   foco/pausa, comando completo, stdout/stderr e uma repetição com `-nosound`.
+
+Não há mecânicas Dragon Ball novas nesta sprint. Power e especiais continuam
+sendo KFM. Arte final, balanceamento e remoção de comandos estão fora do aceite
+atual; decisões propostas estão em COMMANDS.md.

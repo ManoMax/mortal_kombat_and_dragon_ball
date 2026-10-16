@@ -1,13 +1,23 @@
 # Roadmap
 
-1. Fase 1: pacote oficial instalado localmente, hash verificado, execução OpenGL
-   confirmada em Ubuntu 22.04.5/Intel UHD 620. Sem instalações administrativas.
-2. Fase 2: personagens provisórios, núcleo KFM e controles locais implementados;
-   evidências automatizadas em TESTING.md. Avaliação com duas pessoas pendente.
-3. Próximo incremento: alinhar sprites às hitboxes por frame, simplificar comandos
-   herdados e ajustar alcance/recuperação/defesa ao estilo arcade MK.
-4. Fase 3 pendente: Ki, Kamehameha, Galick Gun, charge, transformações e balanceamento.
-   A barra de power atual é a de KFM; não é uma implementação específica de Ki.
-5. Fase 4 parcial: interface e seleção do motor; identidade MK, palco original,
+1. Fase 1: IKEMEN GO v1.0.0 instalado e verificado anteriormente. Motor preservado
+   na Sprint 1; hash do executável e evidências em TESTING.md.
+2. Fase 2: personagens provisórios com núcleo/áudio KFM e controles locais.
+   Avaliação com duas pessoas permanece pendente.
+3. **Sprint 1 — estabilização iniciada, aceite manual pendente:**
+   - Implementado: sprites originais por contexto AIR, cobrindo hurtboxes e
+     alcance das hitboxes sem alterar caixas, tempos, estados ou controles.
+   - Automatizado: SFF/PCX, cobertura de colisão, regressões negativas e
+     encerramento 0–2 por KO com/sem áudio. Evidências em TESTING.md.
+   - Investigado: limite de 55 s não isolava áudio; cenário controlado completa
+     com/sem áudio. Causa do timeout original não reproduzida/conclusiva.
+   - Revisado: comandos KFM em COMMANDS.md; remoções/substituições propostas,
+     sem alteração silenciosa dos controles.
+   - Pendente: inspeção visual no motor em todas as posturas, defesa, agarrões,
+     partida 2–1, empates, menus e sessão humana com áudio.
+   - Limite: silhuetas de colisão são arte de protótipo, não animação final.
+4. Fase 3 pendente, fora da Sprint 1: Ki, Kamehameha, Galick Gun, charge,
+   transformações e balanceamento. Power continua sendo o recurso KFM.
+5. Fase 4 parcial: interface/seleção do motor. Identidade MK, palco original,
    câmera fixa e apresentação próprias pendentes.
-6. Fase 5 pendente: pipeline Blender e arte licenciada/original de maior qualidade.
+6. Fase 5 pendente: pipeline Blender e arte original/licenciada de maior qualidade.
