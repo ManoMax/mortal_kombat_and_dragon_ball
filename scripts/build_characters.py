@@ -4,6 +4,7 @@ from pathlib import Path
 import re, struct, shutil
 from air_geometry import frames
 import dbz_combat as dbz
+from png_pipeline import load_overrides
 ROOT = Path(__file__).resolve().parents[1]
 BASE = ROOT / 'engine/chars/kfm'
 W,H=160,120
@@ -84,18 +85,20 @@ def sprite(group, frame, vegeta, geometry=None):
                 for x in range(left,right+1):
                     c=old[(sy+(y-top)*sh//(bottom-top+1))*W+sx+(x-left)*sw//(right-left+1)]
                     if any(l<=x<=r and t<=y<=b for l,t,r,b in body):
-                        paint(x,y,c or 2)
+                        paint(x,y, (5 if vegeta else 3) if x == left or y == top else c or 2)
             # Original placeholder fists/feet follow active attack reach.
             for l,t,r,b in boxes[1]:
                 for y in range(t,b+1):
                     for x in range(l,r+1): paint(x,y,1)
     return pcx(p,palette,320,320) if geometry else pcx(p,palette)
 
-def sff(path, entries, vegeta, poses):
+def sff(path, entries, vegeta, poses, overrides=None):
+    overrides = overrides or {}
     chunks=[]; offset=512
     for n,(g,i) in enumerate(entries):
         pose=poses.get((g,i))
         data=dbz.effect(g,i,vegeta,pcx) if (g,i) in dbz.ENTRIES else sprite(pose[4] if pose else g,pose[5] if pose else i,vegeta,pose)
+        data = overrides.get((g,i), data)
         next_offset=offset+32+len(data) if n<len(entries)-1 else 0
         chunks.append(struct.pack('<IIhhHHHB',next_offset,len(data),160 if pose else 80 if (g,i) in dbz.ENTRIES else 44,240 if pose else 110,g,i,0,0)+bytes(13)+data)
         offset+=32+len(data)
@@ -129,6 +132,9 @@ def main():
         definition=definition.split('; Arcade mode')[0]
         definition=definition.replace('author = "Elecbyte"','author = "DBZ-MK; combat derived from Elecbyte KFM"')
         (dest/f'{name}.def').write_text(definition)
-        sff(dest/'fighter.sff',entries,name=='vegeta',poses)
+        overrides = load_overrides(ROOT, name, pcx)
+        if set(overrides) - set(poses):
+            raise ValueError('PNG overrides must target inherited context IDs in group 30000')
+        sff(dest/'fighter.sff',entries,name=='vegeta',poses,overrides)
     print(f'Built 2 fighters, {len(entries)} original sprite entries each.')
 if __name__=='__main__': main()

@@ -33,3 +33,24 @@ Os efeitos azul/roxo, aura, impacto, medidor e poses de carga/disparo são
 originais procedurais em `scripts/dbz_combat.py`. Nenhuma imagem comercial de
 Dragon Ball/Mortal Kombat foi importada. O gerador integra tudo ao SFF v1 de
 forma reproduzível, preservando os avisos KFM e sua licença não comercial.
+
+## Sprint 3
+
+Obsidian Rift é um cenário procedural original criado por scripts/build_arena.py
+(MIT), sem arquivos de jogos comerciais. Os PNGs idle-000 dos personagens são
+exportações originais do gerador do projeto, com licença MIT sobre o desenho,
+sem conceder direitos sobre os personagens/marcas. São exemplos de importação
+com transparência, **não arte final**. Goku mantém laranja/azul e Vegeta azul/
+branco; efeitos Kamehameha/Galick Gun continuam azul/roxo.
+
+O motivo base em assets-source/fight-base.def é cópia do fight.def distribuído;
+créditos Ohmga Shironeko e licenças em engine/LICENSES.txt continuam aplicáveis.
+A personalização progressiva não torna as fontes/sons/sprites herdados originais.
+
+Pipeline PNG→PCX→SFF implementado com Pillow fixado em requirements-assets.txt;
+contrato e limitações em assets-source/sprites/README.md. Blender não utilizado.
+Ainda exige produção artística: idle, caminhada, agachamento, salto, quatro
+normais, defesa, dano, queda, carga, disparos e vitória de ambos. A cobertura
+funcional AIR existente não equivale a animações finais desenhadas. Produzir
+primeiro idle/walk/ataques, revisar colisões e facing no motor e só então
+expandir a sequência. Não há transformações Super Saiyajin nesta entrega.

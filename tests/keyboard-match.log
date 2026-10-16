@@ -1,39 +1,39 @@
-table: 0xc00175b320 {
+table: 0xc001dff200 {
   ["MatchTime"] => 1200
   ["RoundTime"] => 1200
   ["WinSide"] => 1
   ["LastRound"] => 1
   ["Draws"] => 0
-  ["Wins"] => table: 0xc00175b380 {
+  ["Wins"] => table: 0xc001dff260 {
                 [1] => 0
                 [2] => 1
               }
-  ["TeamModes"] => table: 0xc00175b3e0 {
+  ["TeamModes"] => table: 0xc001dff2c0 {
                      [1] => 0
                      [2] => 0
                    }
-  ["TotalScore"] => table: 0xc00175b440 {
-                      [1] => 3000
+  ["TotalScore"] => table: 0xc001dff320 {
+                      [1] => 3600
                       [2] => 11700
                     }
-  ["Rounds"] => table: 0xc00175b4a0 {
-                  [1] => table: 0xc00175b500 {
+  ["Rounds"] => table: 0xc001dff380 {
+                  [1] => table: 0xc001dff3e0 {
                            ["Index"] => 1
                            ["Timer"] => 1200
-                           ["Score"] => table: 0xc00175b560 {
-                                          [1] => 3000
+                           ["Score"] => table: 0xc001dff440 {
+                                          [1] => 3600
                                           [2] => 11700
                                         }
-                           ["Fighters"] => table: 0xc00175b5c0 {
-                                             [1] => table: 0xc00175b620 {
-                                                      [1] => table: 0xc00175b680 {
+                           ["Fighters"] => table: 0xc001dff4a0 {
+                                             [1] => table: 0xc001dff500 {
+                                                      [1] => table: 0xc001dff560 {
                                                                ["Name"] => "Goku (Prototype)"
                                                                ["ID"] => 56
                                                                ["MemberNo"] => 0
                                                                ["SelectNo"] => 0
                                                                ["AILevel"] => 0
                                                                ["PalNo"] => 1
-                                                               ["Life"] => 774
+                                                               ["Life"] => 711
                                                                ["LifeMax"] => 1000
                                                                ["WinQuote"] => -1
                                                                ["Win"] => false
@@ -48,15 +48,15 @@ table: 0xc00175b320 {
                                                                ["OverKO"] => false
                                                              }
                                                     }
-                                             [2] => table: 0xc00175b6e0 {
-                                                      [1] => table: 0xc00175b740 {
+                                             [2] => table: 0xc001dff5c0 {
+                                                      [1] => table: 0xc001dff620 {
                                                                ["Name"] => "Vegeta (Prototype)"
                                                                ["ID"] => 57
                                                                ["MemberNo"] => 0
                                                                ["SelectNo"] => 1
                                                                ["AILevel"] => 0
                                                                ["PalNo"] => 1
-                                                               ["Life"] => 874
+                                                               ["Life"] => 811
                                                                ["LifeMax"] => 1000
                                                                ["WinQuote"] => -1
                                                                ["Win"] => true

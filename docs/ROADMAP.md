@@ -26,3 +26,13 @@
 5. Fase 4 parcial: interface/seleção do motor. Identidade MK, palco original,
    câmera fixa e apresentação próprias pendentes.
 6. Fase 5 pendente: pipeline Blender e arte original/licenciada de maior qualidade.
+
+7. **Sprint 3 — implementação mínima, aceite artístico pendente:**
+   - Importador PNG RGBA reproduzível, escala/origem, SFF v1 e AIR preservado.
+   - Um exemplo PNG integrado por personagem; demais poses provisórias com
+     contorno iluminado. Arte geométrica não aceita como arte final.
+   - Arena original Obsidian Rift integrada, parallax e piso delimitado.
+   - Interface progressiva: cores por jogador, cronômetro e mensagem de vitória;
+     Ki mantido. Fontes, rounds e início da luta ainda usam recursos distribuídos.
+   - Falta produzir animações orgânicas e revisar visualmente todos os frames,
+     ambos os facings, agarrões e limites. Sem transformações nesta sprint.

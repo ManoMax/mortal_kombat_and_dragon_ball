@@ -57,3 +57,31 @@ carregamento automático no jogo normal. A coleta lê estados, Ki, vida,
 projéteis e contato/guarda a cada frame; não injeta valores nas mecânicas.
 O modo quick versus inicia antes da descoberta de módulos, por isso a coleta
 é configurada em Common.Lua. Os controles personalizados não são alterados.
+
+## Sprint 3 — fundação visual
+
+`png_pipeline.py` usa Pillow 9.0.1 para importar sequências RGBA descritas por
+manifest por personagem. Cada PNG substitui um contexto 30000 existente;
+origem/escala são normalizadas em 320×320 (eixo 160,240). O AIR continua sendo
+produzido pelo gerador a partir do KFM, preservando offsets, flips, caixas e
+tempos. PCX possui paleta própria e transparência no índice zero. Alpha parcial
+é rejeitado explicitamente. Há um PNG provisório integrado por personagem.
+Os demais contextos mantêm a geração anterior com contorno iluminado.
+
+`build_arena.py` gera SFF v1 e DEF de Obsidian Rift, com dois planos, delta de
+profundidade, câmera lateral e piso em y=184; contato dos pés em y=190.
+`assets-source/obsidian.def` é a fonte editável. `build_interface.py` deriva
+fight.def da cópia licenciada `assets-source/fight-base.def`: matizes de vida,
+cronômetro e mensagens de vitória. Barras de Ki permanecem nos Explods DBZ;
+rounds, início da luta e fontes ainda usam o motivo distribuído/licenciado.
+
+Reconstrução completa:
+
+```sh
+python3 scripts/build_characters.py
+python3 scripts/build_arena.py
+python3 scripts/build_interface.py
+```
+
+Arte final orgânica e revisão humana de colisões são trabalho pendente;
+o importador não remove a exigência herdada de ocupação das caixas.

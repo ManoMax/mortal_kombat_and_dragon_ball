@@ -8,4 +8,4 @@ if [[ ${1:-} == --menu ]]; then
   shift
   exec ./Ikemen_GO_Linux -windowed "$@"
 fi
-exec ./Ikemen_GO_Linux -windowed -width 960 -height 720 -p1 goku -p2 vegeta -p1.ai 0 -p2.ai 0 -p1.input 1 -p2.input 2 -s stage0 "$@"
+exec ./Ikemen_GO_Linux -windowed -width 960 -height 720 -p1 goku -p2 vegeta -p1.ai 0 -p2.ai 0 -p1.input 1 -p2.input 2 -s obsidian "$@"

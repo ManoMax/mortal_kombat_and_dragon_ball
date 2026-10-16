@@ -1,9 +1,10 @@
 ;-------------------------------------------------------------------------------
 [Characters]
-goku, stages/stage0.def
-vegeta, stages/stage0.def
+goku, stages/obsidian.def
+vegeta, stages/obsidian.def
 
 [ExtraStages]
+stages/obsidian.def
  ;Put extra stages here. They will be available in modes that allow selecting
  ;stage manually. For example, you can insert "stages/mybg.def".
  ;

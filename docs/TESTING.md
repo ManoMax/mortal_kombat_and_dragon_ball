@@ -211,3 +211,45 @@ Execuções gráficas fora do sandbox, OpenGL 4.6/Mesa 23.2.1/Intel UHD 620.
 A comparação com áudio verifica conclusão e resultados; qualidade audível,
 latência e conforto continuam pendentes de avaliação humana. A captura da
 carga confirma aura e medidores azul/roxo; não valida todos os frames/impactos.
+
+## Sprint 3 — 16/10/2026
+
+Prévia estática da Sprint 2: validate normal/-O e 10 unittests aprovados antes
+das alterações. Nova branch deriva da referência local Sprint 2.
+
+| Verificação da implementação mínima | Resultado |
+| --- | --- |
+| validate.py normal e -O | PASS: 861 sprites, 670 frames e 604 contextos alinhados por personagem; hash do motor inalterado. |
+| Unittest | PASS: 12 testes; inclui importação real de RGBA, alpha/origem/paleta, alpha parcial e caminho inválidos, SFF da arena, caixas/offsets/flips e verificadores de Ki. |
+| match_smoke.py | PASS: 27,12 s, dois KOs, 0–2, saída 0. |
+| match_smoke.py --audio | PASS: 54,76 s, dois KOs, 0–2, saída 0. |
+| sprint2_smoke.py | PASS: comandos, carga, custo, limite, projéteis, dano, guarda, interrupção, medidores e reset, ambos os jogadores. |
+| keyboard_smoke.py | PASS: AILevel 0; ambos causaram dano; vidas finais 711/811; captura tests/gameplay.png. |
+| GNU time do smoke DBZ | PASS: 40,16 s; CPU user 11,41 s/system 2,40 s; RSS máximo 418.612 KiB; zero swaps; saída 0. |
+
+`tests/sprint3-performance.txt` contém a medição atual; reproduzir com
+`python3 tests/performance_smoke.py` (X11). Limites de recurso desta demonstração:
+1 GiB RSS e 90 s para o cenário completo. Validar relatório existente com
+`python3 tests/performance_smoke.py --report tests/sprint3-performance.txt`.
+Isso mede o processo de teste/motor e captura; não mede percentis de frame,
+FPS ou latência de entrada. Benchmark de frame time/GPU permanece pendente.
+
+Captura automática atual de carga/arena: `tests/sprint2-effects.png`.
+Telemetria atual de Ki/projéteis: `tests/sprint2-trace.csv`.
+Testes gráficos executados sequencialmente fora do sandbox; tentativa inicial
+no sandbox falhou ao inicializar GTK/X11 e não foi contada como aprovação.
+Ubuntu 22.04/Mesa 23.2.1/Intel UHD 620, OpenGL 4.6 reportado pelo motor.
+
+A inspeção da captura confirma integração do palco, silhuetas laranja/azul e
+medidores azul/roxo. **Não constitui aceite visual humano**. Os sprites continuam
+geométricos e provisórios, incluindo os PNGs de exemplo. Idle, caminhada,
+agachamento, salto, ataques, defesa, dano, queda e vitória mantêm o AIR funcional
+herdado; todos ainda exigem arte orgânica e avaliação por pessoa nos dois lados.
+O teste automático garante as caixas e tempos herdados por frame; não garante
+qualidade artística, contatos naturais ou conforto. Alpha parcial é rejeitado
+por limitação explícita do pipeline SFF v1. Roteiros humanos das Sprints 1/2
+continuam pendentes, acrescidos da inspeção do cenário, HUD e facing dos PNGs.
+
+Reconstrução completa da Sprint 3: PASS, SHA256 idêntico nos 19 arquivos
+(dos dois personagens, SFF/DEF da arena e fight.def). O CI inclui esses alvos;
+execução remota do workflow ainda não verificada nesta sessão.

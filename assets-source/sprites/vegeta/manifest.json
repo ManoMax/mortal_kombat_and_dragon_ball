@@ -1,0 +1,18 @@
+{
+  "version": 1,
+  "facing": "right",
+  "frames": [
+    {
+      "sprite": [
+        30000,
+        0
+      ],
+      "file": "idle-000.png",
+      "origin": [
+        160,
+        240
+      ],
+      "scale": 1
+    }
+  ]
+}
