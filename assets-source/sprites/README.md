@@ -60,3 +60,18 @@ Demais poses, carga de Ki e Vegeta continuam geométricos. O arquivo
 corta poses e não participa do build. Não é entrega artística final.
 
 Licenças, origem e prompts em `docs/ART_PROVENANCE.md`; evidências em TESTING.
+
+## Sprint 5
+
+Os planos de ambos os personagens agora contêm sequências candidatas orgânicas.
+`seeds` permite isolar desenhos em folhas cujas células se sobrepõem. O componente
+alpha >=32 conserva sua borda antialias de dois pixels com o alpha original.
+`binding_placements` posiciona poses aéreas; `context_adjustments` compensa
+exatamente offsets/flips AIR ao redor da origem; nenhum deles muda escala.
+`hurtbox_overrides` registra os dois ajustes de cabeça do soco forte.
+
+`python3 scripts/audit_animations.py --report docs/sprint5-animation-audit.json`
+verifica ações essenciais e lista qualquer ação herdada ainda geométrica; `--complete` reprova se existir.
+O build final estende as famílias orgânicas aos contextos adicionais KFM;
+reuso de poses e cobertura não certificam a coreografia de cada movimento.
+Qualidade, proporções anatômicas e contato natural permanecem avaliações humanas.

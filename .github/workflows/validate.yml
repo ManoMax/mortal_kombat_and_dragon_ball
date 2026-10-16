@@ -22,5 +22,6 @@ jobs:
         run: |
           python3 tests/validate.py
           python3 -O tests/validate.py
+          python3 scripts/audit_animations.py --complete
       - name: Reject invalid test evidence
         run: python3 -m unittest discover -s tests -p 'test_*.py' -v

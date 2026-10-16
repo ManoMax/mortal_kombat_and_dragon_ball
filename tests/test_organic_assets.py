@@ -40,6 +40,9 @@ class OrganicAssets(unittest.TestCase):
         self.assertEqual((x, y, w, h), (160, 240, 320, 320))
         self.assertEqual(alpha[240*stride+160], 128)
         self.assertEqual(sum(bool(a) for a in alpha), 1)
+        hashes={}
+        read_sff(first.read_bytes(),hashes)
+        self.assertEqual(hashes[30000,0],hashlib.sha256(image.tobytes()).hexdigest())
         for broken in (first.read_bytes()[:-1], first.read_bytes()+b'x'):
             with self.assertRaises(ValueError): read_sff(broken)
 
@@ -52,6 +55,9 @@ class OrganicAssets(unittest.TestCase):
         original = path.read_bytes()
         self.assertEqual(struct.unpack_from('<I', original, 512+28+20)[0], 0)
         self.assertEqual(len(read_sff(original)), 4)
+        hashes={}
+        read_sff(original,hashes)
+        self.assertEqual(len(set(hashes.values())),1)
         write_sff(path, list(reversed(sprites)))
         self.assertEqual(path.read_bytes(), original)
         broken = bytearray(original)
@@ -117,6 +123,28 @@ class OrganicAssets(unittest.TestCase):
         self.assertEqual(after[0][4][1], before[0][4][1])
         self.assertEqual(after[0][4][2], [(-20, -90, 20, 0)])
         self.assertEqual(after[1][2:], before[1][2:])
+
+    def test_connected_extraction_preserves_partial_alpha_and_excludes_neighbor(self):
+        from prepare_character_art import isolate
+        source=Image.new('RGBA',(20,12))
+        source.putpixel((4,5),(100,80,60,255))
+        source.putpixel((5,5),(100,80,60,128))
+        source.putpixel((6,5),(100,80,60,12))
+        source.putpixel((14,5),(20,30,40,255))
+        result=isolate(source,[4,5])
+        self.assertEqual(result.getpixel((5,5)),source.getpixel((5,5)))
+        self.assertEqual(result.getpixel((6,5)),source.getpixel((6,5)))
+        self.assertEqual(result.getpixel((14,5))[3],0)
+        with self.assertRaises(ValueError): isolate(source,[0,0])
+
+    def test_inverse_air_compensation_has_known_coordinates(self):
+        from prepare_character_art import compensate
+        source=Image.new('RGBA',(320,320))
+        source.putpixel((170,220),(100,80,60,128))
+        result=compensate(source,3,-4,'VH')
+        self.assertEqual(result.getpixel((153,256)),(100,80,60,128))
+        self.assertEqual(sum(a>0 for a in result.getchannel('A').getdata()),1)
+        with self.assertRaisesRegex(ValueError,'clips'): compensate(source,400,0,'')
 
     def test_hurtboxes_are_independent_but_ordered(self):
         self.frame.update(organic=True, normalized_bounds=[0, 0, 1, 1], hurtboxes=[[-10, -90, 10, 0]])

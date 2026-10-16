@@ -37,8 +37,9 @@ def decode(data):
 def validate(folder, source_name=None):
     data=(folder/'fighter.sff').read_bytes()
     require(data[:12]==b'ElecbyteSpr\0', 'SFF signature')
+    rgba_hashes = {}
     if data[15] == 2:
-        entries = read_sff(data)
+        entries = read_sff(data, rgba_hashes)
         count = len(entries)
     else:
         groups,count,offset,size=struct.unpack_from('<IIII',data,16)
@@ -70,6 +71,7 @@ def validate(folder, source_name=None):
             ox, oy, (w, h, stride, alpha) = entries[key]
             require((ox, oy, w, h, stride) == (160, 240, 320, 320, 320), 'Organic origin/canvas mismatch')
             require(bytes(alpha) == sources[key].getchannel('A').tobytes(), 'Organic alpha/frame integrity mismatch')
+            require(rgba_hashes.get(key) == hashlib.sha256(sources[key].tobytes()).hexdigest(), 'Organic RGBA color/frame integrity mismatch')
     aligned=0
     for current,base in zip(original,inherited):
         _,action,(g,n,dx,dy,duration),flags,boxes=current

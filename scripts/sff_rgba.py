@@ -1,5 +1,6 @@
 """Deterministic SFF 2.0.1 PNG32 subset; straight RGBA, no palette quantization."""
 from io import BytesIO
+import hashlib
 import struct
 from PIL import Image
 
@@ -9,13 +10,18 @@ def write_sff(path, sprites):
     payload = bytearray()
     keys = set()
     images = {}
+    encoded = {}
     for (group, number), (x, y), image in sorted(sprites, key=lambda item: item[0]):
         if (group, number) in keys:
             raise ValueError('Duplicate sprite')
         keys.add((group, number))
-        stream = BytesIO()
-        image.convert('RGBA').save(stream, format='PNG', compress_level=9)
-        blob = struct.pack('<I', image.width * image.height * 4) + stream.getvalue()
+        rgba = image.convert('RGBA')
+        digest = (rgba.size, hashlib.sha256(rgba.tobytes()).digest())
+        if digest not in encoded:
+            stream = BytesIO()
+            rgba.save(stream, format='PNG', compress_level=9)
+            encoded[digest] = struct.pack('<I', image.width * image.height * 4) + stream.getvalue()
+        blob = encoded[digest]
         identity = (x, y, blob)
         if identity in images:
             link, offset, length = images[identity], 0, 0
@@ -34,7 +40,7 @@ def write_sff(path, sprites):
     path.write_bytes(header + nodes + payload)
 
 
-def read_sff(data):
+def read_sff(data, rgba_hashes=None):
     """Validate our deliberately narrow writer subset and decode exact alpha."""
     if len(data) < 512 or data[:16] != b'ElecbyteSpr\0' + bytes((0, 1, 0, 2)):
         raise ValueError('Unsupported SFF v2 header')
@@ -44,6 +50,7 @@ def read_sff(data):
     result = {}
     end = 0
     decoded = []
+    decoded_hashes = []
     for index in range(count):
         g, n, w, h, x, y, link, fmt, depth, offset, length, pal, flags = struct.unpack_from('<HHHHhhHBBIIHH', data, nodes + 28 * index)
         if length == 0:
@@ -53,6 +60,9 @@ def read_sff(data):
             if (w, h, x, y) != (pixels[0], pixels[1], sx, sy):
                 raise ValueError('Linked sprite origin/geometry mismatch')
             result[g, n] = decoded[link]
+            if rgba_hashes is not None:
+                rgba_hashes[g, n] = decoded_hashes[link]
+                decoded_hashes.append(decoded_hashes[link])
             decoded.append(result[g, n])
             continue
         if (g, n) in result or link or fmt != 12 or depth != 32 or pal or flags or offset != end or length < 4 or offset + length > size:
@@ -67,6 +77,10 @@ def read_sff(data):
                 raise ValueError('Invalid PNG32 payload')
             image.load()
             result[g, n] = (x, y, (w, h, w, image.getchannel('A').tobytes()))
+            if rgba_hashes is not None:
+                digest = hashlib.sha256(image.tobytes()).hexdigest()
+                rgba_hashes[g, n] = digest
+                decoded_hashes.append(digest)
         decoded.append(result[g, n])
         end += length
     if end != size:

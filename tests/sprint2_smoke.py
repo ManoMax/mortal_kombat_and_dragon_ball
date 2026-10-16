@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """Real CMD/input and state/result checks. Requires unlocked X11. Focuses Ikemen."""
 import ctypes as C
+import argparse
 import json
 import os
 from pathlib import Path
@@ -33,6 +34,9 @@ def verify(rows):
         require(any(r[2]>=2 and r[3]==2 and r[6]==0 for r in samples), f'P{p} round reset missing')
 
 def main():
+    parser=argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('--record', type=Path, help='Record the actual X11 game window to MP4')
+    args=parser.parse_args()
     x=C.CDLL('libX11.so.6'); xt=C.CDLL('libXtst.so.6')
     x.XOpenDisplay.restype=C.c_void_p; x.XOpenDisplay.argtypes=[C.c_char_p]
     x.XStringToKeysym.argtypes=[C.c_char_p]; x.XStringToKeysym.restype=C.c_ulong
@@ -64,6 +68,7 @@ def main():
         def rows():
             return [list(map(int,line.split(','))) for line in trace.read_text().splitlines() if line.count(',')==10]
         def snap(p): return [r for r in rows() if r[1]==p][-1]
+        recorder=None
         try:
             deadline=time.monotonic()+20
             while time.monotonic()<deadline:
@@ -72,10 +77,18 @@ def main():
                 tree=subprocess.check_output(['xwininfo','-root','-tree'],text=True)
                 window=re.search(r'(0x[0-9a-f]+) "Ikemen GO"',tree)
                 if window:
-                    x.XSetInputFocus(display,int(window[1],16),1,0); x.XFlush(display)
-                if trace.exists() and rows() and snap(1)[3]==2: break
+                    info=subprocess.run(['xwininfo','-id',window[1]],capture_output=True,text=True)
+                    if info.returncode==0 and 'Map State: IsViewable' in info.stdout:
+                        x.XSetInputFocus(display,int(window[1],16),1,0); x.XFlush(display)
+                    else: window=None
+                if window and trace.exists() and rows() and snap(1)[3]==2: break
                 time.sleep(.2)
-            require(trace.exists() and snap(1)[3]==2, 'Fight did not start')
+            require(window and trace.exists() and snap(1)[3]==2, 'Fight did not start in a viewable window')
+            if args.record:
+                args.record.parent.mkdir(parents=True,exist_ok=True)
+                recorder=subprocess.Popen(['ffmpeg','-y','-loglevel','error','-f','x11grab','-framerate','30',
+                    '-window_id',window[1],'-i',os.environ['DISPLAY'],'-c:v','libx264','-preset','ultrafast',
+                    '-crf','23','-pix_fmt','yuv420p',str(args.record)],stdin=subprocess.PIPE)
             # No Ki: actual quarter-circle must not dispatch to beam or Palm 1010.
             for p in (1,2):
                 start=len(rows()); beam(p); time.sleep(.8)
@@ -104,7 +117,12 @@ def main():
             deadline=time.monotonic()+25
             while time.monotonic()<deadline and not (snap(1)[2]>=2 and snap(1)[3]==2): time.sleep(.2)
             verify(rows())
-            hold(['Escape'],.1); proc.wait(timeout=10)
+            if recorder:
+                recorder.communicate(b'q',timeout=15)
+                require(recorder.returncode==0 and args.record.stat().st_size>1000,'Gameplay recording failed')
+            x.XSetInputFocus(display,int(window[1],16),1,0); x.XFlush(display)
+            time.sleep(.1)
+            hold(['Escape'],.2); proc.wait(timeout=10)
             require(proc.returncode==0, 'Engine exited with error')
             (ROOT/'tests/sprint2-trace.csv').write_text(trace.read_text())
             print('PASS real motor: charge/cap/cost/projectiles/hit/guard/meters/round reset, both fighters')
@@ -114,6 +132,10 @@ def main():
             print(output.read())
             raise
         finally:
+            if recorder and recorder.poll() is None:
+                recorder.terminate()
+                try: recorder.wait(timeout=5)
+                except subprocess.TimeoutExpired: recorder.kill(); recorder.wait()
             for k in list(pressed): key(k,False)
             if proc.poll() is None:
                 proc.terminate()

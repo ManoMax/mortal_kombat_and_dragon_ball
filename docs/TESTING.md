@@ -349,3 +349,88 @@ contato do soco e posição das mãos no spawn do Kamehameha. Revisar caixas com
 debug do motor e testar agarrões, todas as posturas, partida 2–1, áudio e dois
 jogadores reais. Produzir arte restante/carga de Ki/Vegeta. Proveniência e
 limites de licença em `ART_PROVENANCE.md`; não há licença oficial registrada.
+
+## Sprint 5 — 16/10/2026
+
+Avaliação humana/artística: **pendente**. As verificações abaixo são estáticas
+ou automatizadas no motor; não são uma sessão de jogo com pessoas.
+
+Antes das mudanças, validate e 21 unittests da Sprint 4 passaram; seu smoke
+Goku × Goku também foi repetido no X11. Primeiro idle/caminhada de Vegeta foi
+capturado em `tests/sprint5-initial-facings.png`, com telemetria fresca.
+
+Implementação final: 637 bindings orgânicos por personagem (604 contextos com
+caixas, 28 sprites de corpo sem caixas, duas poses de carga e três de disparo).
+`audit_animations.py --complete` passa sem placeholders nas sequências de corpo
+verificadas, incluindo recuperação do chute e agarrões sem hurtboxes. Props de
+introdução, retratos e sprites legados não utilizados não são certificados como
+orgânicos. As famílias adicionais KFM reutilizam candidatos; ver limites visuais.
+
+| Verificação estática | Resultado desta execução |
+| --- | --- |
+| validate normal e `-O` | PASS: 861 sprites / 670 elementos AIR / 604 contextos com caixas por personagem; motor fixado preservado. |
+| Integridade RGBA | PASS: hash dos pixels completos e alpha do SFF iguais à fonte normalizada em todos os bindings orgânicos, inclusive links. |
+| Unittest | PASS: 26 testes, incluindo rejeição de sequência estática, binding ausente, pé fora do piso, extração com alpha parcial e offsets/flips com coordenadas explícitas. |
+| Auditoria completa | PASS: desenhos distintos por sequência, origem/canvas, piso terrestre, variação de altura de idle/walk <=8 px; zero ações de corpo herdadas com placeholders. |
+| Reconstrução | PASS: fontes/manifestos/SFF, arena e interface iguais em duas execuções; 753 arquivos retidos em `sprint5-build-sha256.json`, após retirar oito variantes órfãs criadas nesta sprint. Cache PNG preservou os bytes anteriores do SFF. |
+
+Reprodução:
+
+```sh
+python3 scripts/prepare_character_art.py goku
+python3 scripts/prepare_character_art.py vegeta
+python3 scripts/build_characters.py
+python3 scripts/build_arena.py
+python3 scripts/build_interface.py
+python3 tests/validate.py
+python3 -O tests/validate.py
+python3 -m unittest discover -s tests -p 'test_*.py' -v
+python3 scripts/audit_animations.py --complete --report docs/sprint5-animation-audit.json
+python3 tests/sprint5_graphics.py
+```
+
+O último comando roda as regressões gráficas anteriores sequencialmente e depois
+`capture_demo.py` sob GNU time: captura Goku × Vegeta e Vegeta × Goku, confirma
+idle/caminhada/soco orgânicos por telemetria e grava o teste real de Ki/especiais.
+O vídeo MP4 captura a janela X11 em tempo real e nunca é conteúdo do jogo.
+A medição agora cobre as duas capturas de sprites e o smoke Ki, portanto o tempo
+de parede não é comparável diretamente ao cenário Ki isolado das sprints antigas.
+Mantidos os limites 1 GiB/90 s; sem afirmação de FPS ou latência.
+
+Evidências: `sprint5-facings.png`, `sprint5-reversed-facings.png`, respectivos CSVs,
+`sprint5-gameplay.mp4`, `sprint5-performance.txt`, `sprint2-trace.csv`, captura de
+carga e logs de rounds/teclado. Contact sheets `sprint5-{goku,vegeta}-contact.png`
+são prévias dos assets, explicitamente não capturas de gameplay.
+
+A comparação de caixas preserva todos os tempos/hitboxes e todas as hurtboxes
+exceto dois overrides explícitos de cabeça no soco forte. Essas mudanças precisam
+de revisão de balanceamento. Interseção não prova contato natural. Normalização
+de pés e hashes distintos não comprovam anatomia, passos ou fluidez. Inspeção das
+folhas/capturas pelo agente está separada do aceite humano em
+`SPRINT_5_VISUAL_REVIEW.md`. Roteiros humanos anteriores continuam pendentes,
+incluindo menu/seleção, 2–1 equilibrado, duas pessoas, áudio e agarrões.
+
+### Resultados gráficos finais da Sprint 5
+
+| Teste no motor | Resultado |
+| --- | --- |
+| Sprint 4 Goku × Goku | PASS: idle, caminhar frente/trás e soco, telemetria fresca e captura nos dois lados. |
+| Teclado, AILevel 0 | PASS: ambos causaram dano, vidas finais 711/811, saída 0. |
+| Partida sem som | PASS: dois rounds, dois KOs, 0–2, 42,14 s, saída 0. |
+| Partida com áudio | PASS: dois rounds, dois KOs, 0–2, 49,40 s, saída 0; qualidade audível não avaliada. |
+| Goku × Vegeta e ordem invertida | PASS: idle, caminhada frente/trás e soco; sprites observados orgânicos em ambos os jogadores; capturas e CSVs novos. |
+| Ki e especiais + gravação | PASS: carga/teto/custo, projéteis, dano nominal, guarda, interrupção, medidores e reset de round; saída 0. |
+| Recursos, captura dupla + Ki | PASS: 337.836 KiB RSS máximo, 55,81 s; limites 1 GiB/90 s. |
+
+Vídeo `tests/sprint5-gameplay.mp4`; metadados em `sprint5-video.json` e frame
+extraído em `sprint5-video-frame.png`. Captura real, sem áudio e sem uso como
+conteúdo do jogo. Os resultados não comprovam toda a coreografia ou arte final.
+
+Duas tentativas de captura foram reprovadas antes da execução aprovada: uma
+falhou com X11 BadMatch ao focar uma janela ainda não visível; outra confirmou
+as mecânicas, mas excedeu o timeout ao enviar Escape após a gravação. O harness
+passou a aguardar `IsViewable` e restaurar o foco antes de encerrar. Repetida
+somente a etapa afetada com `tests/sprint5_graphics.py --capture-only`; saída 0,
+telemetria fresca e gravação nova. Nenhuma dessas falhas foi contada como PASS.
+O sandbox também bloqueou o display no começo da auditoria; os testes gráficos
+aprovados rodaram fora dele, sequencialmente, OpenGL 4.6/Mesa 23.2.1/UHD 620.

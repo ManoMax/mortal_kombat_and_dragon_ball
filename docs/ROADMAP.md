@@ -46,3 +46,13 @@
    - Pendente: revisão humana das proporções, iluminação, contornos, contatos,
      facings, todas as ações restantes e licença oficial dos personagens.
    - Não declarar Sprint integralmente concluída; sem merge automático.
+
+9. **Sprint 5 — cobertura orgânica das ações essenciais em revisão:**
+   - Goku e Vegeta: ciclos próprios de locomover, atacar, saltar/agachar,
+     defender, sofrer dano/cair, carregar, disparar e vencer.
+   - Extração por componentes explícitos, offsets/flips compensados e auditoria
+     de desenhos distintos, piso, escala e placeholders remanescentes.
+   - Captura de gameplay real via X11; estados e especiais DBZ preservados.
+   - Ações KFM adicionais reutilizam famílias orgânicas; coreografia e apresentação
+     ainda são provisórias. Inventário completo no relatório; aceite humano pendente.
+   - Sem novos personagens/transformações; PR para revisão, sem merge automático.

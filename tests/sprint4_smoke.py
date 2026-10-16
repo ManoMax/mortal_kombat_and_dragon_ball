@@ -4,6 +4,8 @@
 Requires unlocked X11; focuses Ikemen and injects keys. No manual-play claim.
 """
 import ctypes as C
+import argparse
+import json
 import os
 from pathlib import Path
 import re
@@ -28,6 +30,14 @@ def verify(rows):
 
 
 def main():
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('--fighter', choices=('goku', 'vegeta'), default='goku')
+    parser.add_argument('--opponent', choices=('goku', 'vegeta'), default='goku')
+    parser.add_argument('--prefix', default='sprint4')
+    parser.add_argument('--organic', action='store_true', help='Require observed body sprites to be organic on both sides')
+    args = parser.parse_args()
+    if not re.fullmatch(r'[a-zA-Z0-9_-]+', args.prefix):
+        raise ValueError('Invalid evidence prefix')
     x = C.CDLL('libX11.so.6'); xt = C.CDLL('libXtst.so.6')
     x.XOpenDisplay.restype = C.c_void_p; x.XOpenDisplay.argtypes = [C.c_char_p]
     x.XStringToKeysym.argtypes = [C.c_char_p]; x.XStringToKeysym.restype = C.c_ulong
@@ -64,7 +74,7 @@ loop()
         config.write_text(re.sub(r'^Lua\s*=.*$', f"Lua = dofile('{probe}')", (ROOT/'engine/save/config.ini').read_text(), flags=re.M))
         env = dict(os.environ, DBZ_ART_TRACE=str(trace))
         with (td/'engine.log').open('w+') as output:
-            proc = subprocess.Popen([str(ROOT/'scripts/play.sh'), '-p2', 'goku', '-config', str(config), '-nosound', '-time', '99'], cwd=ROOT, env=env, stdout=output, stderr=subprocess.STDOUT)
+            proc = subprocess.Popen([str(ROOT/'scripts/play.sh'), '-p1', args.fighter, '-p2', args.opponent, '-config', str(config), '-nosound', '-time', '99'], cwd=ROOT, env=env, stdout=output, stderr=subprocess.STDOUT)
             def rows():
                 return [list(map(int, line.split(','))) for line in trace.read_text().splitlines() if line.count(',') == 4]
             try:
@@ -76,19 +86,30 @@ loop()
                     tree = subprocess.check_output(['xwininfo', '-root', '-tree'], text=True)
                     window = re.search(r'(0x[0-9a-f]+) "Ikemen GO"', tree)
                     if window:
-                        x.XSetInputFocus(display, int(window[1], 16), 1, 0); x.XFlush(display)
-                    if trace.exists() and len(rows()) > 600: break
+                        info=subprocess.run(['xwininfo','-id',window[1]],capture_output=True,text=True)
+                        if info.returncode==0 and 'Map State: IsViewable' in info.stdout:
+                            x.XSetInputFocus(display, int(window[1], 16), 1, 0); x.XFlush(display)
+                        else: window=None
+                    if window and trace.exists() and len(rows()) > 600: break
                     time.sleep(.2)
                 if not window or not trace.exists(): raise RuntimeError('No fresh game window/trace')
-                subprocess.run(['ffmpeg', '-y', '-loglevel', 'error', '-f', 'x11grab', '-window_id', window[1], '-i', os.environ['DISPLAY'], '-frames:v', '1', str(ROOT/'tests/sprint4-facings.png')], check=True)
+                subprocess.run(['ffmpeg', '-y', '-loglevel', 'error', '-f', 'x11grab', '-window_id', window[1], '-i', os.environ['DISPLAY'], '-frames:v', '1', str(ROOT/f'tests/{args.prefix}-facings.png')], check=True)
                 hold(['Right', 'j'], .2)
                 hold(['Left', 'l'], .35)
                 hold(['a', 'r'], .1); time.sleep(.6)
                 evidence = rows(); verify(evidence)
-                hold(['Escape'], .1); proc.wait(timeout=10)
+                if args.organic:
+                    for player, name in ((1,args.fighter),(2,args.opponent)):
+                        manifest=json.loads((ROOT/f'assets-source/sprites/{name}/manifest.json').read_text())
+                        organic={tuple(f['sprite']) for f in manifest['frames'] if f.get('organic')}
+                        if any((r[3],r[4]) not in organic for r in evidence if r[1]==player and r[2] in (0,20,21,200)):
+                            raise ValueError(f'P{player}: observed placeholder in essential action')
+                x.XSetInputFocus(display,int(window[1],16),1,0); x.XFlush(display)
+                time.sleep(.1)
+                hold(['Escape'], .2); proc.wait(timeout=10)
                 if proc.returncode: raise RuntimeError(f'Engine exited {proc.returncode}')
-                (ROOT/'tests/sprint4-sprites.csv').write_text('\n'.join(','.join(map(str, r)) for r in evidence)+'\n')
-                print('PASS real Goku mirror match: idle progression, forward/back walk, punch; both players; fresh capture')
+                (ROOT/f'tests/{args.prefix}-sprites.csv').write_text('\n'.join(','.join(map(str, r)) for r in evidence)+'\n')
+                print(f'PASS real {args.fighter} vs {args.opponent}: idle progression, forward/back walk, punch; both players; fresh capture')
             finally:
                 for name in list(pressed): key(name, False)
                 if proc.poll() is None:

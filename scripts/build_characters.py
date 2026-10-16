@@ -123,6 +123,10 @@ def main():
         lines[line]=f'{key[0]},{key[1]}, {dx},{dy}, {duration}{flags}'
     adapted='\n'.join(lines)+'\n'
     entries=sorted(set(entries)|set(poses)|set(dbz.ENTRIES))
+    # These inherited body sequences have elements without hurtboxes, therefore
+    # they retain their original sprite IDs rather than group 30000 contexts.
+    unboxed_body={values[:2] for _,action,values,flags,boxes in frames(air)
+                  if action in (170,230,810,820) and values[0]>=0 and not boxes[2]}
     for name in ('goku','vegeta'):
         dest=ROOT/'engine/chars'/name; dest.mkdir(exist_ok=True)
         for f in ('kfm.cmd','kfm.cns','kfm.air','kfm.snd','readme.txt','movelist.dat'):
@@ -142,7 +146,7 @@ def main():
         definition=definition.split('; Arcade mode')[0]
         definition=definition.replace('author = "Elecbyte"','author = "DBZ-MK; combat derived from Elecbyte KFM"')
         (dest/f'{name}.def').write_text(definition)
-        if set(overrides) - (set(poses) | set(dbz.ENTRIES)):
+        if set(overrides) - (set(poses) | set(dbz.ENTRIES) | unboxed_body):
             raise ValueError('PNG overrides must target known AIR context/effect IDs')
         sff(dest/'fighter.sff',entries,name=='vegeta',poses,overrides)
     print(f'Built 2 fighters, {len(entries)} original sprite entries each.')

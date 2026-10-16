@@ -1,32 +1,32 @@
-table: 0xc01583f380 {
+table: 0xc00067dd40 {
   ["MatchTime"] => 1200
   ["RoundTime"] => 1200
   ["WinSide"] => 1
   ["LastRound"] => 1
   ["Draws"] => 0
-  ["Wins"] => table: 0xc01583f3e0 {
+  ["Wins"] => table: 0xc00067de00 {
                 [1] => 0
                 [2] => 1
               }
-  ["TeamModes"] => table: 0xc01583f440 {
+  ["TeamModes"] => table: 0xc00067de60 {
                      [1] => 0
                      [2] => 0
                    }
-  ["TotalScore"] => table: 0xc01583f4a0 {
+  ["TotalScore"] => table: 0xc00067dec0 {
                       [1] => 3600
                       [2] => 11700
                     }
-  ["Rounds"] => table: 0xc01583f500 {
-                  [1] => table: 0xc01583f560 {
+  ["Rounds"] => table: 0xc00067df20 {
+                  [1] => table: 0xc00067df80 {
                            ["Index"] => 1
                            ["Timer"] => 1200
-                           ["Score"] => table: 0xc01583f5c0 {
+                           ["Score"] => table: 0xc00070c000 {
                                           [1] => 3600
                                           [2] => 11700
                                         }
-                           ["Fighters"] => table: 0xc01583f620 {
-                                             [1] => table: 0xc01583f680 {
-                                                      [1] => table: 0xc01583f6e0 {
+                           ["Fighters"] => table: 0xc00070c0c0 {
+                                             [1] => table: 0xc00070c120 {
+                                                      [1] => table: 0xc00070c180 {
                                                                ["Name"] => "Goku (Prototype)"
                                                                ["ID"] => 56
                                                                ["MemberNo"] => 0
@@ -48,8 +48,8 @@ table: 0xc01583f380 {
                                                                ["OverKO"] => false
                                                              }
                                                     }
-                                             [2] => table: 0xc01583f740 {
-                                                      [1] => table: 0xc01583f7a0 {
+                                             [2] => table: 0xc00070c1e0 {
+                                                      [1] => table: 0xc00070c240 {
                                                                ["Name"] => "Vegeta (Prototype)"
                                                                ["ID"] => 57
                                                                ["MemberNo"] => 0

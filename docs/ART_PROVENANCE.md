@@ -70,3 +70,37 @@ transformações. A Sprint não está integralmente concluída.
 | `motions-generated.png` | `c82a26e3c49cca03eaf079ddef8ba327554a7d77a3be356dbadde1539fe4e53c` |
 | `punch-generated.png` | `994a2fe3be5c980d42ae09a157a0dc9ecb28755dd41abb30f7c7c5c520f95fbf` |
 | `walk-generated.png` | `0c8a5be1004bff487ef165ed7ee9e0810f62f19ddddcf64390bac48bf10811ce` |
+
+# Sprint 5 — novas fontes candidatas
+
+Ferramenta: `image_gen` integrada, skill imagegen, sem CLI/API externa, Blender,
+modelos 3D, sprites comerciais, extração de jogos ou referências oficiais.
+As referências de identidade são as folhas geradas neste próprio projeto.
+As ressalvas de direitos de personagens, KFM e motor acima continuam válidas.
+Nenhuma licença oficial de Dragon Ball foi obtida ou alegada.
+
+Novas folhas em `assets-source/sprites/{goku,vegeta}/reference/`:
+`core-generated.png` (chute/salto/carga), `defense-fall-generated.png`,
+`extra-generated.png` (chute baixo/soco agachado/vitória),
+`air-sweep-generated.png` e `power-generated.png` (soco forte/uppercut).
+Vegeta acrescenta `locomotion-generated.png`, `locomotion-transparent.png`,
+`combat-generated.png` e `damage-generated.png`. A primeira locomotion foi
+preservada para rastrear a iteração de remoção do fundo; só a segunda é consumida.
+A folha combat fornece soco/Galick Gun; seu dano foi substituído pela folha
+individual para manter melhor a altura em pé. As imagens não são arte final.
+
+Especificação dos prompts: fan art de cada personagem em estilo anime orgânico,
+contorno limpo/sombreado, câmera ortográfica 3/4 voltada à direita, corpo inteiro,
+mesmas proporções/roupas em cada desenho, alpha transparente, sem texto, grade,
+efeitos ou sombras. Cada linha pede quatro fases consecutivas da ação indicada
+no nome/plano: antecipação, preparo, execução e recuperação; idle/carga pedem
+respiração; caminhada pede alternância dos pés; queda pede inclinação, voo,
+corpo deitado e apoio de cotovelo; vitória Goku pede erguer o punho e Vegeta
+cruzar os braços. Alguns resultados não seguiram perfeitamente esses requisitos;
+os problemas estão em SPRINT_5_VISUAL_REVIEW.md. As folhas preservadas, e não a
+reexecução não determinística dos prompts, são as fontes reproduzíveis do build.
+
+`production.json` fixa sementes de componentes, retângulos, âncoras, escala,
+bindings, posicionamento aéreo, compensação AIR e dois overrides de hurtbox.
+O extrator preserva alpha parcial da região extraída; não pinta nem interpola
+novas poses. Hashes das folhas usadas em `sprint5-animation-audit.json`.
