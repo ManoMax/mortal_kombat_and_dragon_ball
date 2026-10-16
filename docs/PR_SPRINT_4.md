@@ -24,3 +24,24 @@ Limites: arte candidata AI, sem licença oficial de Dragon Ball registrada;
 proporções, contornos, contatos e hurtboxes precisam de revisão humana.
 Demais ações/carga de Ki/Vegeta continuam provisórias. Não considerar a Sprint
 integralmente concluída e não afirmar testes manuais executados.
+
+
+## Publicação bloqueada
+
+Implementação e evidências no commit local `04cc64a`, branch
+`feat/sprint-4-character-art`, derivada de `0356c21` da Sprint 3.
+
+Push HTTPS fora do sandbox falhou: `could not read Username for https://github.com`.
+A alternativa pelo conector GitHub falhou ao criar blob: HTTP 403,
+`Resource not accessible by integration`. Nenhuma branch remota Sprint 4 ou
+Pull Request foi criado. Este arquivo é a descrição concreta preparada para o PR.
+
+Após disponibilizar credencial com escrita:
+
+```sh
+git push -u origin feat/sprint-4-character-art
+```
+
+Criar PR **draft**, base `feat/sprint-3-visual-identity`, head
+`feat/sprint-4-character-art`, usando esta descrição. Confirmar CI remoto antes
+da revisão e manter aceite artístico/humano pendente. Sem merge automático.
