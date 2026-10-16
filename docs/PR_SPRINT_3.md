@@ -21,3 +21,20 @@ FPS estável ou validação humana concluída. Sem Super Saiyajin e sem merge.
 Validação e métricas da execução atual em docs/TESTING.md; captura automatizada
 em tests/sprint2-effects.png e tests/gameplay.png. A medição /usr/bin/time mede
 recursos do cenário completo, não tempos de frame da GPU.
+
+## Publicação bloqueada
+
+Implementação validada no commit local `beebb44`. Tentativa de push HTTPS fora
+do sandbox falhou: `could not read Username for https://github.com`.
+Alternativa pelo conector GitHub falhou ao criar blob: HTTP 403,
+`Resource not accessible by integration`. Nenhuma branch remota ou PR foi criado.
+
+Após disponibilizar credencial com escrita no repositório:
+
+```sh
+git push -u origin feat/sprint-3-visual-identity
+```
+
+Criar PR **draft**, base `feat/sprint-2-dbz-combat`, usando a descrição deste
+arquivo. Não fazer merge automático. Confirmar CI antes de revisão e manter
+os critérios de aceite artístico/humano como pendentes.
