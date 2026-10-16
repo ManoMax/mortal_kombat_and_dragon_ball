@@ -416,11 +416,11 @@ incluindo menu/seleção, 2–1 equilibrado, duas pessoas, áudio e agarrões.
 | --- | --- |
 | Sprint 4 Goku × Goku | PASS: idle, caminhar frente/trás e soco, telemetria fresca e captura nos dois lados. |
 | Teclado, AILevel 0 | PASS: ambos causaram dano, vidas finais 711/811, saída 0. |
-| Partida sem som | PASS: dois rounds, dois KOs, 0–2, 42,14 s, saída 0. |
-| Partida com áudio | PASS: dois rounds, dois KOs, 0–2, 49,40 s, saída 0; qualidade audível não avaliada. |
+| Partida sem som | PASS: dois rounds, dois KOs, 0–2, 34,80 s, saída 0. |
+| Partida com áudio | PASS: dois rounds, dois KOs, 0–2, 31,55 s, saída 0; qualidade audível não avaliada. |
 | Goku × Vegeta e ordem invertida | PASS: idle, caminhada frente/trás e soco; sprites observados orgânicos em ambos os jogadores; capturas e CSVs novos. |
 | Ki e especiais + gravação | PASS: carga/teto/custo, projéteis, dano nominal, guarda, interrupção, medidores e reset de round; saída 0. |
-| Recursos, captura dupla + Ki | PASS: 337.836 KiB RSS máximo, 55,81 s; limites 1 GiB/90 s. |
+| Recursos, captura dupla + Ki | PASS: 338.140 KiB RSS máximo, 56,30 s; limites 1 GiB/90 s. |
 
 Vídeo `tests/sprint5-gameplay.mp4`; metadados em `sprint5-video.json` e frame
 extraído em `sprint5-video-frame.png`. Captura real, sem áudio e sem uso como
@@ -434,3 +434,10 @@ somente a etapa afetada com `tests/sprint5_graphics.py --capture-only`; saída 0
 telemetria fresca e gravação nova. Nenhuma dessas falhas foi contada como PASS.
 O sandbox também bloqueou o display no começo da auditoria; os testes gráficos
 aprovados rodaram fora dele, sequencialmente, OpenGL 4.6/Mesa 23.2.1/UHD 620.
+
+Após a primeira gravação, a inspeção de um frame revelou recorte de idle/guarda
+na borda da viewport. `screenleft/screenright` passaram de 15 para 40. A regressão
+da arena agora compara a margem ao extremo negativo real dos PNGs de idle, walk
+e guard (nos dois facings), em vez de apenas fixar um número. Todas as regressões
+gráficas foram repetidas após esse ajuste; a tabela acima registra essa execução
+final. Os hashes da arena foram atualizados após duas reconstruções idênticas.

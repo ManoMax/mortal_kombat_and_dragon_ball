@@ -52,6 +52,9 @@ contato natural e qualidade das transições precisam de avaliação humana.
   Essa cobertura técnica não equivale a coreografia final de cada movimento.
   Os offsets adicionais foram escolhidos por compatibilidade com as caixas;
   precisam de revisão visual de contatos, trajetórias e deslizamento dos pés.
+- A primeira gravação expôs recorte parcial dos lutadores nas bordas. A margem
+  lateral do cenário foi ampliada de 15 para 40 unidades, preservando piso e
+  câmera. Conferir ainda quedas e poses mais largas nos extremos.
 - Retratos/ícones e parte da apresentação ainda são provisórios.
 - Sessão com duas pessoas, áudio, partida equilibrada 2–1 e aceite artístico
   humano permanecem pendentes. Testes automatizados não contam como sessão humana.

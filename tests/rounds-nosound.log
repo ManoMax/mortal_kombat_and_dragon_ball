@@ -1,32 +1,32 @@
-table: 0xc0006aad20 {
-  ["MatchTime"] => 1137
+table: 0xc000513020 {
+  ["MatchTime"] => 685
   ["RoundTime"] => 1800
   ["WinSide"] => 1
   ["LastRound"] => 2
   ["Draws"] => 0
-  ["Wins"] => table: 0xc0006aad80 {
+  ["Wins"] => table: 0xc000513080 {
                 [1] => 0
                 [2] => 2
               }
-  ["TeamModes"] => table: 0xc0006aade0 {
+  ["TeamModes"] => table: 0xc0005130e0 {
                      [1] => 0
                      [2] => 0
                    }
-  ["TotalScore"] => table: 0xc0006aae40 {
+  ["TotalScore"] => table: 0xc000513140 {
                       [1] => 0
-                      [2] => 71000
+                      [2] => 96000
                     }
-  ["Rounds"] => table: 0xc0006aaea0 {
-                  [1] => table: 0xc0006aaf00 {
+  ["Rounds"] => table: 0xc0005131a0 {
+                  [1] => table: 0xc000513200 {
                            ["Index"] => 1
-                           ["Timer"] => 519
-                           ["Score"] => table: 0xc0006aaf60 {
+                           ["Timer"] => 472
+                           ["Score"] => table: 0xc000513260 {
                                           [1] => 0
-                                          [2] => 36500
+                                          [2] => 39500
                                         }
-                           ["Fighters"] => table: 0xc0006aafc0 {
-                                             [1] => table: 0xc0006ab020 {
-                                                      [1] => table: 0xc0006ab080 {
+                           ["Fighters"] => table: 0xc0005132c0 {
+                                             [1] => table: 0xc000513320 {
+                                                      [1] => table: 0xc000513380 {
                                                                ["Name"] => "Goku (Prototype)"
                                                                ["ID"] => 56
                                                                ["MemberNo"] => 0
@@ -48,64 +48,8 @@ table: 0xc0006aad20 {
                                                                ["OverKO"] => true
                                                              }
                                                     }
-                                             [2] => table: 0xc0006ab0e0 {
-                                                      [1] => table: 0xc0006ab140 {
-                                                               ["Name"] => "Vegeta (Prototype)"
-                                                               ["ID"] => 57
-                                                               ["MemberNo"] => 0
-                                                               ["SelectNo"] => 1
-                                                               ["AILevel"] => 8
-                                                               ["PalNo"] => 1
-                                                               ["Life"] => 1000
-                                                               ["LifeMax"] => 1000
-                                                               ["WinQuote"] => -1
-                                                               ["Win"] => true
-                                                               ["WinKO"] => true
-                                                               ["WinTime"] => false
-                                                               ["WinPerfect"] => true
-                                                               ["WinClutch"] => false
-                                                               ["WinSpecial"] => false
-                                                               ["WinHyper"] => false
-                                                               ["DrawGame"] => false
-                                                               ["KO"] => false
-                                                               ["OverKO"] => false
-                                                             }
-                                                    }
-                                           }
-                         }
-                  [2] => table: 0xc0006ab1a0 {
-                           ["Index"] => 2
-                           ["Timer"] => 618
-                           ["Score"] => table: 0xc0006ab200 {
-                                          [1] => 0
-                                          [2] => 34500
-                                        }
-                           ["Fighters"] => table: 0xc0006ab260 {
-                                             [1] => table: 0xc0006ab2c0 {
-                                                      [1] => table: 0xc0006ab320 {
-                                                               ["Name"] => "Goku (Prototype)"
-                                                               ["ID"] => 56
-                                                               ["MemberNo"] => 0
-                                                               ["SelectNo"] => 0
-                                                               ["AILevel"] => 0
-                                                               ["PalNo"] => 1
-                                                               ["Life"] => 0
-                                                               ["LifeMax"] => 1
-                                                               ["WinQuote"] => -1
-                                                               ["Win"] => false
-                                                               ["WinKO"] => false
-                                                               ["WinTime"] => false
-                                                               ["WinPerfect"] => false
-                                                               ["WinClutch"] => false
-                                                               ["WinSpecial"] => false
-                                                               ["WinHyper"] => false
-                                                               ["DrawGame"] => false
-                                                               ["KO"] => true
-                                                               ["OverKO"] => true
-                                                             }
-                                                    }
-                                             [2] => table: 0xc0006ab380 {
-                                                      [1] => table: 0xc0006ab3e0 {
+                                             [2] => table: 0xc0005133e0 {
+                                                      [1] => table: 0xc000513440 {
                                                                ["Name"] => "Vegeta (Prototype)"
                                                                ["ID"] => 57
                                                                ["MemberNo"] => 0
@@ -121,6 +65,62 @@ table: 0xc0006aad20 {
                                                                ["WinPerfect"] => true
                                                                ["WinClutch"] => false
                                                                ["WinSpecial"] => true
+                                                               ["WinHyper"] => false
+                                                               ["DrawGame"] => false
+                                                               ["KO"] => false
+                                                               ["OverKO"] => false
+                                                             }
+                                                    }
+                                           }
+                         }
+                  [2] => table: 0xc0005134a0 {
+                           ["Index"] => 2
+                           ["Timer"] => 213
+                           ["Score"] => table: 0xc000513500 {
+                                          [1] => 0
+                                          [2] => 56500
+                                        }
+                           ["Fighters"] => table: 0xc000513560 {
+                                             [1] => table: 0xc0005135c0 {
+                                                      [1] => table: 0xc000513620 {
+                                                               ["Name"] => "Goku (Prototype)"
+                                                               ["ID"] => 56
+                                                               ["MemberNo"] => 0
+                                                               ["SelectNo"] => 0
+                                                               ["AILevel"] => 0
+                                                               ["PalNo"] => 1
+                                                               ["Life"] => 0
+                                                               ["LifeMax"] => 1
+                                                               ["WinQuote"] => -1
+                                                               ["Win"] => false
+                                                               ["WinKO"] => false
+                                                               ["WinTime"] => false
+                                                               ["WinPerfect"] => false
+                                                               ["WinClutch"] => false
+                                                               ["WinSpecial"] => false
+                                                               ["WinHyper"] => false
+                                                               ["DrawGame"] => false
+                                                               ["KO"] => true
+                                                               ["OverKO"] => true
+                                                             }
+                                                    }
+                                             [2] => table: 0xc000513680 {
+                                                      [1] => table: 0xc0005136e0 {
+                                                               ["Name"] => "Vegeta (Prototype)"
+                                                               ["ID"] => 57
+                                                               ["MemberNo"] => 0
+                                                               ["SelectNo"] => 1
+                                                               ["AILevel"] => 8
+                                                               ["PalNo"] => 1
+                                                               ["Life"] => 1000
+                                                               ["LifeMax"] => 1000
+                                                               ["WinQuote"] => -1
+                                                               ["Win"] => true
+                                                               ["WinKO"] => true
+                                                               ["WinTime"] => false
+                                                               ["WinPerfect"] => true
+                                                               ["WinClutch"] => false
+                                                               ["WinSpecial"] => false
                                                                ["WinHyper"] => false
                                                                ["DrawGame"] => false
                                                                ["KO"] => false

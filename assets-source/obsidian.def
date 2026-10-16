@@ -23,8 +23,8 @@ p2facing = -1
 leftbound = -1000
 rightbound = 1000
 [Bound]
-screenleft = 15
-screenright = 15
+screenleft = 40
+screenright = 40
 [StageInfo]
 zoffset = 190
 autoturn = 1

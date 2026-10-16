@@ -7,10 +7,10 @@
             "codec_name": "h264",
             "width": 960,
             "height": 610,
-            "nb_frames": "990"
+            "nb_frames": "991"
         }
     ],
     "format": {
-        "duration": "33.000000"
+        "duration": "33.034000"
     }
 }
