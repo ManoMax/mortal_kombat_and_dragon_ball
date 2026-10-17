@@ -533,3 +533,7 @@ em `evidence/sprint7/README.md`. Não foram feitas partidas humanas. **Aceite
 artístico bloqueado**: trajetória do apoio, breakdowns, alternância anatômica,
 identidade entre famílias e model sheets completos pendentes. Novos desenhos
 de combate aguardam esse gate; não declarar a Sprint concluída artisticamente.
+
+Publicação: branch commitada localmente; push HTTPS sem credencial e criação
+do PR pelo conector GitHub rejeitada com 403. Draft preparado em PR_SPRINT_7.md;
+PR remoto/CI remoto não executados. Nenhum merge foi feito.

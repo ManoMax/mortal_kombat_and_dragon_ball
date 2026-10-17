@@ -1,0 +1,12 @@
+{
+  "status": "blocked",
+  "branch": "feat/sprint-7-animation-quality",
+  "base": "feat/sprint-6-gameplay-polish",
+  "implementation_commit": "833056e",
+  "push_sandbox": "DNS denied",
+  "push_outside_sandbox": "No HTTPS credential: could not read Username",
+  "github_connector": "HTTP 403 Resource not accessible by integration",
+  "remote_pr_created": false,
+  "draft_description": "PR_SPRINT_7.md",
+  "merge_performed": false
+}

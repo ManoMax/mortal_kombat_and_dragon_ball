@@ -27,3 +27,13 @@ ambos os personagens. Vídeos reais de 32,959 s e 33,034 s; capturas dedicadas
 de caminhada de 14,167 s e 14,134 s em 60 fps. Reconstrução final com hashes
 idênticos em 742 arquivos. Resultados e limites em `evidence/sprint7/README.md`
 e `docs/TESTING.md`. Nenhuma sessão humana de jogo foi declarada concluída.
+
+## Publicação bloqueada nesta execução
+
+Implementação local em `833056e`, na branch solicitada. A base local e
+`origin/feat/sprint-6-gameplay-polish` apontavam para o mesmo `ab9a28b`.
+O push no sandbox falhou por DNS; a repetição fora do sandbox alcançou o
+GitHub, mas não havia credencial HTTPS (`could not read Username`). A tentativa
+de criar o draft pelo conector GitHub retornou HTTP 403:
+`Resource not accessible by integration`. Nenhum PR remoto foi criado.
+Este arquivo é a descrição preparada do draft; nenhum merge foi executado.
