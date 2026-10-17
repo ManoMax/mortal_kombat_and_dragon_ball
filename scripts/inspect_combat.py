@@ -162,6 +162,12 @@ def main():
                 for frame in data['frames']:
                     if 'bottom' in frame:
                         writer.writerow((report['character'],action,frame['frame'],frame['source_family'],frame['bottom'],frame['contact_center'],frame.get('alpha_change_pixels','')))
+    with (args.output/'kfm-state-inventory.csv').open('w', newline='') as stream:
+        writer = csv.writer(stream)
+        writer.writerow(('character','state','origin','animation_expression','source_families'))
+        for report in reports:
+            for state in report['state_inventory']:
+                writer.writerow((report['character'],state['state'],state['origin'],state['animation_expression'],'|'.join(state['source_families'])))
     print('Exported AIR previews and measurements; human acceptance pending')
 
 if __name__ == '__main__':
