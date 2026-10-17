@@ -1,0 +1,77 @@
+table: 0xc00197b380 {
+  ["MatchTime"] => 1200
+  ["RoundTime"] => 1200
+  ["WinSide"] => 1
+  ["LastRound"] => 1
+  ["Draws"] => 0
+  ["Wins"] => table: 0xc00197b3e0 {
+                [1] => 0
+                [2] => 1
+              }
+  ["TeamModes"] => table: 0xc00197b440 {
+                     [1] => 0
+                     [2] => 0
+                   }
+  ["TotalScore"] => table: 0xc00197b4a0 {
+                      [1] => 3600
+                      [2] => 11700
+                    }
+  ["Rounds"] => table: 0xc00197b500 {
+                  [1] => table: 0xc00197b560 {
+                           ["Index"] => 1
+                           ["Timer"] => 1200
+                           ["Score"] => table: 0xc00197b5c0 {
+                                          [1] => 3600
+                                          [2] => 11700
+                                        }
+                           ["Fighters"] => table: 0xc00197b620 {
+                                             [1] => table: 0xc00197b680 {
+                                                      [1] => table: 0xc00197b6e0 {
+                                                               ["Name"] => "Goku (Prototype)"
+                                                               ["ID"] => 56
+                                                               ["MemberNo"] => 0
+                                                               ["SelectNo"] => 0
+                                                               ["AILevel"] => 0
+                                                               ["PalNo"] => 1
+                                                               ["Life"] => 711
+                                                               ["LifeMax"] => 1000
+                                                               ["WinQuote"] => -1
+                                                               ["Win"] => false
+                                                               ["WinKO"] => false
+                                                               ["WinTime"] => false
+                                                               ["WinPerfect"] => false
+                                                               ["WinClutch"] => false
+                                                               ["WinSpecial"] => false
+                                                               ["WinHyper"] => false
+                                                               ["DrawGame"] => false
+                                                               ["KO"] => false
+                                                               ["OverKO"] => false
+                                                             }
+                                                    }
+                                             [2] => table: 0xc00197b740 {
+                                                      [1] => table: 0xc00197b7a0 {
+                                                               ["Name"] => "Vegeta (Prototype)"
+                                                               ["ID"] => 57
+                                                               ["MemberNo"] => 0
+                                                               ["SelectNo"] => 1
+                                                               ["AILevel"] => 0
+                                                               ["PalNo"] => 1
+                                                               ["Life"] => 811
+                                                               ["LifeMax"] => 1000
+                                                               ["WinQuote"] => -1
+                                                               ["Win"] => true
+                                                               ["WinKO"] => false
+                                                               ["WinTime"] => true
+                                                               ["WinPerfect"] => false
+                                                               ["WinClutch"] => false
+                                                               ["WinSpecial"] => false
+                                                               ["WinHyper"] => false
+                                                               ["DrawGame"] => false
+                                                               ["KO"] => false
+                                                               ["OverKO"] => false
+                                                             }
+                                                    }
+                                           }
+                         }
+                }
+}
