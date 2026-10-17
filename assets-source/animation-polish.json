@@ -1,0 +1,5 @@
+{
+  "version": 1,
+  "idle_ticks": [12, 10, 10, 12, 10, 10, 10, 12, 10, 10, 12],
+  "reason": "Remove inherited 45/40-tick idle holds using existing distinct breathing drawings. No new poses or claim of anatomical correction."
+}

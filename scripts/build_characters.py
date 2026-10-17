@@ -112,6 +112,7 @@ def sff(path, entries, vegeta, poses, overrides=None):
     write_sff(path, sprites)
 
 def main():
+    import animation_polish
     air=(BASE/'kfm.air').read_text(encoding='utf-8-sig')
     entries=sorted({tuple(map(int,m)) for m in re.findall(r'^\s*(\d+)\s*,\s*(\d+)\s*,',air,re.M)}|{(9000,0),(9000,1)})
     lines=air.splitlines(); poses={}
@@ -135,7 +136,7 @@ def main():
         manifest = ROOT/'assets-source/sprites'/name/'manifest.json'
         spec = json.loads(manifest.read_text()) if manifest.exists() else {'frames': []}
         hurtboxes = {tuple(f['sprite']): f['hurtboxes'] for f in spec['frames'] if 'hurtboxes' in f}
-        (dest/'kfm.air').write_text(apply_hurtboxes(adapted+dbz.animations(name=='vegeta'), hurtboxes))
+        (dest/'kfm.air').write_text(animation_polish.apply(apply_hurtboxes(adapted+dbz.animations(name=='vegeta'), hurtboxes)))
         (dest/'kfm.cmd').write_text(dbz.command_layer((dest/'kfm.cmd').read_text(encoding='utf-8-sig')))
         cns=(dest/'kfm.cns').read_text(encoding='utf-8-sig')
         cns=cns.replace('type = PosFreeze\ntrigger1 = 1\nx = 1\ny = 1','type = PosFreeze\ntrigger1 = 1')

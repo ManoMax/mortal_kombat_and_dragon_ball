@@ -36,7 +36,12 @@ def verify(rows):
 def main():
     parser=argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--record', type=Path, help='Record the actual X11 game window to MP4')
+    parser.add_argument('--reverse-fighters', action='store_true', help='Vegeta faces right and Goku left')
+    parser.add_argument('--output', type=Path, help='Keep fresh evidence separate from historical sprints')
     args=parser.parse_args()
+    evidence = args.output or ROOT/'tests'
+    evidence.mkdir(parents=True, exist_ok=True)
+    fighters = ('vegeta','goku') if args.reverse_fighters else ('goku','vegeta')
     x=C.CDLL('libX11.so.6'); xt=C.CDLL('libXtst.so.6')
     x.XOpenDisplay.restype=C.c_void_p; x.XOpenDisplay.argtypes=[C.c_char_p]
     x.XStringToKeysym.argtypes=[C.c_char_p]; x.XStringToKeysym.restype=C.c_ulong
@@ -64,7 +69,7 @@ def main():
         config.write_text(re.sub(r'^Lua\s*=.*$', "Lua = dofile('external/mods/-dbz-probe.lua')", (ROOT/'engine/save/config.ini').read_text(), flags=re.M))
         env=dict(os.environ, DBZ_TRACE=str(trace))
         output=open(Path(td)/'output.log','w+')
-        proc=subprocess.Popen([str(ROOT/'scripts/play.sh'),'-config',str(config),'-nosound','-time','25','-rounds','2'],cwd=ROOT,env=env,stdout=output,stderr=subprocess.STDOUT)
+        proc=subprocess.Popen([str(ROOT/'scripts/play.sh'),'-p1',fighters[0],'-p2',fighters[1],'-config',str(config),'-nosound','-time','25','-rounds','2'],cwd=ROOT,env=env,stdout=output,stderr=subprocess.STDOUT)
         def rows():
             return [list(map(int,line.split(','))) for line in trace.read_text().splitlines() if line.count(',')==10]
         def snap(p): return [r for r in rows() if r[1]==p][-1]
@@ -95,7 +100,7 @@ def main():
                 require(not any(r[1]==p and r[4] in (7100,1010) for r in rows()[start:]), 'Cast without Ki / KFM conflict')
             for k in ('z','x','f','g'): key(k,True)
             time.sleep(2.7)
-            subprocess.run(['ffmpeg','-y','-loglevel','error','-f','x11grab','-window_id',window[1],'-i',os.environ['DISPLAY'],'-frames:v','1',str(ROOT/'tests/sprint2-effects.png')],check=True)
+            subprocess.run(['ffmpeg','-y','-loglevel','error','-f','x11grab','-window_id',window[1],'-i',os.environ['DISPLAY'],'-frames:v','1',str(evidence/'sprint2-effects.png')],check=True)
             for k in ('z','x','f','g'): key(k,False)
             time.sleep(.3)
             require(snap(1)[6]==snap(2)[6]==3000, 'Charge failed to saturate')
@@ -103,7 +108,7 @@ def main():
             for p,guard in ((1,'l'),(2,'Left')):
                 before=snap(3-p)[5]
                 beam(p); time.sleep(1.5)
-                nominal=json.loads((ROOT/'assets-source/combat.json').read_text())['goku' if p==1 else 'vegeta']['damage']
+                nominal=json.loads((ROOT/'assets-source/combat.json').read_text())[fighters[p-1]]['damage']
                 require(before-snap(3-p)[5]==nominal, f'P{p} unexpected beam damage')
                 before=snap(3-p)[5]; key(guard,True)
                 beam(p); time.sleep(1.5); key(guard,False)
@@ -124,10 +129,10 @@ def main():
             time.sleep(.1)
             hold(['Escape'],.2); proc.wait(timeout=10)
             require(proc.returncode==0, 'Engine exited with error')
-            (ROOT/'tests/sprint2-trace.csv').write_text(trace.read_text())
+            (evidence/'sprint2-trace.csv').write_text(trace.read_text())
             print('PASS real motor: charge/cap/cost/projectiles/hit/guard/meters/round reset, both fighters')
         except Exception:
-            if trace.exists(): (ROOT/'tests/sprint2-failed.csv').write_text(trace.read_text())
+            if trace.exists(): (evidence/'sprint2-failed.csv').write_text(trace.read_text())
             output.flush(); output.seek(0)
             print(output.read())
             raise

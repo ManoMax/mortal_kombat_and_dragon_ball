@@ -8,6 +8,7 @@ import hashlib
 import json
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]/'scripts'))
 from air_geometry import frames
+import animation_polish
 from sff_rgba import read_sff
 from png_pipeline import load_overrides
 import dbz_combat as dbz
@@ -56,7 +57,7 @@ def validate(folder, source_name=None):
             offset=nxt
         require(end==len(data) and groups==len({g for g,n in entries}), 'SFF count/trailing bytes')
     actual=list(frames((folder/'kfm.air').read_text(encoding='utf-8-sig')))
-    inherited=list(frames((root/'engine/chars/kfm/kfm.air').read_text(encoding='utf-8-sig')))
+    inherited=list(frames(animation_polish.apply((root/'engine/chars/kfm/kfm.air').read_text(encoding='utf-8-sig'))))
     original=[frame for frame in actual if frame[1] < 7000]
     require(len(original)==len(inherited), 'Inherited animation frame count changed')
     name = source_name or folder.name
