@@ -1,0 +1,26 @@
+[
+  {
+    "file": "walk-generated.png",
+    "tool": "built-in image_gen",
+    "reference": null,
+    "purpose": "candidate walk sheet; no commercial sprite reference",
+    "consumed_by_build": false,
+    "sha256": "08dac30c41bab30613559e57800ed23bc95546e9be457f63bac420f610cac766"
+  },
+  {
+    "file": "walk-v2-generated.png",
+    "tool": "built-in image_gen",
+    "reference": "walk-generated.png",
+    "purpose": "candidate walk sheet; no commercial sprite reference",
+    "consumed_by_build": false,
+    "sha256": "77dce7c89e8c1bf2f898514a985912fceb004d43ef26cd84c0d1dd3583040a06"
+  },
+  {
+    "file": "walk-v3-generated.png",
+    "tool": "built-in image_gen",
+    "reference": "walk-v2-generated.png",
+    "purpose": "candidate walk sheet; no commercial sprite reference",
+    "consumed_by_build": true,
+    "sha256": "454653a2335cabc75522a2c93081f46f48440d416a8d6e59c83e9a78e7112288"
+  }
+]

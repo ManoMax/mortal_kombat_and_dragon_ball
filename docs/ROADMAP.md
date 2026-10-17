@@ -65,3 +65,14 @@
     - Pendências artísticas e desenhos necessários em SPRINT_6_VISUAL_REVIEW.md.
     - Aceite artístico/humano permanece pendente; sem novos golpes/personagens,
       transformações, alteração de motor ou merge automático.
+
+11. **Sprint 7 — caminhadas candidatas integradas; gate artístico bloqueado:**
+    - Oito novos desenhos de caminhada, quatro por personagem, gerados por
+      image_gen e integrados somente nas ações 20/21; fontes e iterações preservadas.
+    - Comparações antes/depois e GIFs; contratos AIR/CNS/CMD preservados.
+    - Direção visual e contrato de substituição em SPRINT_7_ART_DIRECTION.md.
+    - Faltam trajetória de apoio sem deslizamento, breakdowns, revisão anatômica
+      e model sheets completos. Não declarar implementação artística concluída.
+    - Desenhos de combate aguardam o gate das duas caminhadas, conforme a ordem
+      solicitada. Pendências e evidências em SPRINT_7_VISUAL_REVIEW.md.
+    - PR deve permanecer draft, sem merge automático.

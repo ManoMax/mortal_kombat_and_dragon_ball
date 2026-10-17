@@ -1,0 +1,13 @@
+{
+  "programs": [],
+  "streams": [
+    {
+      "width": 960,
+      "height": 610,
+      "r_frame_rate": "60/1"
+    }
+  ],
+  "format": {
+    "duration": "14.134000"
+  }
+}

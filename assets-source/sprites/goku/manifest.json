@@ -327,7 +327,7 @@
         30000,
         20
       ],
-      "file": "walk/000.png",
+      "file": "walk_sprint7/000.png",
       "origin": [
         160,
         240
@@ -335,19 +335,19 @@
       "scale": 1,
       "organic": true,
       "normalized_bounds": [
-        -34,
-        -96,
-        35,
+        -39,
+        -100,
+        40,
         0
       ],
-      "sha256": "25e8d3f1ce80b5d1f77eac196117ba6968163ee264800479d94dbc7843929ed3"
+      "sha256": "3c7a265c0bf02729f056e7cc019cd703ca15c43be2ab2314340fb4b321130f80"
     },
     {
       "sprite": [
         30000,
         21
       ],
-      "file": "walk/000.png",
+      "file": "walk_sprint7/000.png",
       "origin": [
         160,
         240
@@ -355,19 +355,19 @@
       "scale": 1,
       "organic": true,
       "normalized_bounds": [
-        -34,
-        -96,
-        35,
+        -39,
+        -100,
+        40,
         0
       ],
-      "sha256": "25e8d3f1ce80b5d1f77eac196117ba6968163ee264800479d94dbc7843929ed3"
+      "sha256": "3c7a265c0bf02729f056e7cc019cd703ca15c43be2ab2314340fb4b321130f80"
     },
     {
       "sprite": [
         30000,
         22
       ],
-      "file": "walk/000.png",
+      "file": "walk_sprint7/000.png",
       "origin": [
         160,
         240
@@ -375,19 +375,19 @@
       "scale": 1,
       "organic": true,
       "normalized_bounds": [
-        -34,
-        -96,
-        35,
+        -39,
+        -100,
+        40,
         0
       ],
-      "sha256": "25e8d3f1ce80b5d1f77eac196117ba6968163ee264800479d94dbc7843929ed3"
+      "sha256": "3c7a265c0bf02729f056e7cc019cd703ca15c43be2ab2314340fb4b321130f80"
     },
     {
       "sprite": [
         30000,
         23
       ],
-      "file": "walk/000.png",
+      "file": "walk_sprint7/000.png",
       "origin": [
         160,
         240
@@ -395,19 +395,19 @@
       "scale": 1,
       "organic": true,
       "normalized_bounds": [
-        -34,
-        -96,
-        35,
+        -39,
+        -100,
+        40,
         0
       ],
-      "sha256": "25e8d3f1ce80b5d1f77eac196117ba6968163ee264800479d94dbc7843929ed3"
+      "sha256": "3c7a265c0bf02729f056e7cc019cd703ca15c43be2ab2314340fb4b321130f80"
     },
     {
       "sprite": [
         30000,
         48
       ],
-      "file": "walk/000.png",
+      "file": "walk_sprint7/000.png",
       "origin": [
         160,
         240
@@ -415,19 +415,19 @@
       "scale": 1,
       "organic": true,
       "normalized_bounds": [
-        -34,
-        -96,
-        35,
+        -39,
+        -100,
+        40,
         0
       ],
-      "sha256": "25e8d3f1ce80b5d1f77eac196117ba6968163ee264800479d94dbc7843929ed3"
+      "sha256": "3c7a265c0bf02729f056e7cc019cd703ca15c43be2ab2314340fb4b321130f80"
     },
     {
       "sprite": [
         30000,
         49
       ],
-      "file": "walk/000.png",
+      "file": "walk_sprint7/000.png",
       "origin": [
         160,
         240
@@ -435,19 +435,19 @@
       "scale": 1,
       "organic": true,
       "normalized_bounds": [
-        -34,
-        -96,
-        35,
+        -39,
+        -100,
+        40,
         0
       ],
-      "sha256": "25e8d3f1ce80b5d1f77eac196117ba6968163ee264800479d94dbc7843929ed3"
+      "sha256": "3c7a265c0bf02729f056e7cc019cd703ca15c43be2ab2314340fb4b321130f80"
     },
     {
       "sprite": [
         30000,
         50
       ],
-      "file": "walk/000.png",
+      "file": "walk_sprint7/000.png",
       "origin": [
         160,
         240
@@ -455,19 +455,19 @@
       "scale": 1,
       "organic": true,
       "normalized_bounds": [
-        -34,
-        -96,
-        35,
+        -39,
+        -100,
+        40,
         0
       ],
-      "sha256": "25e8d3f1ce80b5d1f77eac196117ba6968163ee264800479d94dbc7843929ed3"
+      "sha256": "3c7a265c0bf02729f056e7cc019cd703ca15c43be2ab2314340fb4b321130f80"
     },
     {
       "sprite": [
         30000,
         51
       ],
-      "file": "walk/000.png",
+      "file": "walk_sprint7/000.png",
       "origin": [
         160,
         240
@@ -475,12 +475,492 @@
       "scale": 1,
       "organic": true,
       "normalized_bounds": [
-        -34,
-        -96,
-        35,
+        -39,
+        -100,
+        40,
         0
       ],
-      "sha256": "25e8d3f1ce80b5d1f77eac196117ba6968163ee264800479d94dbc7843929ed3"
+      "sha256": "3c7a265c0bf02729f056e7cc019cd703ca15c43be2ab2314340fb4b321130f80"
+    },
+    {
+      "sprite": [
+        30000,
+        24
+      ],
+      "file": "walk_sprint7/001.png",
+      "origin": [
+        160,
+        240
+      ],
+      "scale": 1,
+      "organic": true,
+      "normalized_bounds": [
+        -25,
+        -100,
+        23,
+        0
+      ],
+      "sha256": "10a382d5730e1d807c2dd013af2b197e299f136fa8e2dbfe0e56ddc21314a2ec"
+    },
+    {
+      "sprite": [
+        30000,
+        25
+      ],
+      "file": "walk_sprint7/001.png",
+      "origin": [
+        160,
+        240
+      ],
+      "scale": 1,
+      "organic": true,
+      "normalized_bounds": [
+        -25,
+        -100,
+        23,
+        0
+      ],
+      "sha256": "10a382d5730e1d807c2dd013af2b197e299f136fa8e2dbfe0e56ddc21314a2ec"
+    },
+    {
+      "sprite": [
+        30000,
+        26
+      ],
+      "file": "walk_sprint7/001.png",
+      "origin": [
+        160,
+        240
+      ],
+      "scale": 1,
+      "organic": true,
+      "normalized_bounds": [
+        -25,
+        -100,
+        23,
+        0
+      ],
+      "sha256": "10a382d5730e1d807c2dd013af2b197e299f136fa8e2dbfe0e56ddc21314a2ec"
+    },
+    {
+      "sprite": [
+        30000,
+        27
+      ],
+      "file": "walk_sprint7/001.png",
+      "origin": [
+        160,
+        240
+      ],
+      "scale": 1,
+      "organic": true,
+      "normalized_bounds": [
+        -25,
+        -100,
+        23,
+        0
+      ],
+      "sha256": "10a382d5730e1d807c2dd013af2b197e299f136fa8e2dbfe0e56ddc21314a2ec"
+    },
+    {
+      "sprite": [
+        30000,
+        44
+      ],
+      "file": "walk_sprint7/001.png",
+      "origin": [
+        160,
+        240
+      ],
+      "scale": 1,
+      "organic": true,
+      "normalized_bounds": [
+        -25,
+        -100,
+        23,
+        0
+      ],
+      "sha256": "10a382d5730e1d807c2dd013af2b197e299f136fa8e2dbfe0e56ddc21314a2ec"
+    },
+    {
+      "sprite": [
+        30000,
+        45
+      ],
+      "file": "walk_sprint7/001.png",
+      "origin": [
+        160,
+        240
+      ],
+      "scale": 1,
+      "organic": true,
+      "normalized_bounds": [
+        -25,
+        -100,
+        23,
+        0
+      ],
+      "sha256": "10a382d5730e1d807c2dd013af2b197e299f136fa8e2dbfe0e56ddc21314a2ec"
+    },
+    {
+      "sprite": [
+        30000,
+        46
+      ],
+      "file": "walk_sprint7/001.png",
+      "origin": [
+        160,
+        240
+      ],
+      "scale": 1,
+      "organic": true,
+      "normalized_bounds": [
+        -25,
+        -100,
+        23,
+        0
+      ],
+      "sha256": "10a382d5730e1d807c2dd013af2b197e299f136fa8e2dbfe0e56ddc21314a2ec"
+    },
+    {
+      "sprite": [
+        30000,
+        47
+      ],
+      "file": "walk_sprint7/001.png",
+      "origin": [
+        160,
+        240
+      ],
+      "scale": 1,
+      "organic": true,
+      "normalized_bounds": [
+        -25,
+        -100,
+        23,
+        0
+      ],
+      "sha256": "10a382d5730e1d807c2dd013af2b197e299f136fa8e2dbfe0e56ddc21314a2ec"
+    },
+    {
+      "sprite": [
+        30000,
+        28
+      ],
+      "file": "walk_sprint7/002.png",
+      "origin": [
+        160,
+        240
+      ],
+      "scale": 1,
+      "organic": true,
+      "normalized_bounds": [
+        -40,
+        -100,
+        41,
+        0
+      ],
+      "sha256": "bfcb9350962747a7aa2bb9adfefd7762c6280e252c364d7fb7b1fb09a492a120"
+    },
+    {
+      "sprite": [
+        30000,
+        29
+      ],
+      "file": "walk_sprint7/002.png",
+      "origin": [
+        160,
+        240
+      ],
+      "scale": 1,
+      "organic": true,
+      "normalized_bounds": [
+        -40,
+        -100,
+        41,
+        0
+      ],
+      "sha256": "bfcb9350962747a7aa2bb9adfefd7762c6280e252c364d7fb7b1fb09a492a120"
+    },
+    {
+      "sprite": [
+        30000,
+        30
+      ],
+      "file": "walk_sprint7/002.png",
+      "origin": [
+        160,
+        240
+      ],
+      "scale": 1,
+      "organic": true,
+      "normalized_bounds": [
+        -40,
+        -100,
+        41,
+        0
+      ],
+      "sha256": "bfcb9350962747a7aa2bb9adfefd7762c6280e252c364d7fb7b1fb09a492a120"
+    },
+    {
+      "sprite": [
+        30000,
+        31
+      ],
+      "file": "walk_sprint7/002.png",
+      "origin": [
+        160,
+        240
+      ],
+      "scale": 1,
+      "organic": true,
+      "normalized_bounds": [
+        -40,
+        -100,
+        41,
+        0
+      ],
+      "sha256": "bfcb9350962747a7aa2bb9adfefd7762c6280e252c364d7fb7b1fb09a492a120"
+    },
+    {
+      "sprite": [
+        30000,
+        40
+      ],
+      "file": "walk_sprint7/002.png",
+      "origin": [
+        160,
+        240
+      ],
+      "scale": 1,
+      "organic": true,
+      "normalized_bounds": [
+        -40,
+        -100,
+        41,
+        0
+      ],
+      "sha256": "bfcb9350962747a7aa2bb9adfefd7762c6280e252c364d7fb7b1fb09a492a120"
+    },
+    {
+      "sprite": [
+        30000,
+        41
+      ],
+      "file": "walk_sprint7/002.png",
+      "origin": [
+        160,
+        240
+      ],
+      "scale": 1,
+      "organic": true,
+      "normalized_bounds": [
+        -40,
+        -100,
+        41,
+        0
+      ],
+      "sha256": "bfcb9350962747a7aa2bb9adfefd7762c6280e252c364d7fb7b1fb09a492a120"
+    },
+    {
+      "sprite": [
+        30000,
+        42
+      ],
+      "file": "walk_sprint7/002.png",
+      "origin": [
+        160,
+        240
+      ],
+      "scale": 1,
+      "organic": true,
+      "normalized_bounds": [
+        -40,
+        -100,
+        41,
+        0
+      ],
+      "sha256": "bfcb9350962747a7aa2bb9adfefd7762c6280e252c364d7fb7b1fb09a492a120"
+    },
+    {
+      "sprite": [
+        30000,
+        43
+      ],
+      "file": "walk_sprint7/002.png",
+      "origin": [
+        160,
+        240
+      ],
+      "scale": 1,
+      "organic": true,
+      "normalized_bounds": [
+        -40,
+        -100,
+        41,
+        0
+      ],
+      "sha256": "bfcb9350962747a7aa2bb9adfefd7762c6280e252c364d7fb7b1fb09a492a120"
+    },
+    {
+      "sprite": [
+        30000,
+        32
+      ],
+      "file": "walk_sprint7/003.png",
+      "origin": [
+        160,
+        240
+      ],
+      "scale": 1,
+      "organic": true,
+      "normalized_bounds": [
+        -25,
+        -100,
+        21,
+        0
+      ],
+      "sha256": "82df9122770926ba690fd14998973dfdcebe60b696032bc0599c5e8e3e5bbe77"
+    },
+    {
+      "sprite": [
+        30000,
+        33
+      ],
+      "file": "walk_sprint7/003.png",
+      "origin": [
+        160,
+        240
+      ],
+      "scale": 1,
+      "organic": true,
+      "normalized_bounds": [
+        -25,
+        -100,
+        21,
+        0
+      ],
+      "sha256": "82df9122770926ba690fd14998973dfdcebe60b696032bc0599c5e8e3e5bbe77"
+    },
+    {
+      "sprite": [
+        30000,
+        34
+      ],
+      "file": "walk_sprint7/003.png",
+      "origin": [
+        160,
+        240
+      ],
+      "scale": 1,
+      "organic": true,
+      "normalized_bounds": [
+        -25,
+        -100,
+        21,
+        0
+      ],
+      "sha256": "82df9122770926ba690fd14998973dfdcebe60b696032bc0599c5e8e3e5bbe77"
+    },
+    {
+      "sprite": [
+        30000,
+        35
+      ],
+      "file": "walk_sprint7/003.png",
+      "origin": [
+        160,
+        240
+      ],
+      "scale": 1,
+      "organic": true,
+      "normalized_bounds": [
+        -25,
+        -100,
+        21,
+        0
+      ],
+      "sha256": "82df9122770926ba690fd14998973dfdcebe60b696032bc0599c5e8e3e5bbe77"
+    },
+    {
+      "sprite": [
+        30000,
+        36
+      ],
+      "file": "walk_sprint7/003.png",
+      "origin": [
+        160,
+        240
+      ],
+      "scale": 1,
+      "organic": true,
+      "normalized_bounds": [
+        -25,
+        -100,
+        21,
+        0
+      ],
+      "sha256": "82df9122770926ba690fd14998973dfdcebe60b696032bc0599c5e8e3e5bbe77"
+    },
+    {
+      "sprite": [
+        30000,
+        37
+      ],
+      "file": "walk_sprint7/003.png",
+      "origin": [
+        160,
+        240
+      ],
+      "scale": 1,
+      "organic": true,
+      "normalized_bounds": [
+        -25,
+        -100,
+        21,
+        0
+      ],
+      "sha256": "82df9122770926ba690fd14998973dfdcebe60b696032bc0599c5e8e3e5bbe77"
+    },
+    {
+      "sprite": [
+        30000,
+        38
+      ],
+      "file": "walk_sprint7/003.png",
+      "origin": [
+        160,
+        240
+      ],
+      "scale": 1,
+      "organic": true,
+      "normalized_bounds": [
+        -25,
+        -100,
+        21,
+        0
+      ],
+      "sha256": "82df9122770926ba690fd14998973dfdcebe60b696032bc0599c5e8e3e5bbe77"
+    },
+    {
+      "sprite": [
+        30000,
+        39
+      ],
+      "file": "walk_sprint7/003.png",
+      "origin": [
+        160,
+        240
+      ],
+      "scale": 1,
+      "organic": true,
+      "normalized_bounds": [
+        -25,
+        -100,
+        21,
+        0
+      ],
+      "sha256": "82df9122770926ba690fd14998973dfdcebe60b696032bc0599c5e8e3e5bbe77"
     },
     {
       "sprite": [
@@ -525,166 +1005,6 @@
     {
       "sprite": [
         30000,
-        24
-      ],
-      "file": "walk/001.png",
-      "origin": [
-        160,
-        240
-      ],
-      "scale": 1,
-      "organic": true,
-      "normalized_bounds": [
-        -32,
-        -96,
-        31,
-        0
-      ],
-      "sha256": "546786f5c85bdb247bf96fe6eca73c7558ad3a42cf9fa8d4db6cd1b5d9fa8a66"
-    },
-    {
-      "sprite": [
-        30000,
-        25
-      ],
-      "file": "walk/001.png",
-      "origin": [
-        160,
-        240
-      ],
-      "scale": 1,
-      "organic": true,
-      "normalized_bounds": [
-        -32,
-        -96,
-        31,
-        0
-      ],
-      "sha256": "546786f5c85bdb247bf96fe6eca73c7558ad3a42cf9fa8d4db6cd1b5d9fa8a66"
-    },
-    {
-      "sprite": [
-        30000,
-        26
-      ],
-      "file": "walk/001.png",
-      "origin": [
-        160,
-        240
-      ],
-      "scale": 1,
-      "organic": true,
-      "normalized_bounds": [
-        -32,
-        -96,
-        31,
-        0
-      ],
-      "sha256": "546786f5c85bdb247bf96fe6eca73c7558ad3a42cf9fa8d4db6cd1b5d9fa8a66"
-    },
-    {
-      "sprite": [
-        30000,
-        27
-      ],
-      "file": "walk/001.png",
-      "origin": [
-        160,
-        240
-      ],
-      "scale": 1,
-      "organic": true,
-      "normalized_bounds": [
-        -32,
-        -96,
-        31,
-        0
-      ],
-      "sha256": "546786f5c85bdb247bf96fe6eca73c7558ad3a42cf9fa8d4db6cd1b5d9fa8a66"
-    },
-    {
-      "sprite": [
-        30000,
-        44
-      ],
-      "file": "walk/001.png",
-      "origin": [
-        160,
-        240
-      ],
-      "scale": 1,
-      "organic": true,
-      "normalized_bounds": [
-        -32,
-        -96,
-        31,
-        0
-      ],
-      "sha256": "546786f5c85bdb247bf96fe6eca73c7558ad3a42cf9fa8d4db6cd1b5d9fa8a66"
-    },
-    {
-      "sprite": [
-        30000,
-        45
-      ],
-      "file": "walk/001.png",
-      "origin": [
-        160,
-        240
-      ],
-      "scale": 1,
-      "organic": true,
-      "normalized_bounds": [
-        -32,
-        -96,
-        31,
-        0
-      ],
-      "sha256": "546786f5c85bdb247bf96fe6eca73c7558ad3a42cf9fa8d4db6cd1b5d9fa8a66"
-    },
-    {
-      "sprite": [
-        30000,
-        46
-      ],
-      "file": "walk/001.png",
-      "origin": [
-        160,
-        240
-      ],
-      "scale": 1,
-      "organic": true,
-      "normalized_bounds": [
-        -32,
-        -96,
-        31,
-        0
-      ],
-      "sha256": "546786f5c85bdb247bf96fe6eca73c7558ad3a42cf9fa8d4db6cd1b5d9fa8a66"
-    },
-    {
-      "sprite": [
-        30000,
-        47
-      ],
-      "file": "walk/001.png",
-      "origin": [
-        160,
-        240
-      ],
-      "scale": 1,
-      "organic": true,
-      "normalized_bounds": [
-        -32,
-        -96,
-        31,
-        0
-      ],
-      "sha256": "546786f5c85bdb247bf96fe6eca73c7558ad3a42cf9fa8d4db6cd1b5d9fa8a66"
-    },
-    {
-      "sprite": [
-        30000,
         85
       ],
       "file": "walk/001.png",
@@ -701,166 +1021,6 @@
         0
       ],
       "sha256": "546786f5c85bdb247bf96fe6eca73c7558ad3a42cf9fa8d4db6cd1b5d9fa8a66"
-    },
-    {
-      "sprite": [
-        30000,
-        28
-      ],
-      "file": "walk/002.png",
-      "origin": [
-        160,
-        240
-      ],
-      "scale": 1,
-      "organic": true,
-      "normalized_bounds": [
-        -34,
-        -96,
-        34,
-        0
-      ],
-      "sha256": "c31798be856bda3805943f6d296d0b896c4143ed7cff1b6ca99e4eac553da966"
-    },
-    {
-      "sprite": [
-        30000,
-        29
-      ],
-      "file": "walk/002.png",
-      "origin": [
-        160,
-        240
-      ],
-      "scale": 1,
-      "organic": true,
-      "normalized_bounds": [
-        -34,
-        -96,
-        34,
-        0
-      ],
-      "sha256": "c31798be856bda3805943f6d296d0b896c4143ed7cff1b6ca99e4eac553da966"
-    },
-    {
-      "sprite": [
-        30000,
-        30
-      ],
-      "file": "walk/002.png",
-      "origin": [
-        160,
-        240
-      ],
-      "scale": 1,
-      "organic": true,
-      "normalized_bounds": [
-        -34,
-        -96,
-        34,
-        0
-      ],
-      "sha256": "c31798be856bda3805943f6d296d0b896c4143ed7cff1b6ca99e4eac553da966"
-    },
-    {
-      "sprite": [
-        30000,
-        31
-      ],
-      "file": "walk/002.png",
-      "origin": [
-        160,
-        240
-      ],
-      "scale": 1,
-      "organic": true,
-      "normalized_bounds": [
-        -34,
-        -96,
-        34,
-        0
-      ],
-      "sha256": "c31798be856bda3805943f6d296d0b896c4143ed7cff1b6ca99e4eac553da966"
-    },
-    {
-      "sprite": [
-        30000,
-        40
-      ],
-      "file": "walk/002.png",
-      "origin": [
-        160,
-        240
-      ],
-      "scale": 1,
-      "organic": true,
-      "normalized_bounds": [
-        -34,
-        -96,
-        34,
-        0
-      ],
-      "sha256": "c31798be856bda3805943f6d296d0b896c4143ed7cff1b6ca99e4eac553da966"
-    },
-    {
-      "sprite": [
-        30000,
-        41
-      ],
-      "file": "walk/002.png",
-      "origin": [
-        160,
-        240
-      ],
-      "scale": 1,
-      "organic": true,
-      "normalized_bounds": [
-        -34,
-        -96,
-        34,
-        0
-      ],
-      "sha256": "c31798be856bda3805943f6d296d0b896c4143ed7cff1b6ca99e4eac553da966"
-    },
-    {
-      "sprite": [
-        30000,
-        42
-      ],
-      "file": "walk/002.png",
-      "origin": [
-        160,
-        240
-      ],
-      "scale": 1,
-      "organic": true,
-      "normalized_bounds": [
-        -34,
-        -96,
-        34,
-        0
-      ],
-      "sha256": "c31798be856bda3805943f6d296d0b896c4143ed7cff1b6ca99e4eac553da966"
-    },
-    {
-      "sprite": [
-        30000,
-        43
-      ],
-      "file": "walk/002.png",
-      "origin": [
-        160,
-        240
-      ],
-      "scale": 1,
-      "organic": true,
-      "normalized_bounds": [
-        -34,
-        -96,
-        34,
-        0
-      ],
-      "sha256": "c31798be856bda3805943f6d296d0b896c4143ed7cff1b6ca99e4eac553da966"
     },
     {
       "sprite": [
@@ -901,166 +1061,6 @@
         0
       ],
       "sha256": "c31798be856bda3805943f6d296d0b896c4143ed7cff1b6ca99e4eac553da966"
-    },
-    {
-      "sprite": [
-        30000,
-        32
-      ],
-      "file": "walk/003.png",
-      "origin": [
-        160,
-        240
-      ],
-      "scale": 1,
-      "organic": true,
-      "normalized_bounds": [
-        -33,
-        -96,
-        33,
-        0
-      ],
-      "sha256": "3d7b1026507b1d0e75c39482ce3cbe013a4b9739ef04006771a531836160b494"
-    },
-    {
-      "sprite": [
-        30000,
-        33
-      ],
-      "file": "walk/003.png",
-      "origin": [
-        160,
-        240
-      ],
-      "scale": 1,
-      "organic": true,
-      "normalized_bounds": [
-        -33,
-        -96,
-        33,
-        0
-      ],
-      "sha256": "3d7b1026507b1d0e75c39482ce3cbe013a4b9739ef04006771a531836160b494"
-    },
-    {
-      "sprite": [
-        30000,
-        34
-      ],
-      "file": "walk/003.png",
-      "origin": [
-        160,
-        240
-      ],
-      "scale": 1,
-      "organic": true,
-      "normalized_bounds": [
-        -33,
-        -96,
-        33,
-        0
-      ],
-      "sha256": "3d7b1026507b1d0e75c39482ce3cbe013a4b9739ef04006771a531836160b494"
-    },
-    {
-      "sprite": [
-        30000,
-        35
-      ],
-      "file": "walk/003.png",
-      "origin": [
-        160,
-        240
-      ],
-      "scale": 1,
-      "organic": true,
-      "normalized_bounds": [
-        -33,
-        -96,
-        33,
-        0
-      ],
-      "sha256": "3d7b1026507b1d0e75c39482ce3cbe013a4b9739ef04006771a531836160b494"
-    },
-    {
-      "sprite": [
-        30000,
-        36
-      ],
-      "file": "walk/003.png",
-      "origin": [
-        160,
-        240
-      ],
-      "scale": 1,
-      "organic": true,
-      "normalized_bounds": [
-        -33,
-        -96,
-        33,
-        0
-      ],
-      "sha256": "3d7b1026507b1d0e75c39482ce3cbe013a4b9739ef04006771a531836160b494"
-    },
-    {
-      "sprite": [
-        30000,
-        37
-      ],
-      "file": "walk/003.png",
-      "origin": [
-        160,
-        240
-      ],
-      "scale": 1,
-      "organic": true,
-      "normalized_bounds": [
-        -33,
-        -96,
-        33,
-        0
-      ],
-      "sha256": "3d7b1026507b1d0e75c39482ce3cbe013a4b9739ef04006771a531836160b494"
-    },
-    {
-      "sprite": [
-        30000,
-        38
-      ],
-      "file": "walk/003.png",
-      "origin": [
-        160,
-        240
-      ],
-      "scale": 1,
-      "organic": true,
-      "normalized_bounds": [
-        -33,
-        -96,
-        33,
-        0
-      ],
-      "sha256": "3d7b1026507b1d0e75c39482ce3cbe013a4b9739ef04006771a531836160b494"
-    },
-    {
-      "sprite": [
-        30000,
-        39
-      ],
-      "file": "walk/003.png",
-      "origin": [
-        160,
-        240
-      ],
-      "scale": 1,
-      "organic": true,
-      "normalized_bounds": [
-        -33,
-        -96,
-        33,
-        0
-      ],
-      "sha256": "3d7b1026507b1d0e75c39482ce3cbe013a4b9739ef04006771a531836160b494"
     },
     {
       "sprite": [

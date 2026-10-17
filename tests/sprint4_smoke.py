@@ -35,6 +35,7 @@ def main():
     parser.add_argument('--opponent', choices=('goku', 'vegeta'), default='goku')
     parser.add_argument('--prefix', default='sprint4')
     parser.add_argument('--organic', action='store_true', help='Require observed body sprites to be organic on both sides')
+    parser.add_argument('--walk-review', type=Path, help='Record repeated full forward/back walk cycles for visual review')
     args = parser.parse_args()
     if not re.fullmatch(r'[a-zA-Z0-9_-]+', args.prefix):
         raise ValueError('Invalid evidence prefix')
@@ -75,6 +76,7 @@ loop()
         env = dict(os.environ, DBZ_ART_TRACE=str(trace))
         with (td/'engine.log').open('w+') as output:
             proc = subprocess.Popen([str(ROOT/'scripts/play.sh'), '-p1', args.fighter, '-p2', args.opponent, '-config', str(config), '-nosound', '-time', '99'], cwd=ROOT, env=env, stdout=output, stderr=subprocess.STDOUT)
+            recorder = None
             def rows():
                 return [list(map(int, line.split(','))) for line in trace.read_text().splitlines() if line.count(',') == 4]
             try:
@@ -93,6 +95,26 @@ loop()
                     if window and trace.exists() and len(rows()) > 600: break
                     time.sleep(.2)
                 if not window or not trace.exists(): raise RuntimeError('No fresh game window/trace')
+                if args.walk_review:
+                    args.walk_review.parent.mkdir(parents=True, exist_ok=True)
+                    recorder = subprocess.Popen(['ffmpeg', '-y', '-loglevel', 'error', '-f', 'x11grab',
+                        '-framerate', '60', '-window_id', window[1], '-i', os.environ['DISPLAY'],
+                        '-c:v', 'libx264', '-preset', 'ultrafast', '-crf', '18', '-pix_fmt', 'yuv420p',
+                        str(args.walk_review)], stdin=subprocess.PIPE)
+                    for repeat in range(3):
+                        for forward, backward in (('Right', 'Left'), ('j', 'l')):
+                            x.XSetInputFocus(display, int(window[1], 16), 1, 0); x.XFlush(display)
+                            hold([forward], .85)
+                            hold([backward], 1.3)
+                            time.sleep(.2)
+                    recorder.communicate(b'q', timeout=15)
+                    if recorder.returncode: raise RuntimeError('Walk recording failed')
+                    # Every source pose must actually reach the engine on each side.
+                    for player in (1, 2):
+                        for action, start in ((20, 20), (21, 36)):
+                            seen = {r[4] for r in rows() if r[1] == player and r[2] == action and r[3] == 30000}
+                            if not all(any(start+4*i <= sprite < start+4*i+4 for sprite in seen) for i in range(4)):
+                                raise ValueError(f'P{player}: incomplete walk cycle {action}')
                 subprocess.run(['ffmpeg', '-y', '-loglevel', 'error', '-f', 'x11grab', '-window_id', window[1], '-i', os.environ['DISPLAY'], '-frames:v', '1', str(ROOT/f'tests/{args.prefix}-facings.png')], check=True)
                 hold(['Right', 'j'], .2)
                 hold(['Left', 'l'], .35)
@@ -111,6 +133,10 @@ loop()
                 (ROOT/f'tests/{args.prefix}-sprites.csv').write_text('\n'.join(','.join(map(str, r)) for r in evidence)+'\n')
                 print(f'PASS real {args.fighter} vs {args.opponent}: idle progression, forward/back walk, punch; both players; fresh capture')
             finally:
+                if recorder and recorder.poll() is None:
+                    recorder.terminate()
+                    try: recorder.wait(timeout=5)
+                    except subprocess.TimeoutExpired: recorder.kill(); recorder.wait()
                 for name in list(pressed): key(name, False)
                 if proc.poll() is None:
                     proc.terminate()

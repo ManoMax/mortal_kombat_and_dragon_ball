@@ -1,0 +1,11 @@
+{
+  "base_commit": "ab9a28bb2e720f444e70bddd7b66096019d0a5a9",
+  "combat_sha256": {
+    "engine/chars/goku/kfm.air": "bea6cfb2cd20cd158917f11fb2a704d84b1ba6f681ec6c5d21d78a9308990b1a",
+    "engine/chars/goku/kfm.cns": "93f51874fcc314dc29f9d1713c3e5261347aeaffba65b2ef58fcb04b6a311e65",
+    "engine/chars/goku/kfm.cmd": "d88a38b0670cf841e9b7d4730f4c516076532a3b6971337e68cfb72e3de0d857",
+    "engine/chars/vegeta/kfm.air": "342050433e6fc111614a2376a576c848dfc3ed3b8a6eeff48c98b79ef1b4d0c5",
+    "engine/chars/vegeta/kfm.cns": "6aa85570a19507577e6ec240e0fb88bd270e52e09e517a2ca42febb97490f385",
+    "engine/chars/vegeta/kfm.cmd": "d88a38b0670cf841e9b7d4730f4c516076532a3b6971337e68cfb72e3de0d857"
+  }
+}

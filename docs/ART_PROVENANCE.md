@@ -114,3 +114,28 @@ produz desenhos. PNG/GIF em `evidence/sprint6/assets/` são renderizações de
 inspeção das fontes existentes com coordenadas/caixas AIR. Vídeos em
 `evidence/sprint6/runtime/` são capturas reais da janela do motor e não são
 conteúdo do jogo. Nenhum desses artefatos implica aprovação artística humana.
+
+# Sprint 7 — caminhadas candidatas novas
+
+Ferramenta: `image_gen` integrada, skill imagegen; sem CLI/API externa ou
+sprites extraídos de jogos. Seis folhas de fan art geradas nesta sessão,
+três iterações por personagem, em `assets-source/sprites/{goku,vegeta}/reference/sprint7/`.
+A v1 foi gerada a partir da descrição; v2/v3 editaram a folha anterior do
+próprio projeto. As fontes iniciais/comerciais de terceiros não foram usadas.
+As ressalvas sobre direitos dos personagens, KFM e motor continuam válidas;
+não é alegada licença oficial ou CC0 sobre personagens/marcas.
+
+Somente `walk-v3-generated.png` de cada personagem é consumida pela nova
+família `walk_sprint7`: quatro desenhos por personagem, oito no total.
+As v1/v2 são tentativas rejeitadas, mantidas para auditoria. Briefs e prompts
+finais em `assets-source/sprites/sprint7-prompts.md`; rastreio por personagem
+em `reference/sprint7/generation.json`; hashes das fontes usadas no relatório
+`evidence/sprint7/animation-audit.json`.
+
+O processamento usa o extrator existente: componentes alpha, retângulos,
+escala comum e âncoras explícitas; não sintetiza nem desloca uma pose única
+para simular passos. Os 32 contextos de caminhada 20/21 por personagem são
+substituídos. Os outros 605 bindings mantêm desenhos e pixels anteriores.
+AIR, caixas, tempos, CNS, CMD e Ki não foram alterados. As novas poses são
+candidatas: continuidade, troca anatômica de apoio e deslizamento ainda
+impedem aceite artístico. Não foram produzidos novos desenhos de combate.

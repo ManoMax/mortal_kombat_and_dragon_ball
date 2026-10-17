@@ -1,0 +1,3 @@
+PASS goku: 861 sprites, 670 AIR frames, 604 inherited body frames aligned
+PASS vegeta: 861 sprites, 670 AIR frames, 604 inherited body frames aligned
+PASS engine v1.0.0 binary matches pinned SHA256

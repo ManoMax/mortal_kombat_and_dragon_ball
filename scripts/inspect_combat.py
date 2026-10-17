@@ -155,7 +155,7 @@ def main():
     reports = [inspect(n,args.output,set(map(int,args.actions.split(','))),args.hitboxes) for n in ('goku','vegeta')]
     (args.output/'inspection.json').write_text(json.dumps(reports,indent=2)+'\n')
     with (args.output/'feet.csv').open('w', newline='') as stream:
-        writer = csv.writer(stream)
+        writer = csv.writer(stream, lineterminator='\n')
         writer.writerow(('character','action','frame','source_family','bottom_y','contact_center_x','alpha_change_pixels'))
         for report in reports:
             for action, data in report['actions'].items():
@@ -163,7 +163,7 @@ def main():
                     if 'bottom' in frame:
                         writer.writerow((report['character'],action,frame['frame'],frame['source_family'],frame['bottom'],frame['contact_center'],frame.get('alpha_change_pixels','')))
     with (args.output/'kfm-state-inventory.csv').open('w', newline='') as stream:
-        writer = csv.writer(stream)
+        writer = csv.writer(stream, lineterminator='\n')
         writer.writerow(('character','state','origin','animation_expression','source_families'))
         for report in reports:
             for state in report['state_inventory']:

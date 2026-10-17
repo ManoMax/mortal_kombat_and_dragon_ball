@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "status": "Sprint 5 organic candidates; human art review pending",
+  "status": "Sprint 7 walk candidates; artistic gate blocked on support trajectory and anatomy",
   "required": [
     "idle",
     "walk",
@@ -193,26 +193,70 @@
       }
     },
     {
-      "animation": "walk",
-      "file": "reference/locomotion-transparent.png",
+      "animation": "walk_sprint7",
+      "file": "reference/sprint7/walk-v3-generated.png",
       "columns": 4,
-      "scale": 0.19381443298969073,
+      "scale": 0.142433234421365,
       "anchors": [
         [
-          192,
-          470
+          180,
+          695
         ],
         [
-          192,
-          470
+          128,
+          695
         ],
         [
-          192,
-          470
+          268,
+          695
         ],
         [
-          192,
-          470
+          129,
+          695
+        ]
+      ],
+      "rectangles": [
+        [
+          120,
+          0,
+          582,
+          724
+        ],
+        [
+          687,
+          0,
+          977,
+          724
+        ],
+        [
+          1082,
+          0,
+          1623,
+          724
+        ],
+        [
+          1756,
+          0,
+          2046,
+          724
+        ]
+      ],
+      "seeds": [
+        [
+          272,
+          290
+        ],
+        [
+          814,
+          290
+        ],
+        [
+          1358,
+          290
+        ],
+        [
+          1900,
+          290
         ]
       ],
       "bindings": [
@@ -439,7 +483,34 @@
             51
           ],
           0
+        ]
+      ],
+      "grounded": true
+    },
+    {
+      "animation": "walk",
+      "file": "reference/locomotion-transparent.png",
+      "columns": 4,
+      "scale": 0.19381443298969073,
+      "anchors": [
+        [
+          192,
+          470
         ],
+        [
+          192,
+          470
+        ],
+        [
+          192,
+          470
+        ],
+        [
+          192,
+          470
+        ]
+      ],
+      "bindings": [
         [
           [
             30000,

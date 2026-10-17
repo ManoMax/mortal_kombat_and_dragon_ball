@@ -1,0 +1,8 @@
+{
+  "status": "failed",
+  "changed": [
+    "assets-source/sprites/goku/manifest.json",
+    "assets-source/sprites/vegeta/manifest.json"
+  ],
+  "reason": "Manually restored baseline manifest ordering disagreed with deterministic sheet extraction ordering; sprite records and all asset pixels unchanged. Final manifests use extractor order."
+}

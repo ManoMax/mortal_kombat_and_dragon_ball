@@ -1,0 +1,8 @@
+{
+  "automated": true,
+  "human_acceptance": "pending",
+  "status": "failed",
+  "elapsed_seconds": 0.42,
+  "reason": "No X11 display: sandbox denied desktop access before any engine regression ran",
+  "counts_as_pass": false
+}

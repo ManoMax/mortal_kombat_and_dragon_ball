@@ -1,0 +1,22 @@
+{
+  "goku": {
+    "new_drawings": 4,
+    "artistic_acceptance": "blocked",
+    "sha256": {
+      "000.png": "3c7a265c0bf02729f056e7cc019cd703ca15c43be2ab2314340fb4b321130f80",
+      "001.png": "10a382d5730e1d807c2dd013af2b197e299f136fa8e2dbfe0e56ddc21314a2ec",
+      "002.png": "bfcb9350962747a7aa2bb9adfefd7762c6280e252c364d7fb7b1fb09a492a120",
+      "003.png": "82df9122770926ba690fd14998973dfdcebe60b696032bc0599c5e8e3e5bbe77"
+    }
+  },
+  "vegeta": {
+    "new_drawings": 4,
+    "artistic_acceptance": "blocked",
+    "sha256": {
+      "000.png": "76e4ce238c4e1e2d6f6f491a2c0d46ed0ed3a6df6eece5a58de49d2eef9c324c",
+      "001.png": "63031d24edc4311e62e6b0b6cbb78b68ed6274ee0c724e4012a1c9997b014ea8",
+      "002.png": "6c99162b71b292e0c361cd935f942e63a296e86f31942269ea1c99b497b6acd6",
+      "003.png": "c528cf7d0ab590bd2b5ef38712f34e2a99487d83fc76e5da60643830a46f1a08"
+    }
+  }
+}

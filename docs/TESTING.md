@@ -501,3 +501,35 @@ personagens, arena e interface repetidos; os mesmos hashes SHA256 em **753
 arquivos** antes/depois. Inventário em `evidence/sprint6/build-sha256.json`.
 Nenhum sprite/SFF, fonte ou arquivo do motor teve alteração incidental.
 Somente os AIR adaptados têm a mudança intencional de duração do idle.
+
+## Sprint 7 — 17/10/2026
+
+Novos desenhos candidatos de caminhada: quatro por personagem, oito no total,
+integrados nas ações 20/21. AIR/CNS/CMD mantêm os hashes da Sprint 6; somente
+32 bindings por personagem foram substituídos. Demais movimentos preservados.
+
+| Regressão | Resultado |
+| --- | --- |
+| validate normal / `-O` | PASS: 861 sprites, 670 elementos AIR, 604 contextos herdados por personagem; motor fixado preservado |
+| Unittests existentes | PASS: 31 testes |
+| Auditoria completa | PASS: 637 bindings por personagem; não certifica qualidade artística |
+| Suíte gráfica herdada completa | PASS; resultado e logs novos em `evidence/sprint7/runtime/` |
+| Teclado | PASS: ambos causaram dano, vidas finais 711/811 |
+| Dois KOs, dois rounds, 0–2 | PASS sem áudio em 38,77 s; com áudio em 43,25 s |
+| Ki/especiais, ambas as ordens | PASS: carga, limite, custo, dano, guarda, interrupção, medidores e reset |
+| Recursos principal/invertido | PASS: 344.920/344.676 KiB, 55,52/38,58 s; limites 1 GiB/90 s |
+| Ciclos completos de caminhada | PASS de integração: quatro poses fonte em 20/21, ambos os facings de ambos; telemetria `walk-coverage.json` e `walk-reversed-coverage.json` |
+| Vídeos reais | 32,959 s normal; 33,034 s invertido; revisão de caminhada em 60 fps: 14,167 s normal e 14,134 s invertido |
+| Reconstrução final | PASS: hashes idênticos em 742 arquivos após repetir extração e builds; primeira divergência de ordem dos manifestos documentada e corrigida |
+
+A captura dedicada usa a opção nova `--walk-review` de `sprint4_smoke.py`;
+exige observar as quatro poses na frente e no recuo para cada jogador.
+As opções existentes mantêm seu comportamento. Nenhuma configuração persistente
+de controle foi alterada. A tentativa inicial no sandbox falhou com No X11
+display e não conta como PASS; as execuções acima ocorreram fora do sandbox.
+
+Comparações, GIFs de fontes/AIR e GIFs do motor real estão separados e rotulados
+em `evidence/sprint7/README.md`. Não foram feitas partidas humanas. **Aceite
+artístico bloqueado**: trajetória do apoio, breakdowns, alternância anatômica,
+identidade entre famílias e model sheets completos pendentes. Novos desenhos
+de combate aguardam esse gate; não declarar a Sprint concluída artisticamente.

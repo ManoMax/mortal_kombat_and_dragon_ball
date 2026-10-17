@@ -1,0 +1,17 @@
+{
+  "validate": "pass",
+  "validate_optimized": "pass",
+  "unit_tests": {
+    "status": "pass",
+    "count": 31,
+    "elapsed_seconds": 20.595
+  },
+  "complete_animation_audit": "pass",
+  "air_cns_cmd_hashes": "unchanged",
+  "organic_bindings_per_character": 637,
+  "changed_bindings_per_character": 32,
+  "new_source_drawings_per_character": 4,
+  "human_play": "not performed",
+  "artistic_acceptance": "blocked",
+  "combat_art": "not advanced: walk gate unresolved"
+}
