@@ -104,3 +104,13 @@ reexecução não determinística dos prompts, são as fontes reproduzíveis do 
 bindings, posicionamento aéreo, compensação AIR e dois overrides de hurtbox.
 O extrator preserva alpha parcial da região extraída; não pinta nem interpola
 novas poses. Hashes das folhas usadas em `sprint5-animation-audit.json`.
+
+# Sprint 6 — cadência e inspeção
+
+Nenhuma fonte artística nova foi gerada ou importada. Referências, desenhos e
+licenças das Sprints 4/5 permanecem os mesmos. O plano
+`assets-source/animation-polish.json` altera somente retenções do idle; não
+produz desenhos. PNG/GIF em `evidence/sprint6/assets/` são renderizações de
+inspeção das fontes existentes com coordenadas/caixas AIR. Vídeos em
+`evidence/sprint6/runtime/` são capturas reais da janela do motor e não são
+conteúdo do jogo. Nenhum desses artefatos implica aprovação artística humana.

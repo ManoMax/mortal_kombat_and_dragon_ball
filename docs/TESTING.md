@@ -447,3 +447,57 @@ sandbox não tem credencial; o conector GitHub retornou 403 ao criar blob.
 Implementação local commitada; nenhum PR Sprint 5 foi criado. Detalhes e descrição
 preparada em `PR_SPRINT_5.md`. Isso não invalida os resultados locais, mas impede
 confirmar o workflow remoto até que a branch possa ser publicada.
+
+## Sprint 6 — 17/10/2026
+
+Auditoria antes das mudanças: validate normal e `-O` PASS, 26 unittests PASS;
+`tests/sprint5_graphics.py` PASS no X11, incluindo teclado, dois KOs 0–2 com
+som/sem som, ordem invertida de personagens e Ki/especiais com gravação.
+Evidências preservadas em `evidence/sprint6/baseline/`.
+
+Reprodução e distinção entre prévia de assets e captura real:
+[evidence/sprint6/README.md](../evidence/sprint6/README.md). Novos testes de
+coordenadas conhecidas cobrem offsets/flips/facing, piso/franja opaca,
+arte vazia/recortada e preservação de todos os contratos fora do idle.
+O verificador anterior de piso, escala, hashes distintos, integridade SFF/AIR,
+Ki, colisões e rounds permanece ativo. A nova coleta mede diferença de alpha;
+não certifica continuidade perceptual. Estados comuns continuam fornecidos
+pelo motor fixado; não foram reimplementados.
+
+A primeira execução final passou teclado e rounds, mas falhou na interrupção
+da carga. Não foi contada como PASS. Coleta preservada em
+`evidence/sprint6/failed-attempt/`: o alvo não entrou em 7000 nessa etapa.
+Não foi isolada causa no combate; o harness passou a renovar foco antes do
+comando e confirmar entrada em carga antes do disparo. A repetição mantém
+as mesmas exigências de dano, guarda, interrupção e reset, sem relaxamento.
+
+### Resultados finais da Sprint 6
+
+| Verificação | Resultado automatizado |
+| --- | --- |
+| validate normal / `-O` | PASS; 861 sprites, 670 frames AIR, 604 contextos herdados por personagem; motor fixado preservado. |
+| Unittests | PASS: 31; inclui todos os contextos orgânicos espelhados, inventário e alteração restrita de idle. |
+| Auditoria completa | PASS: 637 bindings orgânicos por personagem; isso não aprova coreografia KFM nem arte. |
+| Idle | Retenções máximas de 45 para 12 ticks, ciclo de 151 para 118; mesmas poses/caixas. |
+| Goku × Goku e ordens Goku/Vegeta | PASS: progressão de sprites, caminhada frente/trás e soco, ambos os jogadores. |
+| Teclado | PASS: ambos causaram dano; vidas finais 711/811. |
+| Dois rounds / dois KOs / placar 0–2 | PASS sem som (42,78 s) e com áudio (34,38 s), saída 0. |
+| Ki, projéteis, dano nominal, defesa, interrupção, medidores, reset | PASS com Goku à esquerda e Vegeta à direita; PASS com personagens invertidos. |
+| Recursos captura dupla + Ki | PASS: 338.400 KiB RSS, 55,87 s; limites 1 GiB/90 s. |
+| Recursos Ki invertido + vídeo | PASS: 338.328 KiB RSS, 38,82 s; mesmos limites. |
+
+A suíte completa demorou 211,46 s; o limite de 90 s é por cenário medido,
+não para a suíte inteira. `runtime/result.json` registra PASS, e os relatórios
+GNU time têm código 0. Os dois MP4 são capturas reais atuais; metadados ffprobe
+e frames extraídos estão junto dos vídeos. Renderização: OpenGL 4.6 Core,
+Mesa 23.2.1, Intel UHD 620, X11 fora do sandbox. Nenhum teste manual foi feito.
+
+Todos os entregáveis locais ficam na branch da Sprint 6. Publicação/PR draft
+não concluídos: push HTTPS sem credencial e conector GitHub com 403 de escrita.
+Descrição pronta em `PR_SPRINT_6.md`; CI remoto não executado por esta entrega.
+
+Reconstrução final: prepare_character_art de ambos os personagens, build de
+personagens, arena e interface repetidos; os mesmos hashes SHA256 em **753
+arquivos** antes/depois. Inventário em `evidence/sprint6/build-sha256.json`.
+Nenhum sprite/SFF, fonte ou arquivo do motor teve alteração incidental.
+Somente os AIR adaptados têm a mudança intencional de duração do idle.

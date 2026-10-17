@@ -56,3 +56,12 @@
    - Ações KFM adicionais reutilizam famílias orgânicas; coreografia e apresentação
      ainda são provisórias. Inventário completo no relatório; aceite humano pendente.
    - Sem novos personagens/transformações; PR para revisão, sem merge automático.
+
+10. **Sprint 6 — polimento técnico e revisão visual:**
+    - Cadência de idle sem retenções herdadas de 40/45 ticks.
+    - Comparações, sequências GIF, caixas opcionais, relatório de faixa de pés,
+      inventário AIR/famílias KFM e contratos de combate exportados.
+    - Regressão ampliada com personagens invertidos entre P1/P2 e gravação real.
+    - Pendências artísticas e desenhos necessários em SPRINT_6_VISUAL_REVIEW.md.
+    - Aceite artístico/humano permanece pendente; sem novos golpes/personagens,
+      transformações, alteração de motor ou merge automático.
