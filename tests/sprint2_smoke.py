@@ -60,6 +60,7 @@ def main():
         time.sleep(seconds)
         for k in keys: key(k,False)
     def beam(p):
+        x.XSetInputFocus(display,int(window[1],16),1,0); x.XFlush(display)
         down,forward,punch=('Down','Right','s') if p==1 else ('k','j','t')
         hold([down],.08)
         hold([down,forward],.08)
@@ -114,7 +115,11 @@ def main():
                 beam(p); time.sleep(1.5); key(guard,False)
                 require(snap(3-p)[5]==before, f'P{p} guard failed')
             # Charging opponent must be hittable and stop gaining Ki on impact.
+            x.XSetInputFocus(display,int(window[1],16),1,0); x.XFlush(display)
             key('f',True); key('g',True)
+            deadline=time.monotonic()+2
+            while time.monotonic()<deadline and snap(2)[4]!=7000: time.sleep(.02)
+            require(snap(2)[4]==7000, 'Target did not enter charge before interruption probe')
             beam(1); time.sleep(1.5); key('f',False); key('g',False)
             samples=[r for r in rows() if r[1]==2]
             require(any(a[4]==7000 and b[4]>=5000 and b[4]<6000 for a,b in zip(samples,samples[1:])), 'Charge not interrupted by hit')

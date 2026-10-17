@@ -2,9 +2,10 @@
 import sys
 from pathlib import Path
 import unittest
+import tempfile
 from PIL import Image
 sys.path.insert(0,str(Path(__file__).resolve().parents[1]/'scripts'))
-from inspect_combat import placed, metrics
+from inspect_combat import placed, metrics, inspect
 import animation_polish
 from air_geometry import frames
 
@@ -49,3 +50,19 @@ class IdlePolish(unittest.TestCase):
             else:
                 self.assertEqual(old,new)
         self.assertGreater(changes,0)
+
+
+class ProductionInspection(unittest.TestCase):
+    def test_all_organic_contexts_have_mirrored_bounds_and_state_inventory(self):
+        with tempfile.TemporaryDirectory() as folder:
+            for name in ('goku','vegeta'):
+                report=inspect(name,Path(folder),set())
+                self.assertTrue(any(s['state']==810 and s['origin']=='inherited KFM' for s in report['state_inventory']))
+                self.assertTrue(any(s['state']==7100 and s['origin']=='DBZ layer' for s in report['state_inventory']))
+                self.assertEqual(len(report['common_states']['sha256']),64)
+                for action in report['actions'].values():
+                    for frame in action['frames']:
+                        if not frame['organic']: continue
+                        x,y,r,b=frame['bounds']
+                        self.assertEqual(frame['left_bounds'],[321-r,y,321-x,b])
+                self.assertEqual([f['ticks'] for f in report['actions']['0']['frames']],animation_polish.idle_ticks())

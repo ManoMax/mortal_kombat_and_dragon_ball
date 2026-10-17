@@ -67,4 +67,4 @@ if __name__ == '__main__':
     if args.report: args.report.write_text(json.dumps(report,indent=2)+'\n')
     for name, data in report.items():
         print(f'PASS {name}: {data["organic_bindings"]} organic bindings; all essential actions; '
-              f'{len(data["remaining_placeholders"])} inherited actions still need art; human acceptance pending')
+              f'{len(data["remaining_placeholders"])} actions missing organic bindings; choreography and human acceptance pending')

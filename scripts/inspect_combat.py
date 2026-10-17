@@ -16,21 +16,27 @@ ROOT = Path(__file__).resolve().parents[1]
 def placed(image, origin, values, flags, facing=1):
     """Apply AIR flips/offsets and facing to RGBA pixels around the player axis."""
     result = Image.new('RGBA', (320, 320))
-    bounds = image.getchannel("A").getbbox()
+    bounds = image.getchannel('A').getbbox()
     if bounds is None:
-        raise ValueError("Empty body frame")
-    for y in range(bounds[1], bounds[3]):
-        for x in range(bounds[0], bounds[2]):
-            pixel = image.getpixel((x, y))
-            if not pixel[3]:
-                continue
-            px, py = x-origin[0], y-origin[1]
-            px = (-px if 'H' in flags.upper() else px) + values[2]
-            py = (-py if 'V' in flags.upper() else py) + values[3]
-            tx, ty = 160+facing*px, 240+py
-            if not (0 <= tx < 320 and 0 <= ty < 320):
-                raise ValueError('Preview clips transformed artwork')
-            result.putpixel((tx, ty), pixel)
+        raise ValueError('Empty body frame')
+    crop = image.crop(bounds)
+    x = bounds[0]-origin[0]
+    y = bounds[1]-origin[1]
+    if 'H' in flags.upper():
+        x = origin[0]-(bounds[2]-1)
+        crop = crop.transpose(Image.FLIP_LEFT_RIGHT)
+    if 'V' in flags.upper():
+        y = origin[1]-(bounds[3]-1)
+        crop = crop.transpose(Image.FLIP_TOP_BOTTOM)
+    x += values[2]
+    y += values[3]
+    if facing == -1:
+        x = -(x+crop.width-1)
+        crop = crop.transpose(Image.FLIP_LEFT_RIGHT)
+    tx,ty = 160+x,240+y
+    if tx < 0 or ty < 0 or tx+crop.width > 320 or ty+crop.height > 320:
+        raise ValueError('Preview clips transformed artwork')
+    result.paste(crop,(tx,ty))
     return result
 
 
@@ -118,6 +124,24 @@ def inspect(name, output, selected, boxes=False):
         contracts[filename] = [b for b in blocks if re.search(
             r'type\s*=\s*(HitDef|Projectile|TargetBind|TargetState|TargetVelSet|ChangeState|HitOverride)\b', b, re.I)]
     report['state_contracts'] = contracts
+    original = (ROOT/'engine/chars/kfm/kfm.cns').read_text(encoding='utf-8-sig')
+    inherited = set(re.findall(r'^\[Statedef\s+(-?\d+)\]',original,re.I|re.M))
+    text = (ROOT/'engine/chars'/name/'kfm.cns').read_text(encoding='utf-8-sig')
+    report['state_inventory'] = []
+    for block in re.split(r'(?=^\[Statedef)',text,flags=re.I|re.M):
+        match = re.match(r'\[Statedef\s+(-?\d+)\]',block,re.I)
+        if not match: continue
+        anim = re.search(r'^anim\s*=\s*([^;\n]+)',block,re.I|re.M)
+        expression = anim[1].strip() if anim else None
+        action = report['actions'].get(expression,{})
+        report['state_inventory'].append(dict(state=int(match[1]),
+            origin='inherited KFM' if match[1] in inherited else 'DBZ layer',
+            animation_expression=expression,
+            source_families=sorted({f['source_family'] for f in action.get('frames',[]) if f['source_family']})))
+    common = ROOT/'engine/data/common1.cns.zss'
+    report['common_states'] = dict(file=str(common.relative_to(ROOT)),
+        sha256=hashlib.sha256(common.read_bytes()).hexdigest(),
+        note='Engine default common states; dynamic animation selection is not resolved by this static tool')
     return report
 
 
